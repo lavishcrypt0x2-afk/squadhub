@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SquadHub V6</title>
+<title>SquadHub 1.0</title>
 
 <style>
 *{
@@ -646,20 +646,6 @@ select:focus{
   color:var(--muted);
 }
 
-/* EMPTY */
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  padding:35px 15px;
-  border:1px dashed var(--border);
-  border-radius:15px;
-}
-
-.back-btn{
-  margin-bottom:15px;
-}
-
 /* TOAST */
 
 .toast-container{
@@ -735,6 +721,7 @@ footer{
   border-top:1px solid var(--border);
   padding:25px 15px;
   font-size:13px;
+  line-height:1.8;
 }
 
 /* MOBILE */
@@ -805,84 +792,64 @@ footer{
     min-width:0;
     width:100%;
   }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- V6 TOAST SYSTEM -->
-
 <div id="toastContainer" class="toast-container"></div>
-
 
 <header>
 
 <div class="header-inner">
 
 <div class="logo">
-
 🎮 <span>Squad</span>Hub
-
-<span class="version">V6</span>
-
+<span class="version">1.0</span>
 </div>
 
 <nav>
 
-<button
-class="active"
-onclick="showSection('home',this)"
->
+<button class="active" onclick="showSection('home',this)">
 🏠 Home
 </button>
 
-<button
-onclick="showSection('games',this)"
->
+<button onclick="showSection('games',this)">
 🎮 Games
 </button>
 
-<button
-onclick="showSection('squad',this)"
->
+<button onclick="showSection('squad',this)">
 👥 Squad
 </button>
 
-<button
-onclick="showSection('leaderboard',this)"
->
+<button onclick="showSection('leaderboard',this)">
 🏆 Leaderboard
 </button>
 
-<button
-onclick="showSection('calculator',this)"
->
+<button onclick="showSection('calculator',this)">
 ⭐ XP
+</button>
+
+<button onclick="showSection('about',this)">
+ℹ️ About
 </button>
 
 </nav>
 
 </div>
-
 </header>
-
 
 <main>
 
-
 <!-- HOME -->
 
-<section
-id="home"
-class="section active"
->
+<section id="home" class="section active">
 
 <div class="hero">
 
 <div class="hero-badge">
-⚡ SQUADHUB V6
+⚡ SQUADHUB 1.0
 </div>
 
 <h1>
@@ -914,102 +881,51 @@ onclick="showSectionById('games')"
 
 </div>
 
-
 <div class="stats">
 
 <div class="stat">
-
-<div
-class="stat-number"
->
-4
+<div class="stat-number">4</div>
+<div class="stat-label">Games</div>
 </div>
-
-<div class="stat-label">
-Games
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div
-id="memberCount"
-class="stat-number"
->
-0
+<div id="memberCount" class="stat-number">0</div>
+<div class="stat-label">Squad Members</div>
 </div>
-
-<div class="stat-label">
-Squad Members
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div
-id="totalXP"
-class="stat-number"
->
-0 XP
-</div>
-
-<div class="stat-label">
-Total XP
+<div id="totalXP" class="stat-number">0 XP</div>
+<div class="stat-label">Total XP</div>
 </div>
 
 </div>
-
-</div>
-
 
 <div class="section-title">
 
 <div>
-
 <h2>🔥 Featured Games</h2>
-
-<p>
-Your gaming universe
-</p>
-
+<p>Your gaming universe</p>
 </div>
 
 </div>
 
-
-<div
-id="homeGames"
-class="game-grid"
-></div>
+<div id="homeGames" class="game-grid"></div>
 
 </section>
 
 
 <!-- GAMES -->
 
-<section
-id="games"
-class="section"
->
+<section id="games" class="section">
 
 <div class="section-title">
 
 <div>
-
 <h2>🎮 Games</h2>
-
-<p>
-Explore your gaming universe
-</p>
-
+<p>Explore your gaming universe</p>
 </div>
 
 </div>
-
 
 <input
 class="search-box"
@@ -1018,21 +934,14 @@ placeholder="🔎 Search games..."
 oninput="searchGames()"
 >
 
-
-<div
-id="gamesContainer"
-class="game-grid"
-></div>
+<div id="gamesContainer" class="game-grid"></div>
 
 </section>
 
 
 <!-- GAME DETAILS -->
 
-<section
-id="gameDetails"
-class="section"
->
+<section id="gameDetails" class="section">
 
 <button
 class="secondary-btn back-btn"
@@ -1041,33 +950,21 @@ onclick="showSectionById('games')"
 ← Back to Games
 </button>
 
-
-<div
-id="gameDetailsContainer"
-></div>
+<div id="gameDetailsContainer"></div>
 
 </section>
 
 
 <!-- SQUAD -->
 
-<section
-id="squad"
-class="section"
->
+<section id="squad" class="section">
 
 <div class="section-title">
 
 <div>
-
 <h2>👥 My Squad</h2>
-
-<p>
-Add, edit and manage your players
-</p>
-
+<p>Add, edit and manage your players</p>
 </div>
-
 
 <button
 class="secondary-btn"
@@ -1077,7 +974,6 @@ Reset Squad
 </button>
 
 </div>
-
 
 <div class="member-form">
 
@@ -1104,7 +1000,6 @@ onclick="addMember()"
 
 </div>
 
-
 <input
 class="search-box"
 id="memberSearch"
@@ -1112,72 +1007,47 @@ placeholder="🔎 Search squad member..."
 oninput="renderMembers()"
 >
 
-
-<div
-id="membersContainer"
-></div>
+<div id="membersContainer"></div>
 
 </section>
 
 
 <!-- LEADERBOARD -->
 
-<section
-id="leaderboard"
-class="section"
->
+<section id="leaderboard" class="section">
 
 <div class="section-title">
 
 <div>
-
 <h2>🏆 Leaderboard</h2>
-
-<p>
-Top squad players by XP
-</p>
-
+<p>Top squad players by XP</p>
 </div>
 
 </div>
 
-
-<div
-id="leaderboardContainer"
-></div>
+<div id="leaderboardContainer"></div>
 
 </section>
 
 
 <!-- XP CALCULATOR -->
 
-<section
-id="calculator"
-class="section"
->
+<section id="calculator" class="section">
 
 <div class="section-title">
 
 <div>
-
 <h2>⭐ XP Calculator</h2>
-
-<p>
-Calculate match XP
-</p>
-
+<p>Calculate match XP</p>
 </div>
 
 </div>
-
 
 <div class="calculator">
 
 <div class="field">
 
-<label>
-🎮 In-game Level
-</label>
+<label>🎮 In-game Level</label>
 
 <input
 id="level"
@@ -1188,13 +1058,9 @@ value="1"
 
 </div>
 
-
 <div class="field">
 
-<label>
-🏁 Match Result
-</label>
-
+<label>🏁 Match Result</label>
 
 <select id="result">
 
@@ -1218,12 +1084,9 @@ Played — +25 XP
 
 </div>
 
-
 <div class="field">
 
-<label>
-✨ Bonus XP
-</label>
+<label>✨ Bonus XP</label>
 
 <input
 id="bonus"
@@ -1234,7 +1097,6 @@ value="0"
 
 </div>
 
-
 <button
 class="primary-btn"
 style="width:100%"
@@ -1243,11 +1105,7 @@ onclick="calculateXP()"
 Calculate XP
 </button>
 
-
-<div
-class="result"
-id="xpResult"
->
+<div id="xpResult" class="result">
 Your XP will appear here.
 </div>
 
@@ -1258,10 +1116,7 @@ Your XP will appear here.
 
 <!-- PROFILE -->
 
-<section
-id="profile"
-class="section"
->
+<section id="profile" class="section">
 
 <button
 class="secondary-btn back-btn"
@@ -1270,10 +1125,95 @@ onclick="showSectionById('squad')"
 ← Back to Squad
 </button>
 
+<div id="profileContainer"></div>
 
-<div
-id="profileContainer"
-></div>
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="section">
+
+<div class="section-title">
+
+<div>
+<h2>ℹ️ About SquadHub</h2>
+<p>Official SquadHub information</p>
+</div>
+
+</div>
+
+<div class="details-card">
+
+<div class="details-top">
+
+<div class="details-icon">
+🎮
+</div>
+
+<h1>SquadHub</h1>
+
+<p
+style="
+color:var(--cyan);
+margin-top:8px;
+font-weight:800;
+"
+>
+Version 1.0
+</p>
+
+<p
+style="
+color:var(--muted);
+margin-top:8px;
+"
+>
+Build • Play • Compete • Improve
+</p>
+
+</div>
+
+<div class="details-content">
+
+<div class="info-box">
+
+<div>
+<span>🌐 Name</span>
+<strong>SquadHub</strong>
+</div>
+
+<div>
+<span>📦 Version</span>
+<strong>1.0</strong>
+</div>
+
+<div>
+<span>👤 Created & Credited to</span>
+<strong>Lavish</strong>
+</div>
+
+<div>
+<span>📱 Mobile</span>
+<strong>7743011901</strong>
+</div>
+
+<div>
+<span>📧 Email</span>
+<strong>lavishcrypt0x@gmail.com</strong>
+</div>
+
+</div>
+
+<p>
+SquadHub is a gaming-focused website designed
+to help players manage their squad, track XP,
+view rankings and explore games.
+</p>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1282,7 +1222,17 @@ id="profileContainer"
 
 <footer>
 
-🎮 SquadHub V6 — Made for the Squad
+🎮 <strong>SquadHub 1.0</strong>
+
+<br>
+
+Created & Credited to <strong>Lavish</strong>
+
+<br>
+
+📱 7743011901
+&nbsp; • &nbsp;
+📧 lavishcrypt0x@gmail.com
 
 <br>
 
@@ -1324,7 +1274,7 @@ id:"ibd3d",
 icon:"🏍️",
 name:"Indian Bikes Driving 3D",
 genre:"DRIVING",
-description:"Explore information about the Indian Bikes Driving 3D experience.",
+description:"Explore information about Indian Bikes Driving 3D.",
 developer:"Indian Bikes Driving 3D",
 url:"https://play.google.com/store/apps/details?id=com.Rohit.IndianBikes"
 },
@@ -1364,14 +1314,11 @@ document
 section.classList.remove("active");
 });
 
-
-const target=
-document.getElementById(id);
+const target=document.getElementById(id);
 
 if(target){
 target.classList.add("active");
 }
-
 
 document
 .querySelectorAll("nav button")
@@ -1379,11 +1326,9 @@ document
 btn.classList.remove("active");
 });
 
-
 if(button){
 button.classList.add("active");
 }
-
 
 window.scrollTo({
 top:0,
@@ -1415,16 +1360,11 @@ document.getElementById(
 "toastContainer"
 );
 
-if(!container)return;
-
-
 const toast=
 document.createElement("div");
 
-
 toast.className=
 "toast "+type;
-
 
 toast.innerHTML=`
 
@@ -1438,15 +1378,12 @@ ${escapeHTML(message)}
 
 `;
 
-
 container.appendChild(toast);
-
 
 setTimeout(()=>{
 
 toast.style.animation=
 "toastOut .3s ease forwards";
-
 
 setTimeout(()=>{
 toast.remove();
@@ -1458,7 +1395,7 @@ toast.remove();
 
 
 /* =========================
-   GAMES
+   GAME CARDS
 ========================= */
 
 function gameCard(game){
@@ -1511,7 +1448,6 @@ document.getElementById(
 ).innerHTML=
 games.map(gameCard).join("");
 
-
 document.getElementById(
 "homeGames"
 ).innerHTML=
@@ -1523,12 +1459,11 @@ games.map(gameCard).join("");
 function searchGames(){
 
 const search=
-document
-.getElementById("gameSearch")
-.value
+document.getElementById(
+"gameSearch"
+).value
 .toLowerCase()
 .trim();
-
 
 document
 .querySelectorAll(
@@ -1557,7 +1492,6 @@ games.find(g=>g.id===id);
 
 if(!game)return;
 
-
 document.getElementById(
 "gameDetailsContainer"
 ).innerHTML=`
@@ -1578,7 +1512,7 @@ ${escapeHTML(game.name)}
 style="
 color:var(--cyan);
 margin-top:7px;
-font-weight:800
+font-weight:800;
 "
 >
 ${game.genre}
@@ -1586,39 +1520,30 @@ ${game.genre}
 
 </div>
 
-
 <div class="details-content">
 
 <p>
 ${escapeHTML(game.description)}
 </p>
 
-
 <div class="info-box">
 
 <div>
 <span>🎮 Game</span>
-<strong>
-${escapeHTML(game.name)}
-</strong>
+<strong>${escapeHTML(game.name)}</strong>
 </div>
 
 <div>
 <span>🏷️ Genre</span>
-<strong>
-${escapeHTML(game.genre)}
-</strong>
+<strong>${escapeHTML(game.genre)}</strong>
 </div>
 
 <div>
 <span>🏢 Developer</span>
-<strong>
-${escapeHTML(game.developer)}
-</strong>
+<strong>${escapeHTML(game.developer)}</strong>
 </div>
 
 </div>
-
 
 <button
 class="primary-btn"
@@ -1633,7 +1558,6 @@ onclick="openOfficial('${game.url}')"
 </div>
 
 `;
-
 
 showSection(
 "gameDetails",
@@ -1676,7 +1600,6 @@ document.getElementById(
 "memberXP"
 );
 
-
 const name=
 nameInput.value.trim();
 
@@ -1685,7 +1608,6 @@ Math.max(
 0,
 Number(xpInput.value)||0
 );
-
 
 if(!name){
 
@@ -1698,9 +1620,7 @@ showToast(
 nameInput.focus();
 
 return;
-
 }
-
 
 members.push({
 
@@ -1720,17 +1640,14 @@ favoriteGame:"Not selected"
 
 });
 
-
 saveData();
 
 nameInput.value="";
 xpInput.value="";
 
-
 renderMembers();
 renderLeaderboard();
 updateStats();
-
 
 showToast(
 `${name} added to your squad!`,
@@ -1742,7 +1659,7 @@ showToast(
 
 
 /* =========================
-   DELETE PLAYER
+   DELETE
 ========================= */
 
 function deleteMember(id){
@@ -1754,26 +1671,22 @@ m=>m.id===id
 
 if(!member)return;
 
-
 if(
 !confirm(
 `Remove "${member.name}" from your squad?`
 )
 )return;
 
-
 members=
 members.filter(
 member=>member.id!==id
 );
-
 
 saveData();
 
 renderMembers();
 renderLeaderboard();
 updateStats();
-
 
 showToast(
 `${member.name} removed.`,
@@ -1799,16 +1712,13 @@ showToast(
 );
 
 return;
-
 }
-
 
 if(
 !confirm(
 "Delete all squad members? This cannot be undone."
 )
 )return;
-
 
 members=[];
 
@@ -1817,7 +1727,6 @@ saveData();
 renderMembers();
 renderLeaderboard();
 updateStats();
-
 
 showToast(
 "Squad reset successfully.",
@@ -1829,7 +1738,7 @@ showToast(
 
 
 /* =========================
-   QUICK XP
+   ADD XP
 ========================= */
 
 function quickXP(id){
@@ -1841,16 +1750,13 @@ m=>m.id===id
 
 if(!member)return;
 
-
 const amount=
 prompt(
 `Add XP to ${member.name}:`,
 "100"
 );
 
-
 if(amount===null)return;
-
 
 const xp=
 Math.max(
@@ -1858,16 +1764,13 @@ Math.max(
 Number(amount)||0
 );
 
-
 member.xp+=xp;
-
 
 saveData();
 
 renderMembers();
 renderLeaderboard();
 updateStats();
-
 
 showToast(
 `+${xp} XP added to ${member.name}!`,
@@ -1891,7 +1794,6 @@ m=>m.id===id
 
 if(!member)return;
 
-
 const name=
 prompt(
 "Player name:",
@@ -1899,7 +1801,6 @@ member.name
 );
 
 if(name===null)return;
-
 
 const xp=
 prompt(
@@ -1909,7 +1810,6 @@ member.xp
 
 if(xp===null)return;
 
-
 const gamesPlayed=
 prompt(
 "Games played:",
@@ -1917,7 +1817,6 @@ member.games
 );
 
 if(gamesPlayed===null)return;
-
 
 const wins=
 prompt(
@@ -1927,7 +1826,6 @@ member.wins
 
 if(wins===null)return;
 
-
 const losses=
 prompt(
 "Losses:",
@@ -1936,7 +1834,6 @@ member.losses
 
 if(losses===null)return;
 
-
 const favorite=
 prompt(
 "Favorite game:",
@@ -1944,7 +1841,6 @@ member.favoriteGame
 );
 
 if(favorite===null)return;
-
 
 member.name=
 name.trim()||member.name;
@@ -1976,13 +1872,11 @@ Number(losses)||0
 member.favoriteGame=
 favorite.trim()||"Not selected";
 
-
 saveData();
 
 renderMembers();
 renderLeaderboard();
 updateStats();
-
 
 showToast(
 `${member.name}'s profile updated.`,
@@ -2004,7 +1898,6 @@ document.getElementById(
 "membersContainer"
 );
 
-
 const search=
 document.getElementById(
 "memberSearch"
@@ -2013,14 +1906,12 @@ document.getElementById(
 .toLowerCase()
 .trim();
 
-
 const filtered=
 members.filter(member=>
 member.name
 .toLowerCase()
 .includes(search)
 );
-
 
 if(filtered.length===0){
 
@@ -2039,9 +1930,7 @@ Add your first player above.
 `;
 
 return;
-
 }
-
 
 container.innerHTML=`
 
@@ -2055,7 +1944,6 @@ ${filtered.map(member=>`
 ${getInitial(member.name)}
 </div>
 
-
 <div class="member-info">
 
 <h3>
@@ -2063,27 +1951,20 @@ ${escapeHTML(member.name)}
 </h3>
 
 <p>
-
-Level
-${getLevel(member.xp)}
-
+Level ${getLevel(member.xp)}
 •
-
 <span class="xp">
 ${member.xp.toLocaleString()} XP
 </span>
-
 </p>
 
-<p
-style="margin-top:4px"
->
-🎮 ${member.games}
-games • 🏆 ${member.wins} wins
+<p style="margin-top:4px">
+🎮 ${member.games} games
+•
+🏆 ${member.wins} wins
 </p>
 
 </div>
-
 
 <div class="member-actions">
 
@@ -2141,7 +2022,6 @@ m=>m.id===id
 
 if(!member)return;
 
-
 renderProfile(member);
 
 showSection(
@@ -2160,7 +2040,6 @@ getLevel(member.xp);
 const currentXP=
 member.xp%100;
 
-
 const rank=
 [...members]
 .sort((a,b)=>b.xp-a.xp)
@@ -2168,14 +2047,12 @@ const rank=
 m=>m.id===member.id
 )+1;
 
-
 const winRate=
 member.games>0
 ?Math.round(
 (member.wins/member.games)*100
 )
 :0;
-
 
 const achievements=[
 
@@ -2223,7 +2100,6 @@ unlocked:member.wins>=10
 
 ];
 
-
 document.getElementById(
 "profileContainer"
 ).innerHTML=`
@@ -2246,7 +2122,6 @@ LEVEL ${level}
 
 </div>
 
-
 <div class="progress-box">
 
 <div class="progress-info">
@@ -2261,7 +2136,6 @@ ${currentXP}/100 XP
 
 </div>
 
-
 <div class="progress">
 
 <div
@@ -2273,108 +2147,54 @@ style="width:${currentXP}%"
 
 </div>
 
-
 <div class="profile-stats">
 
 <div class="profile-stat">
-
-<strong>
-${member.games}
-</strong>
-
-<span>
-Games
-</span>
-
+<strong>${member.games}</strong>
+<span>Games</span>
 </div>
-
 
 <div class="profile-stat">
-
-<strong>
-${member.wins}
-</strong>
-
-<span>
-Wins
-</span>
-
+<strong>${member.wins}</strong>
+<span>Wins</span>
 </div>
-
 
 <div class="profile-stat">
-
-<strong>
-${winRate}%
-</strong>
-
-<span>
-Win Rate
-</span>
-
+<strong>${winRate}%</strong>
+<span>Win Rate</span>
 </div>
 
 </div>
-
 
 <div class="profile-details">
 
 <div class="detail">
-
-<span>
-⭐ Total XP
-</span>
-
+<span>⭐ Total XP</span>
 <strong>
 ${member.xp.toLocaleString()}
 </strong>
-
 </div>
 
-
 <div class="detail">
-
-<span>
-🏆 Squad Rank
-</span>
-
-<strong>
-#${rank}
-</strong>
-
+<span>🏆 Squad Rank</span>
+<strong>#${rank}</strong>
 </div>
 
-
 <div class="detail">
-
-<span>
-🎮 Favorite Game
-</span>
-
+<span>🎮 Favorite Game</span>
 <strong>
 ${escapeHTML(member.favoriteGame)}
 </strong>
-
 </div>
-
 
 <div class="detail">
-
-<span>
-❌ Losses
-</span>
-
-<strong>
-${member.losses}
-</strong>
-
+<span>❌ Losses</span>
+<strong>${member.losses}</strong>
 </div>
-
 
 <h3 style="margin-top:22px">
 🏅 Achievements
 </h3>
-
 
 <div class="achievements">
 
@@ -2404,12 +2224,11 @@ ${a.desc}
 
 </div>
 
-
 <div
 style="
 margin-top:20px;
 display:grid;
-gap:8px
+gap:8px;
 "
 >
 
@@ -2417,18 +2236,17 @@ gap:8px
 class="primary-btn"
 onclick="
 editMember(${member.id});
-openProfile(${member.id})
+openProfile(${member.id});
 "
 >
 ✏️ Edit Player
 </button>
 
-
 <button
 class="secondary-btn"
 onclick="
 quickXP(${member.id});
-openProfile(${member.id})
+openProfile(${member.id});
 "
 >
 ⭐ Add XP
@@ -2456,7 +2274,6 @@ document.getElementById(
 "leaderboardContainer"
 );
 
-
 if(members.length===0){
 
 container.innerHTML=`
@@ -2474,9 +2291,7 @@ Add squad members to create your leaderboard.
 `;
 
 return;
-
 }
-
 
 const sorted=
 [...members]
@@ -2484,13 +2299,11 @@ const sorted=
 (a,b)=>b.xp-a.xp
 );
 
-
 const medals=[
 "🥇",
 "🥈",
 "🥉"
 ];
-
 
 container.innerHTML=`
 
@@ -2506,42 +2319,33 @@ ${medals[index]||"#"+(index+1)}
 
 </div>
 
-
 <div>
 
 <div class="rank-name">
-
 ${escapeHTML(member.name)}
-
 </div>
 
 <div
 style="
 color:#7f8ca5;
 font-size:12px;
-margin-top:4px
+margin-top:4px;
 "
 >
 
 Level ${getLevel(member.xp)}
-
 •
-
 ${member.wins} Wins
 
 </div>
 
 </div>
 
-
 <div>
 
 <div class="rank-xp">
-
 ${member.xp.toLocaleString()} XP
-
 </div>
-
 
 <button
 class="small-btn"
@@ -2576,12 +2380,10 @@ members.reduce(
 0
 );
 
-
 document.getElementById(
 "memberCount"
 ).textContent=
 members.length;
-
 
 document.getElementById(
 "totalXP"
@@ -2605,12 +2407,10 @@ document.getElementById("level").value
 )||1
 );
 
-
 const matchXP=
 Number(
 document.getElementById("result").value
 )||0;
-
 
 const bonus=
 Math.max(
@@ -2620,10 +2420,8 @@ document.getElementById("bonus").value
 )||0
 );
 
-
 const total=
 (level*10)+matchXP+bonus;
-
 
 document.getElementById(
 "xpResult"
@@ -2636,7 +2434,6 @@ XP Earned
 </strong>
 
 `;
-
 
 showToast(
 `You earned ${total} XP!`,
