@@ -26,6 +26,7 @@
   --purple:#8d5cff;
   --green:#3ee98b;
   --red:#ff5c70;
+  --yellow:#ffd45c;
 }
 
 body{
@@ -35,6 +36,14 @@ body{
     var(--bg);
   color:var(--text);
   min-height:100vh;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
 }
 
 header{
@@ -49,7 +58,7 @@ header{
 .header-inner{
   max-width:1100px;
   margin:auto;
-  padding:15px 18px;
+  padding:14px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -59,31 +68,38 @@ header{
 .logo{
   font-size:23px;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .logo span{
   color:var(--cyan);
 }
 
-.version{
-  color:var(--muted);
-  font-size:10px;
-  margin-left:5px;
+.account-area{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.user-chip{
+  color:var(--cyan);
+  font-size:13px;
+  font-weight:800;
 }
 
 nav{
   display:flex;
-  gap:7px;
+  gap:6px;
   overflow-x:auto;
+  max-width:100%;
 }
 
 nav button{
   border:0;
   background:transparent;
   color:var(--muted);
-  padding:9px 12px;
+  padding:9px 11px;
   border-radius:10px;
-  cursor:pointer;
   white-space:nowrap;
   font-weight:700;
 }
@@ -97,12 +113,12 @@ nav button.active{
 main{
   max-width:1100px;
   margin:auto;
-  padding:28px 18px 70px;
+  padding:25px 18px 70px;
 }
 
 .section{
   display:none;
-  animation:fade .3s ease;
+  animation:fade .25s ease;
 }
 
 .section.active{
@@ -112,15 +128,13 @@ main{
 @keyframes fade{
   from{
     opacity:0;
-    transform:translateY(8px);
+    transform:translateY(7px);
   }
   to{
     opacity:1;
     transform:translateY(0);
   }
 }
-
-/* HERO */
 
 .hero{
   text-align:center;
@@ -134,7 +148,7 @@ main{
   background:#10223a;
   color:var(--cyan);
   border-radius:999px;
-  font-size:13px;
+  font-size:12px;
   font-weight:800;
   margin-bottom:18px;
 }
@@ -154,7 +168,7 @@ main{
 .hero p{
   color:var(--muted);
   font-size:17px;
-  max-width:600px;
+  max-width:620px;
   margin:auto;
   line-height:1.6;
 }
@@ -167,17 +181,14 @@ main{
   flex-wrap:wrap;
 }
 
-/* BUTTONS */
-
 .primary-btn,
 .secondary-btn,
 .danger-btn{
   border:0;
   padding:11px 16px;
   border-radius:11px;
-  cursor:pointer;
   font-weight:800;
-  font-size:14px;
+  font-size:13px;
 }
 
 .primary-btn{
@@ -193,11 +204,20 @@ main{
 }
 
 .danger-btn{
-  color:#ff7585;
+  color:var(--red);
   background:#ff53661a;
+  border:1px solid #ff536625;
 }
 
-/* STATS */
+.small-btn{
+  border:0;
+  padding:7px 10px;
+  border-radius:8px;
+  background:#1a2a43;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+}
 
 .stats{
   display:grid;
@@ -225,14 +245,12 @@ main{
   font-size:13px;
 }
 
-/* TITLES */
-
 .section-title{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin:30px 0 16px;
+  margin:25px 0 16px;
 }
 
 .section-title h2{
@@ -242,9 +260,8 @@ main{
 .section-title p{
   color:var(--muted);
   font-size:13px;
+  margin-top:4px;
 }
-
-/* GAMES */
 
 .game-grid{
   display:grid;
@@ -257,11 +274,11 @@ main{
   border:1px solid var(--border);
   padding:20px;
   border-radius:18px;
-  transition:.25s;
+  transition:.2s;
 }
 
 .game-card:hover{
-  transform:translateY(-4px);
+  transform:translateY(-3px);
   border-color:#3e70a9;
 }
 
@@ -282,52 +299,212 @@ main{
 
 .game-tag{
   display:inline-block;
-  margin-top:15px;
+  margin-top:14px;
   padding:5px 9px;
   border-radius:8px;
   background:#17243a;
   color:#79aaff;
-  font-size:11px;
+  font-size:10px;
   font-weight:800;
 }
 
-.game-buttons{
+.card-actions{
+  margin-top:16px;
   display:flex;
   gap:8px;
-  margin-top:15px;
   flex-wrap:wrap;
 }
 
-/* INPUTS */
-
 .search-box,
 input,
-select{
+select,
+textarea{
   width:100%;
   background:#0d1626;
   color:white;
   border:1px solid var(--border);
   border-radius:11px;
-  padding:13px;
+  padding:12px;
   outline:none;
 }
 
-.search-box{
-  margin-bottom:18px;
-}
-
 input:focus,
-select:focus{
+select:focus,
+textarea:focus{
   border-color:var(--blue);
 }
 
-/* SQUAD */
+.search-box{
+  margin-bottom:17px;
+}
 
-.member-form{
+.form-card,
+.panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+}
+
+.form-card{
+  max-width:500px;
+  margin:35px auto;
+}
+
+.form-title{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.form-title h2{
+  font-size:27px;
+  margin-bottom:7px;
+}
+
+.form-title p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.form-card .primary-btn{
+  width:100%;
+  margin-top:4px;
+}
+
+.form-switch{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:15px;
+}
+
+.form-switch button{
+  border:0;
+  background:none;
+  color:var(--cyan);
+  font-weight:800;
+}
+
+.dashboard{
   display:grid;
-  grid-template-columns:1fr 140px 130px;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.mini-card{
+  background:linear-gradient(145deg,var(--card),#0c1422);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:20px;
+}
+
+.mini-card h3{
+  margin-bottom:7px;
+}
+
+.big-xp{
+  font-size:34px;
+  font-weight:900;
+  color:var(--cyan);
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.task-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.task-card{
+  background:linear-gradient(145deg,var(--card2),#0c1422);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:18px;
+}
+
+.task-card.pending{
+  border-color:#806b2e;
+}
+
+.task-card.completed{
+  border-color:#28714e;
+}
+
+.task-top{
+  display:flex;
+  justify-content:space-between;
   gap:10px;
-  margin-bottom:18px;
+}
+
+.task-icon{
+  font-size:30px;
+}
+
+.xp-badge{
+  color:var(--cyan);
+  background:#20d9ff12;
+  border:1px solid #20d9ff30;
+  padding:5px 8px;
+  border-radius:8px;
+  font-weight:900;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.task-card h3{
+  margin:13px 0 7px;
+}
+
+.task-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.task-status{
+  display:inline-block;
+  margin:13px 0;
+  font-size:11px;
+  font-weight:800;
+  padding:5px 8px;
+  border-radius:7px;
+  background:#17243a;
+  color:#a9bad7;
+}
+
+.status-pending{
+  color:var(--yellow);
+  background:#ffd45c12;
+}
+
+.status-approved{
+  color:var(--green);
+  background:#3ee98b12;
+}
+
+.status-rejected{
+  color:var(--red);
+  background:#ff5c7012;
+}
+
+.task-actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
 }
 
 .members-grid{
@@ -380,25 +557,7 @@ select:focus{
 .member-actions{
   display:flex;
   gap:5px;
-  flex-wrap:wrap;
 }
-
-.small-btn{
-  border:0;
-  padding:7px 9px;
-  border-radius:8px;
-  cursor:pointer;
-  background:#1a2a43;
-  color:white;
-  font-size:12px;
-}
-
-.delete-btn{
-  background:#ff53661a;
-  color:var(--red);
-}
-
-/* LEADERBOARD */
 
 .leaderboard{
   display:flex;
@@ -431,48 +590,7 @@ select:focus{
   font-weight:900;
 }
 
-/* CALCULATOR */
-
-.calculator{
-  max-width:600px;
-  margin:auto;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-}
-
-.field{
-  margin-bottom:15px;
-}
-
-.field label{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:7px;
-}
-
-.result{
-  margin-top:18px;
-  padding:18px;
-  background:#0b1825;
-  border:1px solid #1d4860;
-  border-radius:13px;
-  text-align:center;
-}
-
-.result strong{
-  display:block;
-  font-size:29px;
-  color:var(--cyan);
-  margin-top:5px;
-}
-
-/* PROFILE */
-
-.profile-card,
-.details-card{
+.profile-card{
   max-width:700px;
   margin:auto;
   background:linear-gradient(145deg,#111d31,#0c1422);
@@ -481,8 +599,7 @@ select:focus{
   overflow:hidden;
 }
 
-.profile-top,
-.details-top{
+.profile-top{
   text-align:center;
   padding:30px 20px;
   background:linear-gradient(135deg,#142d55,#24154d);
@@ -498,6 +615,7 @@ select:focus{
   background:linear-gradient(135deg,#3478ff,#8d5cff);
   font-size:35px;
   font-weight:900;
+  border:4px solid #ffffff22;
 }
 
 .profile-name{
@@ -534,7 +652,6 @@ select:focus{
   height:100%;
   background:linear-gradient(90deg,#3478ff,#20d9ff);
   border-radius:20px;
-  transition:.4s;
 }
 
 .profile-stats{
@@ -579,141 +696,42 @@ select:focus{
   color:var(--muted);
 }
 
-.achievements{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:12px;
-}
-
-.achievement{
-  background:#0c1422;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:13px;
-}
-
-.achievement.locked{
-  opacity:.4;
-}
-
-.achievement-icon{
-  font-size:23px;
-}
-
-.achievement strong{
-  display:block;
-  margin-top:5px;
+.notice{
+  padding:12px;
+  border-radius:11px;
+  margin-bottom:15px;
   font-size:13px;
-}
-
-.achievement small{
-  color:var(--muted);
-}
-
-/* DETAILS */
-
-.details-content{
-  padding:25px;
-}
-
-.details-icon{
-  font-size:60px;
-}
-
-.details-content p{
-  color:var(--muted);
-  line-height:1.7;
-  margin:15px 0;
-}
-
-.info-box{
-  background:#0c1422;
   border:1px solid var(--border);
-  border-radius:13px;
-  padding:15px;
-  margin:15px 0;
+  background:#0d1626;
 }
 
-.info-box div{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  gap:10px;
+.notice.warning{
+  color:var(--yellow);
+  border-color:#806b2e;
 }
 
-.info-box span{
+.notice.success{
+  color:var(--green);
+  border-color:#28714e;
+}
+
+.notice.error{
+  color:var(--red);
+  border-color:#71303c;
+}
+
+.empty{
+  text-align:center;
   color:var(--muted);
+  padding:35px 15px;
+  border:1px dashed var(--border);
+  border-radius:15px;
+  grid-column:1/-1;
 }
 
-/* TOAST */
-
-.toast-container{
-  position:fixed;
-  top:85px;
-  right:18px;
-  z-index:9999;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  pointer-events:none;
+.back-btn{
+  margin-bottom:15px;
 }
-
-.toast{
-  min-width:250px;
-  max-width:340px;
-  padding:14px 16px;
-  background:#111d31;
-  border:1px solid var(--border);
-  border-radius:13px;
-  box-shadow:0 12px 35px #0008;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  animation:toastIn .3s ease;
-}
-
-.toast-icon{
-  font-size:20px;
-}
-
-.toast-message{
-  flex:1;
-  font-size:13px;
-  font-weight:700;
-}
-
-.toast.success{
-  border-color:#3ee98b66;
-}
-
-.toast.error{
-  border-color:#ff5c7066;
-}
-
-@keyframes toastIn{
-  from{
-    opacity:0;
-    transform:translateX(30px);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-@keyframes toastOut{
-  from{
-    opacity:1;
-    transform:translateX(0);
-  }
-  to{
-    opacity:0;
-    transform:translateX(30px);
-  }
-}
-
-/* FOOTER */
 
 footer{
   text-align:center;
@@ -721,12 +739,13 @@ footer{
   border-top:1px solid var(--border);
   padding:25px 15px;
   font-size:13px;
-  line-height:1.8;
 }
 
-/* MOBILE */
+.hidden{
+  display:none !important;
+}
 
-@media(max-width:700px){
+@media(max-width:800px){
 
   .header-inner{
     flex-direction:column;
@@ -735,6 +754,10 @@ footer{
 
   .logo{
     text-align:center;
+  }
+
+  .account-area{
+    justify-content:center;
   }
 
   nav{
@@ -749,6 +772,13 @@ footer{
     padding:35px 8px;
   }
 
+  .game-grid,
+  .members-grid,
+  .task-grid,
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+
   .stats{
     gap:8px;
   }
@@ -761,36 +791,31 @@ footer{
     font-size:21px;
   }
 
-  .game-grid,
-  .members-grid{
-    grid-template-columns:1fr;
-  }
-
-  .member-form{
-    grid-template-columns:1fr;
-  }
-
   .rank{
     grid-template-columns:40px 1fr auto;
-  }
-
-  .achievements{
-    grid-template-columns:1fr;
   }
 
   .member-actions{
     flex-direction:column;
   }
+}
 
-  .toast-container{
-    left:12px;
-    right:12px;
-    top:75px;
+@media(max-width:450px){
+
+  .stats{
+    grid-template-columns:1fr;
   }
 
-  .toast{
-    min-width:0;
-    width:100%;
+  .profile-stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .rank{
+    grid-template-columns:35px 1fr;
+  }
+
+  .rank > div:last-child{
+    grid-column:2;
   }
 }
 </style>
@@ -798,46 +823,32 @@ footer{
 
 <body>
 
-<div id="toastContainer" class="toast-container"></div>
-
 <header>
+  <div class="header-inner">
 
-<div class="header-inner">
+    <div class="logo">🎮 <span>Squad</span>Hub <small>1.0</small></div>
 
-<div class="logo">
-🎮 <span>Squad</span>Hub
-<span class="version">1.0</span>
-</div>
+    <div class="account-area">
+      <span id="headerUser" class="user-chip"></span>
+      <button id="headerAuthButton"
+              class="secondary-btn"
+              onclick="openAuth()">
+        Login
+      </button>
+    </div>
 
-<nav>
+  </div>
 
-<button class="active" onclick="showSection('home',this)">
-🏠 Home
-</button>
-
-<button onclick="showSection('games',this)">
-🎮 Games
-</button>
-
-<button onclick="showSection('squad',this)">
-👥 Squad
-</button>
-
-<button onclick="showSection('leaderboard',this)">
-🏆 Leaderboard
-</button>
-
-<button onclick="showSection('calculator',this)">
-⭐ XP
-</button>
-
-<button onclick="showSection('about',this)">
-ℹ️ About
-</button>
-
-</nav>
-
-</div>
+  <div class="header-inner" style="padding-top:0;">
+    <nav id="mainNav">
+      <button class="active" onclick="showSection('home',this)">🏠 Home</button>
+      <button onclick="showSection('tasks',this)">🎯 Tasks</button>
+      <button onclick="showSection('games',this)">🎮 Games</button>
+      <button onclick="showSection('squad',this)">👥 Squad</button>
+      <button onclick="showSection('leaderboard',this)">🏆 Leaderboard</button>
+      <button onclick="showSection('profile',this)">👤 Profile</button>
+    </nav>
+  </div>
 </header>
 
 <main>
@@ -846,70 +857,162 @@ footer{
 
 <section id="home" class="section active">
 
-<div class="hero">
+  <div class="hero">
 
-<div class="hero-badge">
-⚡ SQUADHUB 1.0
-</div>
+    <div class="hero-badge">⚡ SQUADHUB 1.0</div>
 
-<h1>
-Welcome to <span>SquadHub</span>
-</h1>
+    <h1>Your Squad. Your <span>Challenges.</span></h1>
 
-<p>
-Your squad. Your games. Your records.
-Build your team, track XP and climb the leaderboard.
-</p>
+    <p>
+      Complete SquadHub tasks, earn XP, build your profile
+      and climb your squad leaderboard.
+    </p>
 
-<div class="hero-actions">
+    <div class="hero-actions">
 
-<button
-class="primary-btn"
-onclick="showSectionById('squad')"
->
-👥 Manage Squad
-</button>
+      <button class="primary-btn"
+              onclick="goToTasks()">
+        🎯 View Today's Tasks
+      </button>
 
-<button
-class="secondary-btn"
-onclick="showSectionById('games')"
->
-🎮 Explore Games
-</button>
+      <button class="secondary-btn"
+              onclick="showSectionById('games')">
+        🎮 Explore Games
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="stats">
+  <div class="stats">
 
-<div class="stat">
-<div class="stat-number">4</div>
-<div class="stat-label">Games</div>
-</div>
+    <div class="stat">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Games</div>
+    </div>
 
-<div class="stat">
-<div id="memberCount" class="stat-number">0</div>
-<div class="stat-label">Squad Members</div>
-</div>
+    <div class="stat">
+      <div class="stat-number" id="memberCount">0</div>
+      <div class="stat-label">Squad Members</div>
+    </div>
 
-<div class="stat">
-<div id="totalXP" class="stat-number">0 XP</div>
-<div class="stat-label">Total XP</div>
-</div>
+    <div class="stat">
+      <div class="stat-number" id="totalXP">0 XP</div>
+      <div class="stat-label">Squad XP</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="section-title">
+  <div class="section-title">
+    <div>
+      <h2>🔥 Featured Games</h2>
+      <p>Choose a game for your next challenge.</p>
+    </div>
+  </div>
 
-<div>
-<h2>🔥 Featured Games</h2>
-<p>Your gaming universe</p>
-</div>
+  <div id="homeGames" class="game-grid"></div>
 
-</div>
+</section>
 
-<div id="homeGames" class="game-grid"></div>
+
+<!-- AUTH -->
+
+<section id="auth" class="section">
+
+  <div class="form-card">
+
+    <div class="form-title">
+
+      <h2 id="authTitle">🔐 Login</h2>
+
+      <p id="authSubtitle">
+        Login to access your SquadHub profile.
+      </p>
+
+    </div>
+
+    <div id="authMessage"></div>
+
+    <div class="field">
+      <label>Username</label>
+      <input id="authUsername"
+             maxlength="25"
+             autocomplete="username"
+             placeholder="Enter username">
+    </div>
+
+    <div id="authEmailField" class="field hidden">
+      <label>Email</label>
+      <input id="authEmail"
+             type="email"
+             autocomplete="email"
+             placeholder="Enter email">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input id="authPassword"
+             type="password"
+             autocomplete="current-password"
+             placeholder="Enter password">
+    </div>
+
+    <button class="primary-btn"
+            id="authSubmit"
+            onclick="submitAuth()">
+      Login
+    </button>
+
+    <div class="form-switch">
+      <span id="authSwitchText">
+        Don't have an account?
+      </span>
+
+      <button onclick="toggleAuthMode()"
+              id="authSwitchButton">
+        Create Account
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TASKS -->
+
+<section id="tasks" class="section">
+
+  <div class="section-title">
+
+    <div>
+      <h2>🎯 Today's Tasks</h2>
+      <p>SquadHub gives you fixed tasks and XP rewards.</p>
+    </div>
+
+  </div>
+
+  <div id="loginTaskNotice" class="notice warning hidden">
+    🔐 Login to claim and submit tasks.
+  </div>
+
+  <div class="dashboard" style="margin-bottom:18px;">
+
+    <div class="mini-card">
+      <h3>⭐ Your XP</h3>
+      <div id="taskXP" class="big-xp">0 XP</div>
+      <p class="muted">Earn XP by completing verified tasks.</p>
+    </div>
+
+    <div class="mini-card">
+      <h3>📋 Your Progress</h3>
+      <div id="taskProgress" class="big-xp">0 / 0</div>
+      <p class="muted">Approved tasks today.</p>
+    </div>
+
+  </div>
+
+  <div id="taskContainer" class="task-grid"></div>
 
 </section>
 
@@ -918,39 +1021,19 @@ onclick="showSectionById('games')"
 
 <section id="games" class="section">
 
-<div class="section-title">
+  <div class="section-title">
+    <div>
+      <h2>🎮 Games</h2>
+      <p>Official game destinations.</p>
+    </div>
+  </div>
 
-<div>
-<h2>🎮 Games</h2>
-<p>Explore your gaming universe</p>
-</div>
+  <input class="search-box"
+         id="gameSearch"
+         placeholder="🔎 Search games..."
+         oninput="renderGames()">
 
-</div>
-
-<input
-class="search-box"
-id="gameSearch"
-placeholder="🔎 Search games..."
-oninput="searchGames()"
->
-
-<div id="gamesContainer" class="game-grid"></div>
-
-</section>
-
-
-<!-- GAME DETAILS -->
-
-<section id="gameDetails" class="section">
-
-<button
-class="secondary-btn back-btn"
-onclick="showSectionById('games')"
->
-← Back to Games
-</button>
-
-<div id="gameDetailsContainer"></div>
+  <div id="gamesContainer" class="game-grid"></div>
 
 </section>
 
@@ -959,55 +1042,41 @@ onclick="showSectionById('games')"
 
 <section id="squad" class="section">
 
-<div class="section-title">
+  <div class="section-title">
 
-<div>
-<h2>👥 My Squad</h2>
-<p>Add, edit and manage your players</p>
-</div>
+    <div>
+      <h2>👥 My Squad</h2>
+      <p>Players currently stored on this device.</p>
+    </div>
 
-<button
-class="secondary-btn"
-onclick="clearAllMembers()"
->
-Reset Squad
-</button>
+  </div>
 
-</div>
+  <div id="ownerNotice" class="notice warning hidden">
+    Login as the squad owner to manage squad members.
+  </div>
 
-<div class="member-form">
+  <div class="panel" style="margin-bottom:18px;">
 
-<input
-id="memberName"
-type="text"
-placeholder="Player name"
-maxlength="30"
->
+    <div class="field">
+      <label>Player Name</label>
+      <input id="memberName"
+             maxlength="30"
+             placeholder="Player name">
+    </div>
 
-<input
-id="memberXP"
-type="number"
-min="0"
-placeholder="Starting XP"
->
+    <button class="primary-btn"
+            onclick="addMember()">
+      + Add Player
+    </button>
 
-<button
-class="primary-btn"
-onclick="addMember()"
->
-+ Add Player
-</button>
+  </div>
 
-</div>
+  <input class="search-box"
+         id="memberSearch"
+         placeholder="🔎 Search squad member..."
+         oninput="renderMembers()">
 
-<input
-class="search-box"
-id="memberSearch"
-placeholder="🔎 Search squad member..."
-oninput="renderMembers()"
->
-
-<div id="membersContainer"></div>
+  <div id="membersContainer"></div>
 
 </section>
 
@@ -1016,100 +1085,16 @@ oninput="renderMembers()"
 
 <section id="leaderboard" class="section">
 
-<div class="section-title">
+  <div class="section-title">
 
-<div>
-<h2>🏆 Leaderboard</h2>
-<p>Top squad players by XP</p>
-</div>
+    <div>
+      <h2>🏆 Leaderboard</h2>
+      <p>Players ranked by verified XP.</p>
+    </div>
 
-</div>
+  </div>
 
-<div id="leaderboardContainer"></div>
-
-</section>
-
-
-<!-- XP CALCULATOR -->
-
-<section id="calculator" class="section">
-
-<div class="section-title">
-
-<div>
-<h2>⭐ XP Calculator</h2>
-<p>Calculate match XP</p>
-</div>
-
-</div>
-
-<div class="calculator">
-
-<div class="field">
-
-<label>🎮 In-game Level</label>
-
-<input
-id="level"
-type="number"
-min="1"
-value="1"
->
-
-</div>
-
-<div class="field">
-
-<label>🏁 Match Result</label>
-
-<select id="result">
-
-<option value="100">
-Victory — +100 XP
-</option>
-
-<option value="70">
-Top 3 — +70 XP
-</option>
-
-<option value="50">
-Top 10 — +50 XP
-</option>
-
-<option value="25">
-Played — +25 XP
-</option>
-
-</select>
-
-</div>
-
-<div class="field">
-
-<label>✨ Bonus XP</label>
-
-<input
-id="bonus"
-type="number"
-min="0"
-value="0"
->
-
-</div>
-
-<button
-class="primary-btn"
-style="width:100%"
-onclick="calculateXP()"
->
-Calculate XP
-</button>
-
-<div id="xpResult" class="result">
-Your XP will appear here.
-</div>
-
-</div>
+  <div id="leaderboardContainer"></div>
 
 </section>
 
@@ -1118,102 +1103,27 @@ Your XP will appear here.
 
 <section id="profile" class="section">
 
-<button
-class="secondary-btn back-btn"
-onclick="showSectionById('squad')"
->
-← Back to Squad
-</button>
-
-<div id="profileContainer"></div>
+  <div id="profileContainer"></div>
 
 </section>
 
 
-<!-- ABOUT -->
+<!-- ADMIN / VERIFICATION -->
 
-<section id="about" class="section">
+<section id="verification" class="section">
 
-<div class="section-title">
+  <div class="section-title">
 
-<div>
-<h2>ℹ️ About SquadHub</h2>
-<p>Official SquadHub information</p>
-</div>
+    <div>
+      <h2>👑 Task Verification</h2>
+      <p>Approve or reject submitted task completions.</p>
+    </div>
 
-</div>
+  </div>
 
-<div class="details-card">
+  <div id="verificationNotice"></div>
 
-<div class="details-top">
-
-<div class="details-icon">
-🎮
-</div>
-
-<h1>SquadHub</h1>
-
-<p
-style="
-color:var(--cyan);
-margin-top:8px;
-font-weight:800;
-"
->
-Version 1.0
-</p>
-
-<p
-style="
-color:var(--muted);
-margin-top:8px;
-"
->
-Build • Play • Compete • Improve
-</p>
-
-</div>
-
-<div class="details-content">
-
-<div class="info-box">
-
-<div>
-<span>🌐 Name</span>
-<strong>SquadHub</strong>
-</div>
-
-<div>
-<span>📦 Version</span>
-<strong>1.0</strong>
-</div>
-
-<div>
-<span>👤 Created & Credited to</span>
-<strong>Lavish</strong>
-</div>
-
-<div>
-<span>📱 Mobile</span>
-<strong>7743011901</strong>
-</div>
-
-<div>
-<span>📧 Email</span>
-<strong>lavishcrypt0x@gmail.com</strong>
-</div>
-
-</div>
-
-<p>
-SquadHub is a gaming-focused website designed
-to help players manage their squad, track XP,
-view rankings and explore games.
-</p>
-
-</div>
-
-</div>
+  <div id="verificationContainer"></div>
 
 </section>
 
@@ -1222,84 +1132,240 @@ view rankings and explore games.
 
 <footer>
 
-🎮 <strong>SquadHub 1.0</strong>
+  🎮 <strong>SquadHub 1.0</strong> — Made for the Squad
 
-<br>
+  <br><br>
 
-Created & Credited to <strong>Lavish</strong>
+  Build • Play • Complete • Compete
 
-<br>
+  <br><br>
 
-📱 7743011901
-&nbsp; • &nbsp;
-📧 lavishcrypt0x@gmail.com
-
-<br>
-
-Build • Play • Compete • Improve
+  <span>© 2026 SquadHub • Credit: Lavish</span>
 
 </footer>
 
 
 <script>
 
+/*
+  SQUADHUB 1.0
+
+  IMPORTANT:
+  This is a client-side prototype.
+
+  Accounts and data are stored in localStorage.
+  This is NOT secure production authentication.
+
+  For real public accounts shared across devices,
+  a backend/database/authentication service is required.
+*/
+
+
 /* =========================
-   GAME DATABASE
+   STORAGE
 ========================= */
 
-const games=[
+const STORAGE_USERS = "squadhub_v10_users";
+const STORAGE_CURRENT = "squadhub_v10_current";
+const STORAGE_MEMBERS = "squadhub_v10_members";
+const STORAGE_TASKS = "squadhub_v10_task_records";
 
-{
-id:"freefire",
-icon:"🔥",
-name:"Free Fire",
-genre:"BATTLE ROYALE",
-description:"Explore official information about Free Fire.",
-developer:"Garena",
-url:"https://ff.garena.com/en/"
-},
 
-{
-id:"minecraft",
-icon:"⛏️",
-name:"Minecraft",
-genre:"SURVIVAL",
-description:"Explore the world of Minecraft, building, survival and adventure.",
-developer:"Mojang Studios",
-url:"https://www.minecraft.net/en-us"
-},
+let users =
+  JSON.parse(localStorage.getItem(STORAGE_USERS)) || [];
 
-{
-id:"ibd3d",
-icon:"🏍️",
-name:"Indian Bikes Driving 3D",
-genre:"DRIVING",
-description:"Explore information about Indian Bikes Driving 3D.",
-developer:"Indian Bikes Driving 3D",
-url:"https://play.google.com/store/apps/details?id=com.Rohit.IndianBikes"
-},
+let currentUser =
+  JSON.parse(localStorage.getItem(STORAGE_CURRENT)) || null;
 
-{
-id:"bgmi",
-icon:"🎯",
-name:"BGMI",
-genre:"BATTLE ROYALE",
-description:"Explore official information about Battlegrounds Mobile India.",
-developer:"KRAFTON",
-url:"https://www.battlegroundsmobileindia.com/"
-}
+let members =
+  JSON.parse(localStorage.getItem(STORAGE_MEMBERS)) || [];
+
+let taskRecords =
+  JSON.parse(localStorage.getItem(STORAGE_TASKS)) || [];
+
+
+/* =========================
+   GAMES
+========================= */
+
+const games = [
+
+  {
+    id:"freefire",
+    name:"Free Fire",
+    icon:"🔥",
+    type:"BATTLE ROYALE",
+    description:"Official Free Fire destination.",
+    url:"https://ff.garena.com/"
+  },
+
+  {
+    id:"minecraft",
+    name:"Minecraft",
+    icon:"⛏️",
+    type:"SURVIVAL",
+    description:"Official Minecraft website.",
+    url:"https://www.minecraft.net/"
+  },
+
+  {
+    id:"bgmi",
+    name:"BGMI",
+    icon:"🎯",
+    type:"BATTLE ROYALE",
+    description:"Official BGMI destination.",
+    url:"https://www.battlegroundsmobileindia.com/"
+  },
+
+  {
+    id:"ibd3d",
+    name:"Indian Bikes Driving 3D",
+    icon:"🏍️",
+    type:"DRIVING",
+    description:"Game information and destination.",
+    url:"https://www.gamemonetize.com/"
+  }
 
 ];
 
 
 /* =========================
-   DATA
+   TASK DEFINITIONS
 ========================= */
 
-let members=
-JSON.parse(
-localStorage.getItem("squadhub_members")
-)||[];
+const dailyTasks = [
+
+  {
+    id:"play-match",
+    icon:"🎮",
+    title:"Play 1 Match",
+    description:"Play one match in one of the supported games.",
+    xp:20,
+    game:"freefire"
+  },
+
+  {
+    id:"victory",
+    icon:"🏆",
+    title:"Get 1 Victory",
+    description:"Achieve one victory in a supported game.",
+    xp:100,
+    game:"freefire"
+  },
+
+  {
+    id:"top-three",
+    icon:"🥉",
+    title:"Finish Top 3",
+    description:"Finish a supported battle-royale match in the Top 3.",
+    xp:70,
+    game:"bgmi"
+  },
+
+  {
+    id:"three-matches",
+    icon:"🔥",
+    title:"Complete 3 Matches",
+    description:"Complete three matches in a supported game.",
+    xp:75,
+    game:"freefire"
+  },
+
+  {
+    id:"minecraft-build",
+    icon:"⛏️",
+    title:"Create a Build",
+    description:"Create a new build in Minecraft.",
+    xp:50,
+    game:"minecraft"
+  },
+
+  {
+    id:"driving-challenge",
+    icon:"🏍️",
+    title:"Complete a Driving Challenge",
+    description:"Complete a personal driving challenge.",
+    xp:50,
+    game:"ibd3d"
+  }
+
+];
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function saveUsers(){
+  localStorage.setItem(
+    STORAGE_USERS,
+    JSON.stringify(users)
+  );
+}
+
+function saveCurrent(){
+  localStorage.setItem(
+    STORAGE_CURRENT,
+    JSON.stringify(currentUser)
+  );
+}
+
+function saveMembers(){
+  localStorage.setItem(
+    STORAGE_MEMBERS,
+    JSON.stringify(members)
+  );
+}
+
+function saveTasks(){
+  localStorage.setItem(
+    STORAGE_TASKS,
+    JSON.stringify(taskRecords)
+  );
+}
+
+function escapeHTML(text){
+
+  const div=document.createElement("div");
+
+  div.textContent=String(text ?? "");
+
+  return div.innerHTML;
+}
+
+function getInitial(name){
+
+  return String(name || "?")
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+function todayKey(){
+
+  const d=new Date();
+
+  return d.getFullYear()+"-"+
+    String(d.getMonth()+1).padStart(2,"0")+"-"+
+    String(d.getDate()).padStart(2,"0");
+
+}
+
+function getGame(id){
+
+  return games.find(g=>g.id===id);
+
+}
+
+function getCurrentMember(){
+
+  if(!currentUser) return null;
+
+  return members.find(
+    m=>m.username===currentUser.username
+  ) || null;
+
+}
 
 
 /* =========================
@@ -1308,957 +1374,1298 @@ localStorage.getItem("squadhub_members")
 
 function showSection(id,button){
 
-document
-.querySelectorAll(".section")
-.forEach(section=>{
-section.classList.remove("active");
-});
+  document.querySelectorAll(".section")
+    .forEach(section=>{
+      section.classList.remove("active");
+    });
 
-const target=document.getElementById(id);
+  const section=document.getElementById(id);
 
-if(target){
-target.classList.add("active");
+  if(!section) return;
+
+  section.classList.add("active");
+
+  document.querySelectorAll("nav button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  if(id==="tasks"){
+    renderTasks();
+  }
+
+  if(id==="games"){
+    renderGames();
+  }
+
+  if(id==="squad"){
+    renderMembers();
+  }
+
+  if(id==="leaderboard"){
+    renderLeaderboard();
+  }
+
+  if(id==="profile"){
+    renderCurrentProfile();
+  }
+
 }
-
-document
-.querySelectorAll("nav button")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-if(button){
-button.classList.add("active");
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
 
 function showSectionById(id){
 
-showSection(id,null);
+  showSection(id,null);
+
+}
+
+function goToTasks(){
+
+  if(!currentUser){
+    openAuth();
+    return;
+  }
+
+  showSectionById("tasks");
 
 }
 
 
 /* =========================
-   TOAST
+   AUTH
 ========================= */
 
-function showToast(
-message,
-type="success",
-icon="✅"
-){
+let authMode="login";
 
-const container=
-document.getElementById(
-"toastContainer"
-);
 
-const toast=
-document.createElement("div");
+function openAuth(){
 
-toast.className=
-"toast "+type;
+  authMode="login";
 
-toast.innerHTML=`
+  updateAuthUI();
 
-<div class="toast-icon">
-${icon}
-</div>
+  showSectionById("auth");
 
-<div class="toast-message">
-${escapeHTML(message)}
-</div>
+}
 
-`;
 
-container.appendChild(toast);
+function toggleAuthMode(){
 
-setTimeout(()=>{
+  authMode =
+    authMode==="login"
+    ? "register"
+    : "login";
 
-toast.style.animation=
-"toastOut .3s ease forwards";
+  updateAuthUI();
 
-setTimeout(()=>{
-toast.remove();
-},300);
+}
 
-},2500);
+
+function updateAuthUI(){
+
+  const title=document.getElementById("authTitle");
+  const subtitle=document.getElementById("authSubtitle");
+  const emailField=document.getElementById("authEmailField");
+  const submit=document.getElementById("authSubmit");
+  const switchText=document.getElementById("authSwitchText");
+  const switchButton=document.getElementById("authSwitchButton");
+
+  document.getElementById("authMessage").innerHTML="";
+
+  if(authMode==="login"){
+
+    title.textContent="🔐 Login";
+
+    subtitle.textContent=
+      "Login to access your SquadHub profile.";
+
+    emailField.classList.add("hidden");
+
+    submit.textContent="Login";
+
+    switchText.textContent=
+      "Don't have an account?";
+
+    switchButton.textContent=
+      "Create Account";
+
+  }else{
+
+    title.textContent="✨ Create Account";
+
+    subtitle.textContent=
+      "Create your SquadHub player account.";
+
+    emailField.classList.remove("hidden");
+
+    submit.textContent="Create Account";
+
+    switchText.textContent=
+      "Already have an account?";
+
+    switchButton.textContent=
+      "Login";
+
+  }
+
+}
+
+
+function submitAuth(){
+
+  const username=
+    document.getElementById("authUsername")
+      .value.trim();
+
+  const password=
+    document.getElementById("authPassword")
+      .value;
+
+  const email=
+    document.getElementById("authEmail")
+      .value.trim();
+
+  const message=
+    document.getElementById("authMessage");
+
+  if(!username || !password){
+
+    message.innerHTML=
+      `<div class="notice error">
+        Please enter your username and password.
+      </div>`;
+
+    return;
+  }
+
+  if(authMode==="register"){
+
+    if(!email){
+
+      message.innerHTML=
+        `<div class="notice error">
+          Please enter your email.
+        </div>`;
+
+      return;
+    }
+
+    if(username.length<3){
+
+      message.innerHTML=
+        `<div class="notice error">
+          Username must contain at least 3 characters.
+        </div>`;
+
+      return;
+    }
+
+    if(password.length<4){
+
+      message.innerHTML=
+        `<div class="notice error">
+          Password must contain at least 4 characters.
+        </div>`;
+
+      return;
+    }
+
+    const exists=users.some(
+      u=>u.username.toLowerCase()===
+         username.toLowerCase()
+    );
+
+    if(exists){
+
+      message.innerHTML=
+        `<div class="notice error">
+          That username already exists.
+        </div>`;
+
+      return;
+    }
+
+    const user={
+      id:Date.now(),
+      username:username,
+      email:email,
+      password:password,
+      xp:0,
+      games:0,
+      wins:0,
+      losses:0,
+      favoriteGame:"Not selected",
+      createdAt:new Date().toISOString()
+    };
+
+    users.push(user);
+
+    saveUsers();
+
+    currentUser={
+      username:user.username
+    };
+
+    saveCurrent();
+
+    ensureMember(user);
+
+    clearAuthFields();
+
+    updateUI();
+
+    showSectionById("profile");
+
+    return;
+
+  }
+
+
+  const user=users.find(
+    u=>
+      u.username.toLowerCase()===
+      username.toLowerCase() &&
+      u.password===password
+  );
+
+  if(!user){
+
+    message.innerHTML=
+      `<div class="notice error">
+        Incorrect username or password.
+      </div>`;
+
+    return;
+  }
+
+  currentUser={
+    username:user.username
+  };
+
+  saveCurrent();
+
+  ensureMember(user);
+
+  clearAuthFields();
+
+  updateUI();
+
+  showSectionById("home");
+
+}
+
+
+function clearAuthFields(){
+
+  document.getElementById("authUsername").value="";
+  document.getElementById("authPassword").value="";
+  document.getElementById("authEmail").value="";
+
+}
+
+
+function logout(){
+
+  currentUser=null;
+
+  localStorage.removeItem(STORAGE_CURRENT);
+
+  updateUI();
+
+  showSectionById("home");
+
+}
+
+
+function ensureMember(user){
+
+  let member=members.find(
+    m=>m.username===user.username
+  );
+
+  if(!member){
+
+    members.push({
+
+      id:Date.now(),
+
+      username:user.username,
+
+      name:user.username,
+
+      xp:user.xp || 0,
+
+      games:user.games || 0,
+
+      wins:user.wins || 0,
+
+      losses:user.losses || 0,
+
+      favoriteGame:user.favoriteGame ||
+        "Not selected"
+
+    });
+
+    saveMembers();
+
+  }
 
 }
 
 
 /* =========================
-   GAME CARDS
+   UI UPDATE
 ========================= */
 
-function gameCard(game){
+function updateUI(){
 
-return`
+  const headerUser=
+    document.getElementById("headerUser");
 
-<div
-class="game-card game-item"
-data-name="${game.name.toLowerCase()}"
->
+  const authButton=
+    document.getElementById("headerAuthButton");
 
-<div class="game-icon">
-${game.icon}
-</div>
+  if(currentUser){
 
-<h3>
-${escapeHTML(game.name)}
-</h3>
+    headerUser.textContent=
+      "👤 "+currentUser.username;
 
-<p>
-${escapeHTML(game.description)}
-</p>
+    authButton.textContent="Logout";
 
-<span class="game-tag">
-${game.genre}
-</span>
+    authButton.onclick=logout;
 
-<div class="game-buttons">
+  }else{
 
-<button
-class="primary-btn"
-onclick="openGameDetails('${game.id}')"
->
-View Details
-</button>
+    headerUser.textContent="";
 
-</div>
+    authButton.textContent="Login";
 
-</div>
+    authButton.onclick=openAuth;
 
-`;
+  }
+
+  renderGames();
+  renderHomeGames();
+  renderTasks();
+  renderMembers();
+  renderLeaderboard();
+  updateStats();
+  renderCurrentProfile();
+
+}
+
+
+/* =========================
+   GAMES
+========================= */
+
+function renderHomeGames(){
+
+  const container=
+    document.getElementById("homeGames");
+
+  container.innerHTML=
+    games.map(game=>gameCard(game)).join("");
 
 }
 
 
 function renderGames(){
 
-document.getElementById(
-"gamesContainer"
-).innerHTML=
-games.map(gameCard).join("");
+  const container=
+    document.getElementById("gamesContainer");
 
-document.getElementById(
-"homeGames"
-).innerHTML=
-games.map(gameCard).join("");
+  if(!container) return;
+
+  const search=
+    (document.getElementById("gameSearch")?.value || "")
+      .toLowerCase()
+      .trim();
+
+  const filtered=
+    games.filter(game=>
+      game.name.toLowerCase().includes(search)
+    );
+
+  if(filtered.length===0){
+
+    container.innerHTML=
+      `<div class="empty">
+        🎮 No games found.
+      </div>`;
+
+    return;
+  }
+
+  container.innerHTML=
+    filtered.map(game=>gameCard(game)).join("");
 
 }
 
 
-function searchGames(){
+function gameCard(game){
 
-const search=
-document.getElementById(
-"gameSearch"
-).value
-.toLowerCase()
-.trim();
+  return `
 
-document
-.querySelectorAll(
-"#gamesContainer .game-item"
-)
-.forEach(card=>{
+    <div class="game-card">
 
-card.style.display=
-card.dataset.name.includes(search)
-?""
-:"none";
+      <div class="game-icon">
+        ${game.icon}
+      </div>
 
-});
+      <h3>
+        ${escapeHTML(game.name)}
+      </h3>
+
+      <p>
+        ${escapeHTML(game.description)}
+      </p>
+
+      <span class="game-tag">
+        ${escapeHTML(game.type)}
+      </span>
+
+      <div class="card-actions">
+
+        <button
+          class="primary-btn"
+          onclick="openGame('${game.id}')"
+        >
+          ▶ Play Now
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="viewGameDetails('${game.id}')"
+        >
+          View Details
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function openGame(id){
+
+  const game=getGame(id);
+
+  if(!game) return;
+
+  window.open(
+    game.url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+function viewGameDetails(id){
+
+  const game=getGame(id);
+
+  if(!game) return;
+
+  alert(
+    game.name+
+    "\n\n"+
+    game.description+
+    "\n\n"+
+    "Use Play Now to open the official destination."
+  );
 
 }
 
 
 /* =========================
-   GAME DETAILS
+   TASKS
 ========================= */
 
-function openGameDetails(id){
+function getTaskRecord(username,taskId){
 
-const game=
-games.find(g=>g.id===id);
-
-if(!game)return;
-
-document.getElementById(
-"gameDetailsContainer"
-).innerHTML=`
-
-<div class="details-card">
-
-<div class="details-top">
-
-<div class="details-icon">
-${game.icon}
-</div>
-
-<h1>
-${escapeHTML(game.name)}
-</h1>
-
-<p
-style="
-color:var(--cyan);
-margin-top:7px;
-font-weight:800;
-"
->
-${game.genre}
-</p>
-
-</div>
-
-<div class="details-content">
-
-<p>
-${escapeHTML(game.description)}
-</p>
-
-<div class="info-box">
-
-<div>
-<span>🎮 Game</span>
-<strong>${escapeHTML(game.name)}</strong>
-</div>
-
-<div>
-<span>🏷️ Genre</span>
-<strong>${escapeHTML(game.genre)}</strong>
-</div>
-
-<div>
-<span>🏢 Developer</span>
-<strong>${escapeHTML(game.developer)}</strong>
-</div>
-
-</div>
-
-<button
-class="primary-btn"
-style="width:100%"
-onclick="openOfficial('${game.url}')"
->
-🌐 Official Destination
-</button>
-
-</div>
-
-</div>
-
-`;
-
-showSection(
-"gameDetails",
-null
-);
+  return taskRecords.find(
+    r=>
+      r.username===username &&
+      r.taskId===taskId &&
+      r.date===todayKey()
+  );
 
 }
 
 
-function openOfficial(url){
+function renderTasks(){
 
-window.open(
-url,
-"_blank",
-"noopener,noreferrer"
-);
+  const container=
+    document.getElementById("taskContainer");
 
-showToast(
-"Opening official destination...",
-"success",
-"🌐"
-);
+  const notice=
+    document.getElementById("loginTaskNotice");
+
+  if(!container) return;
+
+  if(!currentUser){
+
+    notice.classList.remove("hidden");
+
+    container.innerHTML=
+      `<div class="empty">
+        🔐 Login to receive today's tasks.
+      </div>`;
+
+    document.getElementById("taskXP").textContent="0 XP";
+    document.getElementById("taskProgress").textContent="0 / 0";
+
+    return;
+
+  }
+
+  notice.classList.add("hidden");
+
+  const member=getCurrentMember();
+
+  if(!member){
+
+    container.innerHTML=
+      `<div class="empty">
+        Profile not found.
+      </div>`;
+
+    return;
+
+  }
+
+  let approved=0;
+
+  const cards=dailyTasks.map(task=>{
+
+    const record=
+      getTaskRecord(
+        currentUser.username,
+        task.id
+      );
+
+    let status="Available";
+    let statusClass="";
+    let button="";
+
+    if(record){
+
+      if(record.status==="pending"){
+
+        status="Waiting for verification";
+        statusClass="status-pending";
+
+        button=`
+          <button class="secondary-btn" disabled>
+            ⏳ Pending
+          </button>
+        `;
+
+      }else if(record.status==="approved"){
+
+        status="Completed • +"+task.xp+" XP";
+        statusClass="status-approved";
+
+        approved++;
+
+        button=`
+          <button class="secondary-btn" disabled>
+            ✓ Completed
+          </button>
+        `;
+
+      }else if(record.status==="rejected"){
+
+        status="Rejected — Try Again";
+        statusClass="status-rejected";
+
+        button=`
+          <button
+            class="primary-btn"
+            onclick="submitTask('${task.id}')"
+          >
+            Submit Again
+          </button>
+        `;
+
+      }
+
+    }else{
+
+      button=`
+
+        <button
+          class="secondary-btn"
+          onclick="openTaskGame('${task.id}')"
+        >
+          ▶ Play Now
+        </button>
+
+        <button
+          class="primary-btn"
+          onclick="submitTask('${task.id}')"
+        >
+          ✓ Submit Completion
+        </button>
+
+      `;
+
+    }
+
+    const game=getGame(task.game);
+
+    return `
+
+      <div class="task-card ${record?.status || ""}">
+
+        <div class="task-top">
+
+          <div class="task-icon">
+            ${task.icon}
+          </div>
+
+          <div class="xp-badge">
+            +${task.xp} XP
+          </div>
+
+        </div>
+
+        <h3>
+          ${escapeHTML(task.title)}
+        </h3>
+
+        <p>
+          ${escapeHTML(task.description)}
+        </p>
+
+        <span class="task-status ${statusClass}">
+          ${status}
+        </span>
+
+        <div class="task-actions">
+
+          ${button}
+
+        </div>
+
+        <p style="margin-top:10px;font-size:11px;">
+          🎮 ${escapeHTML(game?.name || "Supported Game")}
+        </p>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+  container.innerHTML=cards;
+
+  document.getElementById("taskXP").textContent=
+    member.xp.toLocaleString()+" XP";
+
+  document.getElementById("taskProgress").textContent=
+    approved+" / "+dailyTasks.length;
+
+}
+
+
+function openTaskGame(taskId){
+
+  const task=
+    dailyTasks.find(t=>t.id===taskId);
+
+  if(!task) return;
+
+  const game=getGame(task.game);
+
+  if(game){
+
+    window.open(
+      game.url,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  }
+
+}
+
+
+function submitTask(taskId){
+
+  if(!currentUser){
+
+    openAuth();
+
+    return;
+
+  }
+
+  const task=
+    dailyTasks.find(t=>t.id===taskId);
+
+  if(!task) return;
+
+  const existing=
+    getTaskRecord(
+      currentUser.username,
+      taskId
+    );
+
+  if(existing && existing.status==="approved"){
+
+    alert("This task has already been completed today.");
+
+    return;
+
+  }
+
+  if(existing && existing.status==="pending"){
+
+    alert("This task is already waiting for verification.");
+
+    return;
+
+  }
+
+  const proof=prompt(
+    "Briefly describe how you completed this task.\n\n"+
+    "The squad owner will manually verify your submission."
+  );
+
+  if(proof===null) return;
+
+  if(!proof.trim()){
+
+    alert("Please provide a completion description.");
+
+    return;
+
+  }
+
+  if(existing){
+
+    existing.status="pending";
+    existing.proof=proof.trim();
+    existing.submittedAt=new Date().toISOString();
+
+  }else{
+
+    taskRecords.push({
+
+      id:Date.now(),
+
+      username:currentUser.username,
+
+      taskId:taskId,
+
+      date:todayKey(),
+
+      status:"pending",
+
+      proof:proof.trim(),
+
+      submittedAt:new Date().toISOString()
+
+    });
+
+  }
+
+  saveTasks();
+
+  alert(
+    "Task submitted!\n\n"+
+    "Your completion is now waiting for squad-owner verification."
+  );
+
+  renderTasks();
 
 }
 
 
 /* =========================
-   ADD PLAYER
+   VERIFICATION
+========================= */
+
+function isOwner(){
+
+  if(!currentUser) return false;
+
+  /*
+    First registered account is treated as the
+    local prototype squad owner.
+  */
+
+  return users.length>0 &&
+    users[0].username===currentUser.username;
+
+}
+
+
+function openVerification(){
+
+  if(!isOwner()){
+
+    alert(
+      "Only the squad owner can verify task submissions."
+    );
+
+    return;
+
+  }
+
+  renderVerification();
+
+  showSectionById("verification");
+
+}
+
+
+function renderVerification(){
+
+  const container=
+    document.getElementById("verificationContainer");
+
+  const notice=
+    document.getElementById("verificationNotice");
+
+  if(!currentUser){
+
+    notice.innerHTML=
+      `<div class="notice warning">
+        🔐 Login first.
+      </div>`;
+
+    container.innerHTML="";
+
+    return;
+
+  }
+
+  if(!isOwner()){
+
+    notice.innerHTML=
+      `<div class="notice warning">
+        👑 Verification is available to the squad owner.
+      </div>`;
+
+    container.innerHTML="";
+
+    return;
+
+  }
+
+  notice.innerHTML=
+    `<div class="notice success">
+      👑 You are the local SquadHub squad owner.
+    </div>`;
+
+  const pending=
+    taskRecords.filter(
+      r=>r.status==="pending"
+    );
+
+  if(pending.length===0){
+
+    container.innerHTML=
+      `<div class="empty">
+        📋 No pending task submissions.
+      </div>`;
+
+    return;
+
+  }
+
+  container.innerHTML=
+    pending.map(record=>{
+
+      const user=users.find(
+        u=>u.username===record.username
+      );
+
+      const task=dailyTasks.find(
+        t=>t.id===record.taskId
+      );
+
+      if(!user || !task) return "";
+
+      return `
+
+        <div class="panel" style="margin-bottom:12px;">
+
+          <h3>
+            ${task.icon}
+            ${escapeHTML(user.username)}
+          </h3>
+
+          <p style="margin-top:8px;">
+            <strong>${escapeHTML(task.title)}</strong>
+          </p>
+
+          <p class="muted" style="margin-top:8px;">
+            Proof:
+            ${escapeHTML(record.proof)}
+          </p>
+
+          <p class="muted" style="margin-top:6px;font-size:11px;">
+            Submitted:
+            ${new Date(record.submittedAt).toLocaleString()}
+          </p>
+
+          <div class="card-actions">
+
+            <button
+              class="primary-btn"
+              onclick="approveTask(${record.id})"
+            >
+              ✓ Approve +${task.xp} XP
+            </button>
+
+            <button
+              class="danger-btn"
+              onclick="rejectTask(${record.id})"
+            >
+              ✕ Reject
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function approveTask(recordId){
+
+  if(!isOwner()) return;
+
+  const record=
+    taskRecords.find(r=>r.id===recordId);
+
+  if(!record) return;
+
+  const task=
+    dailyTasks.find(t=>t.id===record.taskId);
+
+  const user=
+    users.find(
+      u=>u.username===record.username
+    );
+
+  const member=
+    members.find(
+      m=>m.username===record.username
+    );
+
+  if(!task || !user || !member) return;
+
+  if(record.status!=="pending") return;
+
+  record.status="approved";
+
+  user.xp=(user.xp || 0)+task.xp;
+
+  member.xp=(member.xp || 0)+task.xp;
+
+  saveUsers();
+  saveMembers();
+  saveTasks();
+
+  renderVerification();
+  updateUI();
+
+}
+
+
+function rejectTask(recordId){
+
+  if(!isOwner()) return;
+
+  const record=
+    taskRecords.find(r=>r.id===recordId);
+
+  if(!record) return;
+
+  const reason=prompt(
+    "Optional rejection reason:"
+  );
+
+  record.status="rejected";
+
+  record.rejectionReason=
+    reason?.trim() || "Not verified.";
+
+  saveTasks();
+
+  renderVerification();
+  renderTasks();
+
+}
+
+
+/* =========================
+   SQUAD
 ========================= */
 
 function addMember(){
 
-const nameInput=
-document.getElementById(
-"memberName"
-);
+  if(!currentUser){
 
-const xpInput=
-document.getElementById(
-"memberXP"
-);
+    openAuth();
 
-const name=
-nameInput.value.trim();
+    return;
 
-const xp=
-Math.max(
-0,
-Number(xpInput.value)||0
-);
+  }
 
-if(!name){
+  if(!isOwner()){
 
-showToast(
-"Please enter a player name.",
-"error",
-"⚠️"
-);
+    alert(
+      "Only the squad owner can add players in this prototype."
+    );
 
-nameInput.focus();
+    return;
 
-return;
+  }
+
+  const input=
+    document.getElementById("memberName");
+
+  const name=input.value.trim();
+
+  if(!name){
+
+    alert("Enter a player name.");
+
+    return;
+
+  }
+
+  const exists=
+    members.some(
+      m=>m.username?.toLowerCase()===
+         name.toLowerCase()
+    );
+
+  if(exists){
+
+    alert("That player is already in the squad.");
+
+    return;
+
+  }
+
+  members.push({
+
+    id:Date.now(),
+
+    username:name,
+
+    name:name,
+
+    xp:0,
+
+    games:0,
+
+    wins:0,
+
+    losses:0,
+
+    favoriteGame:"Not selected"
+
+  });
+
+  saveMembers();
+
+  input.value="";
+
+  renderMembers();
+  updateStats();
+  renderLeaderboard();
+
 }
 
-members.push({
-
-id:Date.now(),
-
-name:name,
-
-xp:xp,
-
-games:0,
-
-wins:0,
-
-losses:0,
-
-favoriteGame:"Not selected"
-
-});
-
-saveData();
-
-nameInput.value="";
-xpInput.value="";
-
-renderMembers();
-renderLeaderboard();
-updateStats();
-
-showToast(
-`${name} added to your squad!`,
-"success",
-"👥"
-);
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
 
 function deleteMember(id){
 
-const member=
-members.find(
-m=>m.id===id
-);
+  if(!isOwner()){
 
-if(!member)return;
+    alert(
+      "Only the squad owner can remove players."
+    );
 
-if(
-!confirm(
-`Remove "${member.name}" from your squad?`
-)
-)return;
+    return;
 
-members=
-members.filter(
-member=>member.id!==id
-);
+  }
 
-saveData();
+  const member=
+    members.find(m=>m.id===id);
 
-renderMembers();
-renderLeaderboard();
-updateStats();
+  if(!member) return;
 
-showToast(
-`${member.name} removed.`,
-"success",
-"🗑️"
-);
+  if(!confirm(
+    "Remove "+member.name+" from the squad?"
+  )) return;
+
+  members=
+    members.filter(m=>m.id!==id);
+
+  saveMembers();
+
+  renderMembers();
+  renderLeaderboard();
+  updateStats();
 
 }
 
-
-/* =========================
-   RESET
-========================= */
-
-function clearAllMembers(){
-
-if(members.length===0){
-
-showToast(
-"Your squad is already empty.",
-"error",
-"👥"
-);
-
-return;
-}
-
-if(
-!confirm(
-"Delete all squad members? This cannot be undone."
-)
-)return;
-
-members=[];
-
-saveData();
-
-renderMembers();
-renderLeaderboard();
-updateStats();
-
-showToast(
-"Squad reset successfully.",
-"success",
-"♻️"
-);
-
-}
-
-
-/* =========================
-   ADD XP
-========================= */
-
-function quickXP(id){
-
-const member=
-members.find(
-m=>m.id===id
-);
-
-if(!member)return;
-
-const amount=
-prompt(
-`Add XP to ${member.name}:`,
-"100"
-);
-
-if(amount===null)return;
-
-const xp=
-Math.max(
-0,
-Number(amount)||0
-);
-
-member.xp+=xp;
-
-saveData();
-
-renderMembers();
-renderLeaderboard();
-updateStats();
-
-showToast(
-`+${xp} XP added to ${member.name}!`,
-"success",
-"⭐"
-);
-
-}
-
-
-/* =========================
-   EDIT PLAYER
-========================= */
-
-function editMember(id){
-
-const member=
-members.find(
-m=>m.id===id
-);
-
-if(!member)return;
-
-const name=
-prompt(
-"Player name:",
-member.name
-);
-
-if(name===null)return;
-
-const xp=
-prompt(
-"Total XP:",
-member.xp
-);
-
-if(xp===null)return;
-
-const gamesPlayed=
-prompt(
-"Games played:",
-member.games
-);
-
-if(gamesPlayed===null)return;
-
-const wins=
-prompt(
-"Wins:",
-member.wins
-);
-
-if(wins===null)return;
-
-const losses=
-prompt(
-"Losses:",
-member.losses
-);
-
-if(losses===null)return;
-
-const favorite=
-prompt(
-"Favorite game:",
-member.favoriteGame
-);
-
-if(favorite===null)return;
-
-member.name=
-name.trim()||member.name;
-
-member.xp=
-Math.max(
-0,
-Number(xp)||0
-);
-
-member.games=
-Math.max(
-0,
-Number(gamesPlayed)||0
-);
-
-member.wins=
-Math.max(
-0,
-Number(wins)||0
-);
-
-member.losses=
-Math.max(
-0,
-Number(losses)||0
-);
-
-member.favoriteGame=
-favorite.trim()||"Not selected";
-
-saveData();
-
-renderMembers();
-renderLeaderboard();
-updateStats();
-
-showToast(
-`${member.name}'s profile updated.`,
-"success",
-"✏️"
-);
-
-}
-
-
-/* =========================
-   MEMBERS
-========================= */
 
 function renderMembers(){
 
-const container=
-document.getElementById(
-"membersContainer"
-);
+  const container=
+    document.getElementById("membersContainer");
 
-const search=
-document.getElementById(
-"memberSearch"
-)
-.value
-.toLowerCase()
-.trim();
+  const notice=
+    document.getElementById("ownerNotice");
 
-const filtered=
-members.filter(member=>
-member.name
-.toLowerCase()
-.includes(search)
-);
+  if(!container) return;
 
-if(filtered.length===0){
+  if(!currentUser){
 
-container.innerHTML=`
+    notice.classList.remove("hidden");
 
-<div class="empty">
+    container.innerHTML=
+      `<div class="empty">
+        🔐 Login to view the squad.
+      </div>`;
 
-👥 No squad members found.
+    return;
 
-<br><br>
+  }
 
-Add your first player above.
+  if(isOwner()){
 
-</div>
+    notice.classList.add("hidden");
 
-`;
+  }else{
 
-return;
-}
+    notice.classList.remove("hidden");
 
-container.innerHTML=`
+  }
 
-<div class="members-grid">
+  const search=
+    (
+      document.getElementById("memberSearch")
+        ?.value || ""
+    )
+    .toLowerCase()
+    .trim();
 
-${filtered.map(member=>`
+  const filtered=
+    members.filter(member=>
+      member.name.toLowerCase().includes(search)
+    );
 
-<div class="member">
+  if(filtered.length===0){
 
-<div class="avatar">
-${getInitial(member.name)}
-</div>
+    container.innerHTML=
+      `<div class="empty">
+        👥 No squad members found.
+      </div>`;
 
-<div class="member-info">
+    return;
 
-<h3>
-${escapeHTML(member.name)}
-</h3>
+  }
 
-<p>
-Level ${getLevel(member.xp)}
-•
-<span class="xp">
-${member.xp.toLocaleString()} XP
-</span>
-</p>
+  container.innerHTML=
+    `<div class="members-grid">
 
-<p style="margin-top:4px">
-🎮 ${member.games} games
-•
-🏆 ${member.wins} wins
-</p>
+      ${filtered.map(member=>`
 
-</div>
+        <div class="member">
 
-<div class="member-actions">
+          <div class="avatar">
+            ${getInitial(member.name)}
+          </div>
 
-<button
-class="small-btn"
-onclick="openProfile(${member.id})"
->
-Profile
-</button>
+          <div class="member-info">
 
-<button
-class="small-btn"
-onclick="quickXP(${member.id})"
->
-+ XP
-</button>
+            <h3>
+              ${escapeHTML(member.name)}
+            </h3>
 
-<button
-class="small-btn"
-onclick="editMember(${member.id})"
->
-Edit
-</button>
+            <p>
+              Level
+              ${Math.max(
+                1,
+                Math.floor(member.xp/100)+1
+              )}
+              •
+              <span class="xp">
+                ${member.xp.toLocaleString()} XP
+              </span>
+            </p>
 
-<button
-class="small-btn delete-btn"
-onclick="deleteMember(${member.id})"
->
-✕
-</button>
+          </div>
 
-</div>
+          <div class="member-actions">
 
-</div>
+            <button
+              class="small-btn"
+              onclick="openMemberProfile(${member.id})"
+            >
+              Profile
+            </button>
 
-`).join("")}
+            ${
+              isOwner()
+              ? `
+                <button
+                  class="small-btn"
+                  onclick="deleteMember(${member.id})"
+                >
+                  ✕
+                </button>
+              `
+              : ""
+            }
 
-</div>
+          </div>
 
-`;
+        </div>
 
-}
+      `).join("")}
 
-
-/* =========================
-   PROFILE
-========================= */
-
-function openProfile(id){
-
-const member=
-members.find(
-m=>m.id===id
-);
-
-if(!member)return;
-
-renderProfile(member);
-
-showSection(
-"profile",
-null
-);
+    </div>`;
 
 }
 
 
-function renderProfile(member){
+function openMemberProfile(id){
 
-const level=
-getLevel(member.xp);
+  const member=
+    members.find(m=>m.id===id);
 
-const currentXP=
-member.xp%100;
+  if(!member) return;
 
-const rank=
-[...members]
-.sort((a,b)=>b.xp-a.xp)
-.findIndex(
-m=>m.id===member.id
-)+1;
+  renderProfile(member);
 
-const winRate=
-member.games>0
-?Math.round(
-(member.wins/member.games)*100
-)
-:0;
-
-const achievements=[
-
-{
-icon:"🎮",
-name:"First Game",
-desc:"Play your first game",
-unlocked:member.games>=1
-},
-
-{
-icon:"🥇",
-name:"First Win",
-desc:"Win your first match",
-unlocked:member.wins>=1
-},
-
-{
-icon:"⚡",
-name:"100 XP",
-desc:"Reach 100 XP",
-unlocked:member.xp>=100
-},
-
-{
-icon:"🔥",
-name:"500 XP",
-desc:"Reach 500 XP",
-unlocked:member.xp>=500
-},
-
-{
-icon:"👑",
-name:"1000 XP",
-desc:"Reach 1000 XP",
-unlocked:member.xp>=1000
-},
-
-{
-icon:"🏆",
-name:"Champion",
-desc:"Reach 10 wins",
-unlocked:member.wins>=10
-}
-
-];
-
-document.getElementById(
-"profileContainer"
-).innerHTML=`
-
-<div class="profile-card">
-
-<div class="profile-top">
-
-<div class="profile-avatar">
-${getInitial(member.name)}
-</div>
-
-<div class="profile-name">
-${escapeHTML(member.name)}
-</div>
-
-<div class="profile-level">
-LEVEL ${level}
-</div>
-
-</div>
-
-<div class="progress-box">
-
-<div class="progress-info">
-
-<span>
-Level ${level}
-</span>
-
-<span>
-${currentXP}/100 XP
-</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar"
-style="width:${currentXP}%"
-></div>
-
-</div>
-
-</div>
-
-<div class="profile-stats">
-
-<div class="profile-stat">
-<strong>${member.games}</strong>
-<span>Games</span>
-</div>
-
-<div class="profile-stat">
-<strong>${member.wins}</strong>
-<span>Wins</span>
-</div>
-
-<div class="profile-stat">
-<strong>${winRate}%</strong>
-<span>Win Rate</span>
-</div>
-
-</div>
-
-<div class="profile-details">
-
-<div class="detail">
-<span>⭐ Total XP</span>
-<strong>
-${member.xp.toLocaleString()}
-</strong>
-</div>
-
-<div class="detail">
-<span>🏆 Squad Rank</span>
-<strong>#${rank}</strong>
-</div>
-
-<div class="detail">
-<span>🎮 Favorite Game</span>
-<strong>
-${escapeHTML(member.favoriteGame)}
-</strong>
-</div>
-
-<div class="detail">
-<span>❌ Losses</span>
-<strong>${member.losses}</strong>
-</div>
-
-<h3 style="margin-top:22px">
-🏅 Achievements
-</h3>
-
-<div class="achievements">
-
-${achievements.map(a=>`
-
-<div
-class="achievement ${a.unlocked?"":"locked"}"
->
-
-<div class="achievement-icon">
-${a.icon}
-</div>
-
-<strong>
-${a.name}
-</strong>
-
-<small>
-${a.unlocked?"Unlocked":"Locked"}
-•
-${a.desc}
-</small>
-
-</div>
-
-`).join("")}
-
-</div>
-
-<div
-style="
-margin-top:20px;
-display:grid;
-gap:8px;
-"
->
-
-<button
-class="primary-btn"
-onclick="
-editMember(${member.id});
-openProfile(${member.id});
-"
->
-✏️ Edit Player
-</button>
-
-<button
-class="secondary-btn"
-onclick="
-quickXP(${member.id});
-openProfile(${member.id});
-"
->
-⭐ Add XP
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
+  showSectionById("profile");
 
 }
 
@@ -2269,101 +2676,340 @@ openProfile(${member.id});
 
 function renderLeaderboard(){
 
-const container=
-document.getElementById(
-"leaderboardContainer"
-);
+  const container=
+    document.getElementById("leaderboardContainer");
 
-if(members.length===0){
+  if(!container) return;
 
-container.innerHTML=`
+  if(members.length===0){
 
-<div class="empty">
+    container.innerHTML=
+      `<div class="empty">
+        🏆 No players yet.
+      </div>`;
 
-🏆 No players yet.
+    return;
 
-<br><br>
+  }
 
-Add squad members to create your leaderboard.
+  const sorted=
+    [...members].sort(
+      (a,b)=>b.xp-a.xp
+    );
 
-</div>
+  const medals=[
+    "🥇",
+    "🥈",
+    "🥉"
+  ];
 
-`;
+  container.innerHTML=
+    `<div class="leaderboard">
 
-return;
+      ${sorted.map((member,index)=>`
+
+        <div class="rank">
+
+          <div class="rank-number">
+            ${medals[index] || "#"+(index+1)}
+          </div>
+
+          <div>
+
+            <div class="rank-name">
+              ${escapeHTML(member.name)}
+            </div>
+
+            <div style="
+              color:#7f8ca5;
+              font-size:12px;
+              margin-top:4px;
+            ">
+              Level
+              ${Math.max(
+                1,
+                Math.floor(member.xp/100)+1
+              )}
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="rank-xp">
+              ${member.xp.toLocaleString()} XP
+            </div>
+
+            <button
+              class="small-btn"
+              style="margin-top:5px"
+              onclick="openMemberProfile(${member.id})"
+            >
+              Profile
+            </button>
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>`;
+
 }
 
-const sorted=
-[...members]
-.sort(
-(a,b)=>b.xp-a.xp
-);
 
-const medals=[
-"🥇",
-"🥈",
-"🥉"
-];
+/* =========================
+   PROFILE
+========================= */
 
-container.innerHTML=`
+function renderCurrentProfile(){
 
-<div class="leaderboard">
+  const container=
+    document.getElementById("profileContainer");
 
-${sorted.map((member,index)=>`
+  if(!container) return;
 
-<div class="rank">
+  if(!currentUser){
 
-<div class="rank-number">
+    container.innerHTML=
+      `<div class="form-card">
 
-${medals[index]||"#"+(index+1)}
+        <div class="form-title">
+          <h2>👤 Your Profile</h2>
+          <p>Login to view your profile.</p>
+        </div>
 
-</div>
+        <button
+          class="primary-btn"
+          style="width:100%"
+          onclick="openAuth()"
+        >
+          🔐 Login
+        </button>
 
-<div>
+      </div>`;
 
-<div class="rank-name">
-${escapeHTML(member.name)}
-</div>
+    return;
 
-<div
-style="
-color:#7f8ca5;
-font-size:12px;
-margin-top:4px;
-"
->
+  }
 
-Level ${getLevel(member.xp)}
-•
-${member.wins} Wins
+  const member=getCurrentMember();
 
-</div>
+  if(member){
 
-</div>
+    renderProfile(member);
 
-<div>
+  }
 
-<div class="rank-xp">
-${member.xp.toLocaleString()} XP
-</div>
+}
 
-<button
-class="small-btn"
-style="margin-top:5px"
-onclick="openProfile(${member.id})"
->
-Profile
-</button>
 
-</div>
+function renderProfile(member){
 
-</div>
+  const container=
+    document.getElementById("profileContainer");
 
-`).join("")}
+  if(!container) return;
 
-</div>
+  const level=
+    Math.max(
+      1,
+      Math.floor(member.xp/100)+1
+    );
 
-`;
+  const currentXP=
+    member.xp%100;
+
+  const rank=
+    [...members]
+      .sort((a,b)=>b.xp-a.xp)
+      .findIndex(
+        m=>m.id===member.id
+      )+1;
+
+  const gamesPlayed=
+    member.games || 0;
+
+  const wins=
+    member.wins || 0;
+
+  const losses=
+    member.losses || 0;
+
+  const winRate=
+    gamesPlayed>0
+      ? Math.round((wins/gamesPlayed)*100)
+      : 0;
+
+  const approvedTasks=
+    taskRecords.filter(
+      r=>
+        r.username===member.username &&
+        r.status==="approved"
+    ).length;
+
+  container.innerHTML=`
+
+    <div class="profile-card">
+
+      <div class="profile-top">
+
+        <div class="profile-avatar">
+          ${getInitial(member.name)}
+        </div>
+
+        <div class="profile-name">
+          ${escapeHTML(member.name)}
+        </div>
+
+        <div class="profile-level">
+          LEVEL ${level}
+        </div>
+
+      </div>
+
+      <div class="progress-box">
+
+        <div class="progress-info">
+
+          <span>
+            Level ${level}
+          </span>
+
+          <span>
+            ${currentXP}/100 XP
+          </span>
+
+        </div>
+
+        <div class="progress">
+
+          <div
+            class="progress-bar"
+            style="width:${currentXP}%"
+          ></div>
+
+        </div>
+
+      </div>
+
+      <div class="profile-stats">
+
+        <div class="profile-stat">
+          <strong>${gamesPlayed}</strong>
+          <span>Games</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${wins}</strong>
+          <span>Wins</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${winRate}%</strong>
+          <span>Win Rate</span>
+        </div>
+
+      </div>
+
+      <div class="profile-details">
+
+        <div class="detail">
+          <span>⭐ Total XP</span>
+          <strong>
+            ${member.xp.toLocaleString()}
+          </strong>
+        </div>
+
+        <div class="detail">
+          <span>🏆 Squad Rank</span>
+          <strong>#${rank || "-"}</strong>
+        </div>
+
+        <div class="detail">
+          <span>🎯 Verified Tasks</span>
+          <strong>${approvedTasks}</strong>
+        </div>
+
+        <div class="detail">
+          <span>🎮 Favorite Game</span>
+          <strong>
+            ${escapeHTML(member.favoriteGame)}
+          </strong>
+        </div>
+
+        <div class="detail">
+          <span>❌ Losses</span>
+          <strong>${losses}</strong>
+        </div>
+
+        <div style="margin-top:20px;">
+
+          ${
+            currentUser &&
+            currentUser.username===member.username
+            ?
+            `
+            <button
+              class="primary-btn"
+              style="width:100%"
+              onclick="editOwnStats()"
+            >
+              ✏️ Update My Stats
+            </button>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function editOwnStats(){
+
+  if(!currentUser) return;
+
+  const member=getCurrentMember();
+
+  if(!member) return;
+
+  const favorite=
+    prompt(
+      "Favorite game:",
+      member.favoriteGame
+    );
+
+  if(favorite===null) return;
+
+  member.favoriteGame=
+    favorite.trim() || "Not selected";
+
+  const user=
+    users.find(
+      u=>u.username===currentUser.username
+    );
+
+  if(user){
+
+    user.favoriteGame=
+      member.favoriteGame;
+
+    saveUsers();
+
+  }
+
+  saveMembers();
+
+  renderProfile(member);
 
 }
 
@@ -2374,121 +3020,101 @@ Profile
 
 function updateStats(){
 
-const total=
-members.reduce(
-(sum,member)=>sum+member.xp,
-0
-);
+  const total=
+    members.reduce(
+      (sum,member)=>
+        sum+(Number(member.xp)||0),
+      0
+    );
 
-document.getElementById(
-"memberCount"
-).textContent=
-members.length;
+  const memberCount=
+    document.getElementById("memberCount");
 
-document.getElementById(
-"totalXP"
-).textContent=
-total.toLocaleString()+" XP";
+  const totalXP=
+    document.getElementById("totalXP");
 
-}
+  if(memberCount)
+    memberCount.textContent=
+      members.length;
 
-
-/* =========================
-   XP CALCULATOR
-========================= */
-
-function calculateXP(){
-
-const level=
-Math.max(
-1,
-Number(
-document.getElementById("level").value
-)||1
-);
-
-const matchXP=
-Number(
-document.getElementById("result").value
-)||0;
-
-const bonus=
-Math.max(
-0,
-Number(
-document.getElementById("bonus").value
-)||0
-);
-
-const total=
-(level*10)+matchXP+bonus;
-
-document.getElementById(
-"xpResult"
-).innerHTML=`
-
-XP Earned
-
-<strong>
-+${total.toLocaleString()} XP
-</strong>
-
-`;
-
-showToast(
-`You earned ${total} XP!`,
-"success",
-"⭐"
-);
+  if(totalXP)
+    totalXP.textContent=
+      total.toLocaleString()+" XP";
 
 }
 
 
 /* =========================
-   STORAGE
+   OWNER ACCESS
 ========================= */
 
-function saveData(){
+function addOwnerNavigation(){
 
-localStorage.setItem(
-"squadhub_members",
-JSON.stringify(members)
-);
+  const nav=
+    document.getElementById("mainNav");
+
+  if(!nav) return;
+
+  if(
+    currentUser &&
+    isOwner()
+  ){
+
+    if(
+      !document.getElementById(
+        "verificationNavButton"
+      )
+    ){
+
+      const button=
+        document.createElement("button");
+
+      button.id=
+        "verificationNavButton";
+
+      button.textContent=
+        "👑 Verify";
+
+      button.onclick=
+        function(){
+
+          openVerification();
+
+        };
+
+      nav.appendChild(button);
+
+    }
+
+  }else{
+
+    const button=
+      document.getElementById(
+        "verificationNavButton"
+      );
+
+    if(button)
+      button.remove();
+
+  }
 
 }
 
 
 /* =========================
-   HELPERS
+   CLEAN OLD TASKS
 ========================= */
 
-function getLevel(xp){
+function cleanupOldTasks(){
 
-return Math.max(
-1,
-Math.floor(xp/100)+1
-);
+  const today=todayKey();
 
-}
+  taskRecords=
+    taskRecords.filter(
+      record=>record.date===today
+    );
 
-
-function getInitial(name){
-
-return name
-.charAt(0)
-.toUpperCase();
-
-}
-
-
-function escapeHTML(text){
-
-const div=
-document.createElement("div");
-
-div.textContent=text;
-
-return div.innerHTML;
+  saveTasks();
 
 }
 
@@ -2497,13 +3123,13 @@ return div.innerHTML;
    START
 ========================= */
 
-renderGames();
+cleanupOldTasks();
 
-renderMembers();
+addOwnerNavigation();
 
-renderLeaderboard();
+updateUI();
 
-updateStats();
+addOwnerNavigation();
 
 </script>
 
