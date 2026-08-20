@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>SquadHub 1.0</title>
 
@@ -38,12 +38,17 @@ body{
   min-height:100vh;
 }
 
-button,input,select{
+button,input,select,textarea{
   font:inherit;
 }
 
 button{
   cursor:pointer;
+}
+
+button:disabled{
+  cursor:not-allowed;
+  opacity:.55;
 }
 
 header{
@@ -168,7 +173,7 @@ main{
 .hero p{
   color:var(--muted);
   font-size:17px;
-  max-width:620px;
+  max-width:650px;
   margin:auto;
   line-height:1.6;
 }
@@ -263,13 +268,17 @@ main{
   margin-top:4px;
 }
 
-.game-grid{
+.game-grid,
+.task-grid,
+.reward-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
 
-.game-card{
+.game-card,
+.task-card,
+.reward-card{
   background:linear-gradient(145deg,var(--card2),#0c1422);
   border:1px solid var(--border);
   padding:20px;
@@ -277,7 +286,8 @@ main{
   transition:.2s;
 }
 
-.game-card:hover{
+.game-card:hover,
+.reward-card:hover{
   transform:translateY(-3px);
   border-color:#3e70a9;
 }
@@ -287,11 +297,14 @@ main{
   margin-bottom:13px;
 }
 
-.game-card h3{
+.game-card h3,
+.reward-card h3{
   margin-bottom:7px;
 }
 
-.game-card p{
+.game-card p,
+.task-card p,
+.reward-card p{
   color:var(--muted);
   line-height:1.5;
   font-size:14px;
@@ -308,7 +321,8 @@ main{
   font-weight:800;
 }
 
-.card-actions{
+.card-actions,
+.task-actions{
   margin-top:16px;
   display:flex;
   gap:8px;
@@ -336,6 +350,10 @@ textarea:focus{
 
 .search-box{
   margin-bottom:17px;
+}
+
+input[type="file"]{
+  padding:9px;
 }
 
 .form-card,
@@ -423,25 +441,16 @@ textarea:focus{
   color:var(--muted);
 }
 
-.task-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-.task-card{
-  background:linear-gradient(145deg,var(--card2),#0c1422);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:18px;
-}
-
 .task-card.pending{
   border-color:#806b2e;
 }
 
 .task-card.completed{
   border-color:#28714e;
+}
+
+.task-card.rejected{
+  border-color:#71303c;
 }
 
 .task-top{
@@ -467,12 +476,6 @@ textarea:focus{
 
 .task-card h3{
   margin:13px 0 7px;
-}
-
-.task-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
 }
 
 .task-status{
@@ -501,10 +504,29 @@ textarea:focus{
   background:#ff5c7012;
 }
 
-.task-actions{
+.ai-box{
+  margin-top:15px;
+  border:1px solid #28527e;
+  background:#0b1a2e;
+  padding:14px;
+  border-radius:13px;
+}
+
+.ai-title{
   display:flex;
-  gap:7px;
-  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:9px;
+}
+
+.ai-title strong{
+  color:var(--cyan);
+}
+
+.ai-score{
+  font-size:20px;
+  font-weight:900;
 }
 
 .members-grid{
@@ -720,6 +742,76 @@ textarea:focus{
   border-color:#71303c;
 }
 
+.notice.info{
+  color:var(--cyan);
+  border-color:#28527e;
+}
+
+.reward-icon{
+  font-size:40px;
+  margin-bottom:12px;
+}
+
+.reward-cost{
+  color:var(--yellow);
+  font-size:20px;
+  font-weight:900;
+  margin:12px 0;
+}
+
+.reward-status{
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:800;
+  background:#17243a;
+  color:#a9bad7;
+}
+
+.reward-pending{
+  color:var(--yellow);
+  background:#ffd45c12;
+}
+
+.reward-approved{
+  color:var(--green);
+  background:#3ee98b12;
+}
+
+.reward-rejected{
+  color:var(--red);
+  background:#ff5c7012;
+}
+
+.redemption-card{
+  background:linear-gradient(145deg,var(--card2),#0c1422);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+  margin-bottom:12px;
+}
+
+.redemption-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.redemption-meta{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  margin-top:9px;
+}
+
+.redemption-actions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+  flex-wrap:wrap;
+}
+
 .empty{
   text-align:center;
   color:var(--muted);
@@ -727,10 +819,6 @@ textarea:focus{
   border:1px dashed var(--border);
   border-radius:15px;
   grid-column:1/-1;
-}
-
-.back-btn{
-  margin-bottom:15px;
 }
 
 footer{
@@ -775,6 +863,7 @@ footer{
   .game-grid,
   .members-grid,
   .task-grid,
+  .reward-grid,
   .dashboard{
     grid-template-columns:1fr;
   }
@@ -824,2314 +913,3531 @@ footer{
 <body>
 
 <header>
-  <div class="header-inner">
 
-    <div class="logo">🎮 <span>Squad</span>Hub <small>1.0</small></div>
+<div class="header-inner">
 
-    <div class="account-area">
-      <span id="headerUser" class="user-chip"></span>
-      <button id="headerAuthButton"
-              class="secondary-btn"
-              onclick="openAuth()">
-        Login
-      </button>
-    </div>
+  <div class="logo">
+    🎮 <span>Squad</span>Hub <small>1.0</small>
+  </div>
+
+  <div class="account-area">
+
+    <span id="headerUser" class="user-chip"></span>
+
+    <button
+      id="headerAuthButton"
+      class="secondary-btn"
+      onclick="openAuth()">
+      Login
+    </button>
 
   </div>
 
-  <div class="header-inner" style="padding-top:0;">
-    <nav id="mainNav">
-      <button class="active" onclick="showSection('home',this)">🏠 Home</button>
-      <button onclick="showSection('tasks',this)">🎯 Tasks</button>
-      <button onclick="showSection('games',this)">🎮 Games</button>
-      <button onclick="showSection('squad',this)">👥 Squad</button>
-      <button onclick="showSection('leaderboard',this)">🏆 Leaderboard</button>
-      <button onclick="showSection('profile',this)">👤 Profile</button>
-    </nav>
-  </div>
+</div>
+
+<div class="header-inner" style="padding-top:0;">
+
+<nav id="mainNav">
+
+<button class="active"
+onclick="showSection('home',this)">
+🏠 Home
+</button>
+
+<button onclick="showSection('tasks',this)">
+🎯 Tasks
+</button>
+
+<button onclick="showSection('games',this)">
+🎮 Games
+</button>
+
+<button onclick="showSection('rewards',this)">
+🎁 Rewards
+</button>
+
+<button onclick="showSection('squad',this)">
+👥 Squad
+</button>
+
+<button onclick="showSection('leaderboard',this)">
+🏆 Leaderboard
+</button>
+
+<button onclick="showSection('profile',this)">
+👤 Profile
+</button>
+
+</nav>
+
+</div>
+
 </header>
 
+
 <main>
+
 
 <!-- HOME -->
 
 <section id="home" class="section active">
 
-  <div class="hero">
+<div class="hero">
 
-    <div class="hero-badge">⚡ SQUADHUB 1.0</div>
+<div class="hero-badge">
+⚡ SQUADHUB 1.0
+</div>
 
-    <h1>Your Squad. Your <span>Challenges.</span></h1>
+<h1>
+Your Squad. Your <span>Challenges.</span>
+</h1>
 
-    <p>
-      Complete SquadHub tasks, earn XP, build your profile
-      and climb your squad leaderboard.
-    </p>
+<p>
+Complete difficult game challenges, submit proof,
+earn verified XP and redeem eligible rewards.
+</p>
 
-    <div class="hero-actions">
+<div class="hero-actions">
 
-      <button class="primary-btn"
-              onclick="goToTasks()">
-        🎯 View Today's Tasks
-      </button>
+<button
+class="primary-btn"
+onclick="goToTasks()">
+🎯 View Tasks
+</button>
 
-      <button class="secondary-btn"
-              onclick="showSectionById('games')">
-        🎮 Explore Games
-      </button>
+<button
+class="secondary-btn"
+onclick="showSectionById('rewards')">
+🎁 Rewards
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
-  <div class="stats">
 
-    <div class="stat">
-      <div class="stat-number">4</div>
-      <div class="stat-label">Games</div>
-    </div>
+<div class="stats">
 
-    <div class="stat">
-      <div class="stat-number" id="memberCount">0</div>
-      <div class="stat-label">Squad Members</div>
-    </div>
+<div class="stat">
 
-    <div class="stat">
-      <div class="stat-number" id="totalXP">0 XP</div>
-      <div class="stat-label">Squad XP</div>
-    </div>
+<div class="stat-number">
+4
+</div>
 
-  </div>
+<div class="stat-label">
+Games
+</div>
 
-  <div class="section-title">
-    <div>
-      <h2>🔥 Featured Games</h2>
-      <p>Choose a game for your next challenge.</p>
-    </div>
-  </div>
+</div>
 
-  <div id="homeGames" class="game-grid"></div>
+<div class="stat">
+
+<div
+id="memberCount"
+class="stat-number">
+0
+</div>
+
+<div class="stat-label">
+Squad Members
+</div>
+
+</div>
+
+<div class="stat">
+
+<div
+id="totalXP"
+class="stat-number">
+0 XP
+</div>
+
+<div class="stat-label">
+Squad XP
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+
+<div>
+
+<h2>🔥 Featured Games</h2>
+
+<p>
+Choose a game for your next challenge.
+</p>
+
+</div>
+
+</div>
+
+<div
+id="homeGames"
+class="game-grid">
+</div>
 
 </section>
+
 
 
 <!-- AUTH -->
 
 <section id="auth" class="section">
 
-  <div class="form-card">
+<div class="form-card">
 
-    <div class="form-title">
+<div class="form-title">
 
-      <h2 id="authTitle">🔐 Login</h2>
+<h2 id="authTitle">
+🔐 Login
+</h2>
 
-      <p id="authSubtitle">
-        Login to access your SquadHub profile.
-      </p>
+<p id="authSubtitle">
+Login to access your SquadHub profile.
+</p>
 
-    </div>
+</div>
 
-    <div id="authMessage"></div>
+<div id="authMessage"></div>
 
-    <div class="field">
-      <label>Username</label>
-      <input id="authUsername"
-             maxlength="25"
-             autocomplete="username"
-             placeholder="Enter username">
-    </div>
+<div class="field">
 
-    <div id="authEmailField" class="field hidden">
-      <label>Email</label>
-      <input id="authEmail"
-             type="email"
-             autocomplete="email"
-             placeholder="Enter email">
-    </div>
+<label>
+Username
+</label>
 
-    <div class="field">
-      <label>Password</label>
-      <input id="authPassword"
-             type="password"
-             autocomplete="current-password"
-             placeholder="Enter password">
-    </div>
+<input
+id="authUsername"
+maxlength="25"
+autocomplete="username"
+placeholder="Enter username">
 
-    <button class="primary-btn"
-            id="authSubmit"
-            onclick="submitAuth()">
-      Login
-    </button>
+</div>
 
-    <div class="form-switch">
-      <span id="authSwitchText">
-        Don't have an account?
-      </span>
 
-      <button onclick="toggleAuthMode()"
-              id="authSwitchButton">
-        Create Account
-      </button>
-    </div>
+<div
+id="authEmailField"
+class="field hidden">
 
-  </div>
+<label>
+Email
+</label>
+
+<input
+id="authEmail"
+type="email"
+autocomplete="email"
+placeholder="Enter email">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Password
+</label>
+
+<input
+id="authPassword"
+type="password"
+autocomplete="current-password"
+placeholder="Enter password">
+
+</div>
+
+
+<button
+class="primary-btn"
+id="authSubmit"
+onclick="submitAuth()">
+Login
+</button>
+
+
+<div class="form-switch">
+
+<span id="authSwitchText">
+Don't have an account?
+</span>
+
+<button
+onclick="toggleAuthMode()"
+id="authSwitchButton">
+Create Account
+</button>
+
+</div>
+
+</div>
 
 </section>
+
 
 
 <!-- TASKS -->
 
 <section id="tasks" class="section">
 
-  <div class="section-title">
+<div class="section-title">
 
-    <div>
-      <h2>🎯 Today's Tasks</h2>
-      <p>SquadHub gives you fixed tasks and XP rewards.</p>
-    </div>
+<div>
 
-  </div>
+<h2>
+🎯 Hard Tasks
+</h2>
 
-  <div id="loginTaskNotice" class="notice warning hidden">
-    🔐 Login to claim and submit tasks.
-  </div>
+<p>
+Complete difficult challenges and submit proof for verification.
+</p>
 
-  <div class="dashboard" style="margin-bottom:18px;">
+</div>
 
-    <div class="mini-card">
-      <h3>⭐ Your XP</h3>
-      <div id="taskXP" class="big-xp">0 XP</div>
-      <p class="muted">Earn XP by completing verified tasks.</p>
-    </div>
+</div>
 
-    <div class="mini-card">
-      <h3>📋 Your Progress</h3>
-      <div id="taskProgress" class="big-xp">0 / 0</div>
-      <p class="muted">Approved tasks today.</p>
-    </div>
 
-  </div>
+<div
+id="loginTaskNotice"
+class="notice warning hidden">
 
-  <div id="taskContainer" class="task-grid"></div>
+🔐 Login to claim and submit tasks.
+
+</div>
+
+
+<div
+class="dashboard"
+style="margin-bottom:18px;">
+
+<div class="mini-card">
+
+<h3>
+⭐ Your XP
+</h3>
+
+<div
+id="taskXP"
+class="big-xp">
+0 XP
+</div>
+
+<p class="muted">
+Verified XP can be used for eligible rewards.
+</p>
+
+</div>
+
+
+<div class="mini-card">
+
+<h3>
+📋 Today's Progress
+</h3>
+
+<div
+id="taskProgress"
+class="big-xp">
+0 / 0
+</div>
+
+<p class="muted">
+Approved tasks today.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+id="taskContainer"
+class="task-grid">
+</div>
 
 </section>
+
 
 
 <!-- GAMES -->
 
 <section id="games" class="section">
 
-  <div class="section-title">
-    <div>
-      <h2>🎮 Games</h2>
-      <p>Official game destinations.</p>
-    </div>
-  </div>
+<div class="section-title">
 
-  <input class="search-box"
-         id="gameSearch"
-         placeholder="🔎 Search games..."
-         oninput="renderGames()">
+<div>
 
-  <div id="gamesContainer" class="game-grid"></div>
+<h2>
+🎮 Games
+</h2>
+
+<p>
+Four supported game destinations.
+</p>
+
+</div>
+
+</div>
+
+
+<input
+class="search-box"
+id="gameSearch"
+placeholder="🔎 Search games..."
+oninput="renderGames()">
+
+
+<div
+id="gamesContainer"
+class="game-grid">
+</div>
 
 </section>
+
+
+
+<!-- REWARDS -->
+
+<section id="rewards" class="section">
+
+<div class="section-title">
+
+<div>
+
+<h2>
+🎁 Rewards & Redemption
+</h2>
+
+<p>
+Use verified XP to request eligible rewards.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+id="rewardNotice">
+</div>
+
+
+<div class="dashboard"
+style="margin-bottom:18px;">
+
+<div class="mini-card">
+
+<h3>
+⭐ Available XP
+</h3>
+
+<div
+id="rewardXP"
+class="big-xp">
+0 XP
+</div>
+
+<p class="muted">
+Only verified XP can be used.
+</p>
+
+</div>
+
+
+<div class="mini-card">
+
+<h3>
+💰 Reward Rate
+</h3>
+
+<div class="big-xp">
+1,000 XP
+</div>
+
+<p class="muted">
+Prototype rate: ₹100 reward.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="notice info">
+
+ℹ️ Redemption requests are reviewed by the
+Squad Owner. A real production reward system
+must use a secure backend and a legitimate reward
+provider. Never expose unused redeem codes in this page.
+
+</div>
+
+
+<div
+id="rewardGrid"
+class="reward-grid">
+</div>
+
+
+<div class="section-title">
+
+<div>
+
+<h2>
+📜 My Redemption History
+</h2>
+
+<p>
+Track your reward requests.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+id="myRedemptions">
+</div>
+
+</section>
+
 
 
 <!-- SQUAD -->
 
 <section id="squad" class="section">
 
-  <div class="section-title">
+<div class="section-title">
 
-    <div>
-      <h2>👥 My Squad</h2>
-      <p>Players currently stored on this device.</p>
-    </div>
+<div>
 
-  </div>
+<h2>
+👥 My Squad
+</h2>
 
-  <div id="ownerNotice" class="notice warning hidden">
-    Login as the squad owner to manage squad members.
-  </div>
+<p>
+Players stored in this local prototype.
+</p>
 
-  <div class="panel" style="margin-bottom:18px;">
+</div>
 
-    <div class="field">
-      <label>Player Name</label>
-      <input id="memberName"
-             maxlength="30"
-             placeholder="Player name">
-    </div>
+</div>
 
-    <button class="primary-btn"
-            onclick="addMember()">
-      + Add Player
-    </button>
 
-  </div>
+<div
+id="ownerNotice"
+class="notice warning hidden">
 
-  <input class="search-box"
-         id="memberSearch"
-         placeholder="🔎 Search squad member..."
-         oninput="renderMembers()">
+Login as the Squad Owner to manage squad members.
 
-  <div id="membersContainer"></div>
+</div>
+
+
+<div class="panel"
+style="margin-bottom:18px;">
+
+<div class="field">
+
+<label>
+Player Name
+</label>
+
+<input
+id="memberName"
+maxlength="30"
+placeholder="Player name">
+
+</div>
+
+
+<button
+class="primary-btn"
+onclick="addMember()">
++ Add Player
+</button>
+
+</div>
+
+
+<input
+class="search-box"
+id="memberSearch"
+placeholder="🔎 Search squad member..."
+oninput="renderMembers()">
+
+
+<div
+id="membersContainer">
+</div>
 
 </section>
+
 
 
 <!-- LEADERBOARD -->
 
 <section id="leaderboard" class="section">
 
-  <div class="section-title">
+<div class="section-title">
 
-    <div>
-      <h2>🏆 Leaderboard</h2>
-      <p>Players ranked by verified XP.</p>
-    </div>
+<div>
 
-  </div>
+<h2>
+🏆 Leaderboard
+</h2>
 
-  <div id="leaderboardContainer"></div>
+<p>
+Players ranked by verified XP.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+id="leaderboardContainer">
+</div>
 
 </section>
+
 
 
 <!-- PROFILE -->
 
 <section id="profile" class="section">
 
-  <div id="profileContainer"></div>
+<div
+id="profileContainer">
+</div>
 
 </section>
 
 
-<!-- ADMIN / VERIFICATION -->
+
+<!-- ADMIN VERIFICATION -->
 
 <section id="verification" class="section">
 
-  <div class="section-title">
+<div class="section-title">
 
-    <div>
-      <h2>👑 Task Verification</h2>
-      <p>Approve or reject submitted task completions.</p>
-    </div>
+<div>
 
-  </div>
+<h2>
+👑 AI Verification
+</h2>
 
-  <div id="verificationNotice"></div>
+<p>
+Review task verification results.
+</p>
 
-  <div id="verificationContainer"></div>
+</div>
+
+</div>
+
+
+<div
+id="verificationNotice">
+</div>
+
+
+<div
+id="verificationContainer">
+</div>
+
+</section>
+
+
+
+<!-- ADMIN REDEMPTIONS -->
+
+<section id="adminRewards" class="section">
+
+<div class="section-title">
+
+<div>
+
+<h2>
+👑 Reward Approvals
+</h2>
+
+<p>
+Only the Squad Owner can approve reward requests.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+id="adminRewardNotice">
+</div>
+
+
+<div
+id="adminRewardContainer">
+</div>
 
 </section>
 
 </main>
 
 
+
 <footer>
 
-  🎮 <strong>SquadHub 1.0</strong> — Made for the Squad
+🎮 <strong>SquadHub 1.0</strong>
+— Made for the Squad
 
-  <br><br>
+<br><br>
 
-  Build • Play • Complete • Compete
+Build • Play • Complete • Compete
 
-  <br><br>
+<br><br>
 
-  <span>© 2026 SquadHub • Credit: Lavish</span>
+<span>
+© 2026 SquadHub • Credit: Lavish
+</span>
 
 </footer>
 
 
+
 <script>
 
-/*
-  SQUADHUB 1.0
+/* =====================================================
+   SQUADHUB 1.0
+   CLIENT-SIDE PROTOTYPE
 
-  IMPORTANT:
-  This is a client-side prototype.
+   AI verification is simulated locally.
 
-  Accounts and data are stored in localStorage.
-  This is NOT secure production authentication.
+   Real AI verification requires a secure backend/API.
 
-  For real public accounts shared across devices,
-  a backend/database/authentication service is required.
-*/
+   Reward approval is controlled by the local owner.
+
+   Never store real unused redeem codes in this file.
+===================================================== */
 
 
-/* =========================
+/* =====================================================
    STORAGE
-========================= */
+===================================================== */
 
-const STORAGE_USERS = "squadhub_v10_users";
-const STORAGE_CURRENT = "squadhub_v10_current";
-const STORAGE_MEMBERS = "squadhub_v10_members";
-const STORAGE_TASKS = "squadhub_v10_task_records";
-
-
-let users =
-  JSON.parse(localStorage.getItem(STORAGE_USERS)) || [];
-
-let currentUser =
-  JSON.parse(localStorage.getItem(STORAGE_CURRENT)) || null;
-
-let members =
-  JSON.parse(localStorage.getItem(STORAGE_MEMBERS)) || [];
-
-let taskRecords =
-  JSON.parse(localStorage.getItem(STORAGE_TASKS)) || [];
+const STORAGE_USERS="squadhub_users_v11";
+const STORAGE_CURRENT="squadhub_current_v11";
+const STORAGE_MEMBERS="squadhub_members_v11";
+const STORAGE_TASKS="squadhub_tasks_v11";
+const STORAGE_REDEMPTIONS="squadhub_redemptions_v11";
 
 
-/* =========================
+let users=
+JSON.parse(localStorage.getItem(STORAGE_USERS))||[];
+
+let currentUser=
+JSON.parse(localStorage.getItem(STORAGE_CURRENT))||null;
+
+let members=
+JSON.parse(localStorage.getItem(STORAGE_MEMBERS))||[];
+
+let taskRecords=
+JSON.parse(localStorage.getItem(STORAGE_TASKS))||[];
+
+let redemptions=
+JSON.parse(
+localStorage.getItem(STORAGE_REDEMPTIONS)
+)||[];
+
+
+
+/* =====================================================
+   REWARD CONFIG
+===================================================== */
+
+const XP_PER_REWARD=1000;
+
+const REWARD_VALUE=100;
+
+
+
+/* =====================================================
    GAMES
-========================= */
+===================================================== */
 
-const games = [
+const games=[
 
-  {
-    id:"freefire",
-    name:"Free Fire",
-    icon:"🔥",
-    type:"BATTLE ROYALE",
-    description:"Official Free Fire destination.",
-    url:"https://ff.garena.com/"
-  },
+{
+id:"freefire",
+name:"Free Fire",
+icon:"🔥",
+type:"BATTLE ROYALE",
+description:
+"Battle-royale challenges and match objectives.",
+url:"https://ff.garena.com/"
+},
 
-  {
-    id:"minecraft",
-    name:"Minecraft",
-    icon:"⛏️",
-    type:"SURVIVAL",
-    description:"Official Minecraft website.",
-    url:"https://www.minecraft.net/"
-  },
+{
+id:"minecraft",
+name:"Minecraft",
+icon:"⛏️",
+type:"SURVIVAL",
+description:
+"Building, survival and exploration challenges.",
+url:"https://www.minecraft.net/"
+},
 
-  {
-    id:"bgmi",
-    name:"BGMI",
-    icon:"🎯",
-    type:"BATTLE ROYALE",
-    description:"Official BGMI destination.",
-    url:"https://www.battlegroundsmobileindia.com/"
-  },
+{
+id:"bgmi",
+name:"BGMI",
+icon:"🎯",
+type:"BATTLE ROYALE",
+description:
+"Battle-royale challenges and placement objectives.",
+url:"https://www.battlegroundsmobileindia.com/"
+},
 
-  {
-    id:"ibd3d",
-    name:"Indian Bikes Driving 3D",
-    icon:"🏍️",
-    type:"DRIVING",
-    description:"Game information and destination.",
-    url:"https://www.gamemonetize.com/"
-  }
-
-];
-
-
-/* =========================
-   TASK DEFINITIONS
-========================= */
-
-const dailyTasks = [
-
-  {
-    id:"play-match",
-    icon:"🎮",
-    title:"Play 1 Match",
-    description:"Play one match in one of the supported games.",
-    xp:20,
-    game:"freefire"
-  },
-
-  {
-    id:"victory",
-    icon:"🏆",
-    title:"Get 1 Victory",
-    description:"Achieve one victory in a supported game.",
-    xp:100,
-    game:"freefire"
-  },
-
-  {
-    id:"top-three",
-    icon:"🥉",
-    title:"Finish Top 3",
-    description:"Finish a supported battle-royale match in the Top 3.",
-    xp:70,
-    game:"bgmi"
-  },
-
-  {
-    id:"three-matches",
-    icon:"🔥",
-    title:"Complete 3 Matches",
-    description:"Complete three matches in a supported game.",
-    xp:75,
-    game:"freefire"
-  },
-
-  {
-    id:"minecraft-build",
-    icon:"⛏️",
-    title:"Create a Build",
-    description:"Create a new build in Minecraft.",
-    xp:50,
-    game:"minecraft"
-  },
-
-  {
-    id:"driving-challenge",
-    icon:"🏍️",
-    title:"Complete a Driving Challenge",
-    description:"Complete a personal driving challenge.",
-    xp:50,
-    game:"ibd3d"
-  }
+{
+id:"ibd3d",
+name:"Indian Bikes Driving 3D",
+icon:"🏍️",
+type:"DRIVING",
+description:
+"Driving and challenge-based gameplay.",
+url:"https://www.gamemonetize.com/"
+}
 
 ];
 
 
-/* =========================
+
+/* =====================================================
+   HARDER TASKS
+===================================================== */
+
+const dailyTasks=[
+
+{
+id:"ff-win",
+icon:"🏆",
+title:"Free Fire Victory",
+description:
+"Win one complete Free Fire match.",
+xp:150,
+game:"freefire",
+difficulty:"HARD"
+},
+
+{
+id:"ff-multi",
+icon:"🔥",
+title:"Free Fire Match Streak",
+description:
+"Complete 5 matches in Free Fire.",
+xp:250,
+game:"freefire",
+difficulty:"HARD"
+},
+
+{
+id:"bgmi-top3",
+icon:"🥉",
+title:"BGMI Top 3",
+description:
+"Finish a BGMI battle-royale match in the Top 3.",
+xp:180,
+game:"bgmi",
+difficulty:"HARD"
+},
+
+{
+id:"bgmi-win",
+icon:"👑",
+title:"BGMI Victory",
+description:
+"Win one BGMI match.",
+xp:300,
+game:"bgmi",
+difficulty:"EXTREME"
+},
+
+{
+id:"minecraft-build",
+icon:"⛏️",
+title:"Minecraft Mega Build",
+description:
+"Create a substantial original Minecraft build.",
+xp:180,
+game:"minecraft",
+difficulty:"HARD"
+},
+
+{
+id:"minecraft-survival",
+icon:"🧟",
+title:"Minecraft Survival Challenge",
+description:
+"Complete a difficult survival objective.",
+xp:220,
+game:"minecraft",
+difficulty:"HARD"
+},
+
+{
+id:"bike-distance",
+icon:"🏍️",
+title:"Driving Challenge",
+description:
+"Complete a long-distance driving challenge.",
+xp:150,
+game:"ibd3d",
+difficulty:"HARD"
+},
+
+{
+id:"bike-stunt",
+icon:"⚡",
+title:"Advanced Bike Challenge",
+description:
+"Complete an advanced stunt or driving objective.",
+xp:200,
+game:"ibd3d",
+difficulty:"EXTREME"
+}
+
+];
+
+
+
+/* =====================================================
    HELPERS
-========================= */
+===================================================== */
 
-function saveUsers(){
-  localStorage.setItem(
-    STORAGE_USERS,
-    JSON.stringify(users)
-  );
+function saveAll(){
+
+localStorage.setItem(
+STORAGE_USERS,
+JSON.stringify(users)
+);
+
+localStorage.setItem(
+STORAGE_MEMBERS,
+JSON.stringify(members)
+);
+
+localStorage.setItem(
+STORAGE_TASKS,
+JSON.stringify(taskRecords)
+);
+
+localStorage.setItem(
+STORAGE_REDEMPTIONS,
+JSON.stringify(redemptions)
+);
+
 }
 
 function saveCurrent(){
-  localStorage.setItem(
-    STORAGE_CURRENT,
-    JSON.stringify(currentUser)
-  );
-}
 
-function saveMembers(){
-  localStorage.setItem(
-    STORAGE_MEMBERS,
-    JSON.stringify(members)
-  );
-}
+localStorage.setItem(
+STORAGE_CURRENT,
+JSON.stringify(currentUser)
+);
 
-function saveTasks(){
-  localStorage.setItem(
-    STORAGE_TASKS,
-    JSON.stringify(taskRecords)
-  );
 }
 
 function escapeHTML(text){
 
-  const div=document.createElement("div");
+const div=document.createElement("div");
 
-  div.textContent=String(text ?? "");
+div.textContent=String(text??"");
 
-  return div.innerHTML;
+return div.innerHTML;
+
 }
 
 function getInitial(name){
 
-  return String(name || "?")
-    .charAt(0)
-    .toUpperCase();
+return String(name||"?")
+.charAt(0)
+.toUpperCase();
 
 }
 
 function todayKey(){
 
-  const d=new Date();
+const d=new Date();
 
-  return d.getFullYear()+"-"+
-    String(d.getMonth()+1).padStart(2,"0")+"-"+
-    String(d.getDate()).padStart(2,"0");
+return d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
 
 }
 
 function getGame(id){
 
-  return games.find(g=>g.id===id);
+return games.find(g=>g.id===id);
 
 }
 
 function getCurrentMember(){
 
-  if(!currentUser) return null;
+if(!currentUser)return null;
 
-  return members.find(
-    m=>m.username===currentUser.username
-  ) || null;
+return members.find(
+m=>m.username===currentUser.username
+)||null;
 
 }
 
 
-/* =========================
+
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function showSection(id,button){
 
-  document.querySelectorAll(".section")
-    .forEach(section=>{
-      section.classList.remove("active");
-    });
+document.querySelectorAll(".section")
+.forEach(s=>s.classList.remove("active"));
 
-  const section=document.getElementById(id);
+const section=document.getElementById(id);
 
-  if(!section) return;
+if(!section)return;
 
-  section.classList.add("active");
+section.classList.add("active");
 
-  document.querySelectorAll("nav button")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
+document.querySelectorAll("nav button")
+.forEach(b=>b.classList.remove("active"));
 
-  if(button){
-    button.classList.add("active");
-  }
+if(button){
+button.classList.add("active");
+}
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-  if(id==="tasks"){
-    renderTasks();
-  }
-
-  if(id==="games"){
-    renderGames();
-  }
-
-  if(id==="squad"){
-    renderMembers();
-  }
-
-  if(id==="leaderboard"){
-    renderLeaderboard();
-  }
-
-  if(id==="profile"){
-    renderCurrentProfile();
-  }
+if(id==="tasks")renderTasks();
+if(id==="games")renderGames();
+if(id==="rewards")renderRewards();
+if(id==="squad")renderMembers();
+if(id==="leaderboard")renderLeaderboard();
+if(id==="profile")renderCurrentProfile();
+if(id==="verification")renderVerification();
+if(id==="adminRewards")renderAdminRewards();
 
 }
 
 function showSectionById(id){
 
-  showSection(id,null);
+showSection(id,null);
 
 }
 
 function goToTasks(){
 
-  if(!currentUser){
-    openAuth();
-    return;
-  }
+if(!currentUser){
 
-  showSectionById("tasks");
+openAuth();
+
+return;
+
+}
+
+showSectionById("tasks");
 
 }
 
 
-/* =========================
+
+/* =====================================================
    AUTH
-========================= */
+===================================================== */
 
 let authMode="login";
 
-
 function openAuth(){
 
-  authMode="login";
+authMode="login";
 
-  updateAuthUI();
+updateAuthUI();
 
-  showSectionById("auth");
+showSectionById("auth");
 
 }
-
 
 function toggleAuthMode(){
 
-  authMode =
-    authMode==="login"
-    ? "register"
-    : "login";
+authMode=
+authMode==="login"
+?"register"
+:"login";
 
-  updateAuthUI();
+updateAuthUI();
 
 }
-
 
 function updateAuthUI(){
 
-  const title=document.getElementById("authTitle");
-  const subtitle=document.getElementById("authSubtitle");
-  const emailField=document.getElementById("authEmailField");
-  const submit=document.getElementById("authSubmit");
-  const switchText=document.getElementById("authSwitchText");
-  const switchButton=document.getElementById("authSwitchButton");
+const title=document.getElementById("authTitle");
+const subtitle=document.getElementById("authSubtitle");
+const email=document.getElementById("authEmailField");
+const submit=document.getElementById("authSubmit");
+const switchText=document.getElementById("authSwitchText");
+const switchButton=document.getElementById("authSwitchButton");
 
-  document.getElementById("authMessage").innerHTML="";
+document.getElementById("authMessage").innerHTML="";
 
-  if(authMode==="login"){
+if(authMode==="login"){
 
-    title.textContent="🔐 Login";
+title.textContent="🔐 Login";
 
-    subtitle.textContent=
-      "Login to access your SquadHub profile.";
+subtitle.textContent=
+"Login to access your SquadHub profile.";
 
-    emailField.classList.add("hidden");
+email.classList.add("hidden");
 
-    submit.textContent="Login";
+submit.textContent="Login";
 
-    switchText.textContent=
-      "Don't have an account?";
+switchText.textContent=
+"Don't have an account?";
 
-    switchButton.textContent=
-      "Create Account";
+switchButton.textContent=
+"Create Account";
 
-  }else{
+}else{
 
-    title.textContent="✨ Create Account";
+title.textContent="✨ Create Account";
 
-    subtitle.textContent=
-      "Create your SquadHub player account.";
+subtitle.textContent=
+"Create your SquadHub player account.";
 
-    emailField.classList.remove("hidden");
+email.classList.remove("hidden");
 
-    submit.textContent="Create Account";
+submit.textContent="Create Account";
 
-    switchText.textContent=
-      "Already have an account?";
+switchText.textContent=
+"Already have an account?";
 
-    switchButton.textContent=
-      "Login";
-
-  }
+switchButton.textContent=
+"Login";
 
 }
 
+}
 
 function submitAuth(){
 
-  const username=
-    document.getElementById("authUsername")
-      .value.trim();
+const username=
+document.getElementById("authUsername").value.trim();
 
-  const password=
-    document.getElementById("authPassword")
-      .value;
+const password=
+document.getElementById("authPassword").value;
 
-  const email=
-    document.getElementById("authEmail")
-      .value.trim();
+const email=
+document.getElementById("authEmail").value.trim();
 
-  const message=
-    document.getElementById("authMessage");
+const message=
+document.getElementById("authMessage");
 
-  if(!username || !password){
+if(!username||!password){
 
-    message.innerHTML=
-      `<div class="notice error">
-        Please enter your username and password.
-      </div>`;
+message.innerHTML=
+`<div class="notice error">
+Please enter username and password.
+</div>`;
 
-    return;
-  }
-
-  if(authMode==="register"){
-
-    if(!email){
-
-      message.innerHTML=
-        `<div class="notice error">
-          Please enter your email.
-        </div>`;
-
-      return;
-    }
-
-    if(username.length<3){
-
-      message.innerHTML=
-        `<div class="notice error">
-          Username must contain at least 3 characters.
-        </div>`;
-
-      return;
-    }
-
-    if(password.length<4){
-
-      message.innerHTML=
-        `<div class="notice error">
-          Password must contain at least 4 characters.
-        </div>`;
-
-      return;
-    }
-
-    const exists=users.some(
-      u=>u.username.toLowerCase()===
-         username.toLowerCase()
-    );
-
-    if(exists){
-
-      message.innerHTML=
-        `<div class="notice error">
-          That username already exists.
-        </div>`;
-
-      return;
-    }
-
-    const user={
-      id:Date.now(),
-      username:username,
-      email:email,
-      password:password,
-      xp:0,
-      games:0,
-      wins:0,
-      losses:0,
-      favoriteGame:"Not selected",
-      createdAt:new Date().toISOString()
-    };
-
-    users.push(user);
-
-    saveUsers();
-
-    currentUser={
-      username:user.username
-    };
-
-    saveCurrent();
-
-    ensureMember(user);
-
-    clearAuthFields();
-
-    updateUI();
-
-    showSectionById("profile");
-
-    return;
-
-  }
-
-
-  const user=users.find(
-    u=>
-      u.username.toLowerCase()===
-      username.toLowerCase() &&
-      u.password===password
-  );
-
-  if(!user){
-
-    message.innerHTML=
-      `<div class="notice error">
-        Incorrect username or password.
-      </div>`;
-
-    return;
-  }
-
-  currentUser={
-    username:user.username
-  };
-
-  saveCurrent();
-
-  ensureMember(user);
-
-  clearAuthFields();
-
-  updateUI();
-
-  showSectionById("home");
+return;
 
 }
 
+if(authMode==="register"){
+
+if(!email){
+
+message.innerHTML=
+`<div class="notice error">
+Please enter an email address.
+</div>`;
+
+return;
+
+}
+
+if(username.length<3){
+
+message.innerHTML=
+`<div class="notice error">
+Username must contain at least 3 characters.
+</div>`;
+
+return;
+
+}
+
+if(password.length<4){
+
+message.innerHTML=
+`<div class="notice error">
+Password must contain at least 4 characters.
+</div>`;
+
+return;
+
+}
+
+if(users.some(
+u=>u.username.toLowerCase()===
+username.toLowerCase()
+)){
+
+message.innerHTML=
+`<div class="notice error">
+Username already exists.
+</div>`;
+
+return;
+
+}
+
+const user={
+id:Date.now(),
+username,
+email,
+password,
+xp:0,
+games:0,
+wins:0,
+losses:0,
+favoriteGame:"Not selected",
+createdAt:new Date().toISOString()
+};
+
+users.push(user);
+
+currentUser={
+username:user.username
+};
+
+ensureMember(user);
+
+saveAll();
+saveCurrent();
+
+clearAuthFields();
+updateUI();
+
+showSectionById("profile");
+
+return;
+
+}
+
+
+const user=users.find(
+u=>
+u.username.toLowerCase()===
+username.toLowerCase()&&
+u.password===password
+);
+
+if(!user){
+
+message.innerHTML=
+`<div class="notice error">
+Incorrect username or password.
+</div>`;
+
+return;
+
+}
+
+currentUser={
+username:user.username
+};
+
+ensureMember(user);
+
+saveAll();
+saveCurrent();
+
+clearAuthFields();
+updateUI();
+
+showSectionById("home");
+
+}
 
 function clearAuthFields(){
 
-  document.getElementById("authUsername").value="";
-  document.getElementById("authPassword").value="";
-  document.getElementById("authEmail").value="";
+document.getElementById("authUsername").value="";
+document.getElementById("authPassword").value="";
+document.getElementById("authEmail").value="";
 
 }
-
 
 function logout(){
 
-  currentUser=null;
+currentUser=null;
 
-  localStorage.removeItem(STORAGE_CURRENT);
-
-  updateUI();
-
-  showSectionById("home");
-
-}
-
-
-function ensureMember(user){
-
-  let member=members.find(
-    m=>m.username===user.username
-  );
-
-  if(!member){
-
-    members.push({
-
-      id:Date.now(),
-
-      username:user.username,
-
-      name:user.username,
-
-      xp:user.xp || 0,
-
-      games:user.games || 0,
-
-      wins:user.wins || 0,
-
-      losses:user.losses || 0,
-
-      favoriteGame:user.favoriteGame ||
-        "Not selected"
-
-    });
-
-    saveMembers();
-
-  }
-
-}
-
-
-/* =========================
-   UI UPDATE
-========================= */
-
-function updateUI(){
-
-  const headerUser=
-    document.getElementById("headerUser");
-
-  const authButton=
-    document.getElementById("headerAuthButton");
-
-  if(currentUser){
-
-    headerUser.textContent=
-      "👤 "+currentUser.username;
-
-    authButton.textContent="Logout";
-
-    authButton.onclick=logout;
-
-  }else{
-
-    headerUser.textContent="";
-
-    authButton.textContent="Login";
-
-    authButton.onclick=openAuth;
-
-  }
-
-  renderGames();
-  renderHomeGames();
-  renderTasks();
-  renderMembers();
-  renderLeaderboard();
-  updateStats();
-  renderCurrentProfile();
-
-}
-
-
-/* =========================
-   GAMES
-========================= */
-
-function renderHomeGames(){
-
-  const container=
-    document.getElementById("homeGames");
-
-  container.innerHTML=
-    games.map(game=>gameCard(game)).join("");
-
-}
-
-
-function renderGames(){
-
-  const container=
-    document.getElementById("gamesContainer");
-
-  if(!container) return;
-
-  const search=
-    (document.getElementById("gameSearch")?.value || "")
-      .toLowerCase()
-      .trim();
-
-  const filtered=
-    games.filter(game=>
-      game.name.toLowerCase().includes(search)
-    );
-
-  if(filtered.length===0){
-
-    container.innerHTML=
-      `<div class="empty">
-        🎮 No games found.
-      </div>`;
-
-    return;
-  }
-
-  container.innerHTML=
-    filtered.map(game=>gameCard(game)).join("");
-
-}
-
-
-function gameCard(game){
-
-  return `
-
-    <div class="game-card">
-
-      <div class="game-icon">
-        ${game.icon}
-      </div>
-
-      <h3>
-        ${escapeHTML(game.name)}
-      </h3>
-
-      <p>
-        ${escapeHTML(game.description)}
-      </p>
-
-      <span class="game-tag">
-        ${escapeHTML(game.type)}
-      </span>
-
-      <div class="card-actions">
-
-        <button
-          class="primary-btn"
-          onclick="openGame('${game.id}')"
-        >
-          ▶ Play Now
-        </button>
-
-        <button
-          class="secondary-btn"
-          onclick="viewGameDetails('${game.id}')"
-        >
-          View Details
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-function openGame(id){
-
-  const game=getGame(id);
-
-  if(!game) return;
-
-  window.open(
-    game.url,
-    "_blank",
-    "noopener,noreferrer"
-  );
-
-}
-
-
-function viewGameDetails(id){
-
-  const game=getGame(id);
-
-  if(!game) return;
-
-  alert(
-    game.name+
-    "\n\n"+
-    game.description+
-    "\n\n"+
-    "Use Play Now to open the official destination."
-  );
-
-}
-
-
-/* =========================
-   TASKS
-========================= */
-
-function getTaskRecord(username,taskId){
-
-  return taskRecords.find(
-    r=>
-      r.username===username &&
-      r.taskId===taskId &&
-      r.date===todayKey()
-  );
-
-}
-
-
-function renderTasks(){
-
-  const container=
-    document.getElementById("taskContainer");
-
-  const notice=
-    document.getElementById("loginTaskNotice");
-
-  if(!container) return;
-
-  if(!currentUser){
-
-    notice.classList.remove("hidden");
-
-    container.innerHTML=
-      `<div class="empty">
-        🔐 Login to receive today's tasks.
-      </div>`;
-
-    document.getElementById("taskXP").textContent="0 XP";
-    document.getElementById("taskProgress").textContent="0 / 0";
-
-    return;
-
-  }
-
-  notice.classList.add("hidden");
-
-  const member=getCurrentMember();
-
-  if(!member){
-
-    container.innerHTML=
-      `<div class="empty">
-        Profile not found.
-      </div>`;
-
-    return;
-
-  }
-
-  let approved=0;
-
-  const cards=dailyTasks.map(task=>{
-
-    const record=
-      getTaskRecord(
-        currentUser.username,
-        task.id
-      );
-
-    let status="Available";
-    let statusClass="";
-    let button="";
-
-    if(record){
-
-      if(record.status==="pending"){
-
-        status="Waiting for verification";
-        statusClass="status-pending";
-
-        button=`
-          <button class="secondary-btn" disabled>
-            ⏳ Pending
-          </button>
-        `;
-
-      }else if(record.status==="approved"){
-
-        status="Completed • +"+task.xp+" XP";
-        statusClass="status-approved";
-
-        approved++;
-
-        button=`
-          <button class="secondary-btn" disabled>
-            ✓ Completed
-          </button>
-        `;
-
-      }else if(record.status==="rejected"){
-
-        status="Rejected — Try Again";
-        statusClass="status-rejected";
-
-        button=`
-          <button
-            class="primary-btn"
-            onclick="submitTask('${task.id}')"
-          >
-            Submit Again
-          </button>
-        `;
-
-      }
-
-    }else{
-
-      button=`
-
-        <button
-          class="secondary-btn"
-          onclick="openTaskGame('${task.id}')"
-        >
-          ▶ Play Now
-        </button>
-
-        <button
-          class="primary-btn"
-          onclick="submitTask('${task.id}')"
-        >
-          ✓ Submit Completion
-        </button>
-
-      `;
-
-    }
-
-    const game=getGame(task.game);
-
-    return `
-
-      <div class="task-card ${record?.status || ""}">
-
-        <div class="task-top">
-
-          <div class="task-icon">
-            ${task.icon}
-          </div>
-
-          <div class="xp-badge">
-            +${task.xp} XP
-          </div>
-
-        </div>
-
-        <h3>
-          ${escapeHTML(task.title)}
-        </h3>
-
-        <p>
-          ${escapeHTML(task.description)}
-        </p>
-
-        <span class="task-status ${statusClass}">
-          ${status}
-        </span>
-
-        <div class="task-actions">
-
-          ${button}
-
-        </div>
-
-        <p style="margin-top:10px;font-size:11px;">
-          🎮 ${escapeHTML(game?.name || "Supported Game")}
-        </p>
-
-      </div>
-
-    `;
-
-  }).join("");
-
-  container.innerHTML=cards;
-
-  document.getElementById("taskXP").textContent=
-    member.xp.toLocaleString()+" XP";
-
-  document.getElementById("taskProgress").textContent=
-    approved+" / "+dailyTasks.length;
-
-}
-
-
-function openTaskGame(taskId){
-
-  const task=
-    dailyTasks.find(t=>t.id===taskId);
-
-  if(!task) return;
-
-  const game=getGame(task.game);
-
-  if(game){
-
-    window.open(
-      game.url,
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-  }
-
-}
-
-
-function submitTask(taskId){
-
-  if(!currentUser){
-
-    openAuth();
-
-    return;
-
-  }
-
-  const task=
-    dailyTasks.find(t=>t.id===taskId);
-
-  if(!task) return;
-
-  const existing=
-    getTaskRecord(
-      currentUser.username,
-      taskId
-    );
-
-  if(existing && existing.status==="approved"){
-
-    alert("This task has already been completed today.");
-
-    return;
-
-  }
-
-  if(existing && existing.status==="pending"){
-
-    alert("This task is already waiting for verification.");
-
-    return;
-
-  }
-
-  const proof=prompt(
-    "Briefly describe how you completed this task.\n\n"+
-    "The squad owner will manually verify your submission."
-  );
-
-  if(proof===null) return;
-
-  if(!proof.trim()){
-
-    alert("Please provide a completion description.");
-
-    return;
-
-  }
-
-  if(existing){
-
-    existing.status="pending";
-    existing.proof=proof.trim();
-    existing.submittedAt=new Date().toISOString();
-
-  }else{
-
-    taskRecords.push({
-
-      id:Date.now(),
-
-      username:currentUser.username,
-
-      taskId:taskId,
-
-      date:todayKey(),
-
-      status:"pending",
-
-      proof:proof.trim(),
-
-      submittedAt:new Date().toISOString()
-
-    });
-
-  }
-
-  saveTasks();
-
-  alert(
-    "Task submitted!\n\n"+
-    "Your completion is now waiting for squad-owner verification."
-  );
-
-  renderTasks();
-
-}
-
-
-/* =========================
-   VERIFICATION
-========================= */
-
-function isOwner(){
-
-  if(!currentUser) return false;
-
-  /*
-    First registered account is treated as the
-    local prototype squad owner.
-  */
-
-  return users.length>0 &&
-    users[0].username===currentUser.username;
-
-}
-
-
-function openVerification(){
-
-  if(!isOwner()){
-
-    alert(
-      "Only the squad owner can verify task submissions."
-    );
-
-    return;
-
-  }
-
-  renderVerification();
-
-  showSectionById("verification");
-
-}
-
-
-function renderVerification(){
-
-  const container=
-    document.getElementById("verificationContainer");
-
-  const notice=
-    document.getElementById("verificationNotice");
-
-  if(!currentUser){
-
-    notice.innerHTML=
-      `<div class="notice warning">
-        🔐 Login first.
-      </div>`;
-
-    container.innerHTML="";
-
-    return;
-
-  }
-
-  if(!isOwner()){
-
-    notice.innerHTML=
-      `<div class="notice warning">
-        👑 Verification is available to the squad owner.
-      </div>`;
-
-    container.innerHTML="";
-
-    return;
-
-  }
-
-  notice.innerHTML=
-    `<div class="notice success">
-      👑 You are the local SquadHub squad owner.
-    </div>`;
-
-  const pending=
-    taskRecords.filter(
-      r=>r.status==="pending"
-    );
-
-  if(pending.length===0){
-
-    container.innerHTML=
-      `<div class="empty">
-        📋 No pending task submissions.
-      </div>`;
-
-    return;
-
-  }
-
-  container.innerHTML=
-    pending.map(record=>{
-
-      const user=users.find(
-        u=>u.username===record.username
-      );
-
-      const task=dailyTasks.find(
-        t=>t.id===record.taskId
-      );
-
-      if(!user || !task) return "";
-
-      return `
-
-        <div class="panel" style="margin-bottom:12px;">
-
-          <h3>
-            ${task.icon}
-            ${escapeHTML(user.username)}
-          </h3>
-
-          <p style="margin-top:8px;">
-            <strong>${escapeHTML(task.title)}</strong>
-          </p>
-
-          <p class="muted" style="margin-top:8px;">
-            Proof:
-            ${escapeHTML(record.proof)}
-          </p>
-
-          <p class="muted" style="margin-top:6px;font-size:11px;">
-            Submitted:
-            ${new Date(record.submittedAt).toLocaleString()}
-          </p>
-
-          <div class="card-actions">
-
-            <button
-              class="primary-btn"
-              onclick="approveTask(${record.id})"
-            >
-              ✓ Approve +${task.xp} XP
-            </button>
-
-            <button
-              class="danger-btn"
-              onclick="rejectTask(${record.id})"
-            >
-              ✕ Reject
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-function approveTask(recordId){
-
-  if(!isOwner()) return;
-
-  const record=
-    taskRecords.find(r=>r.id===recordId);
-
-  if(!record) return;
-
-  const task=
-    dailyTasks.find(t=>t.id===record.taskId);
-
-  const user=
-    users.find(
-      u=>u.username===record.username
-    );
-
-  const member=
-    members.find(
-      m=>m.username===record.username
-    );
-
-  if(!task || !user || !member) return;
-
-  if(record.status!=="pending") return;
-
-  record.status="approved";
-
-  user.xp=(user.xp || 0)+task.xp;
-
-  member.xp=(member.xp || 0)+task.xp;
-
-  saveUsers();
-  saveMembers();
-  saveTasks();
-
-  renderVerification();
-  updateUI();
-
-}
-
-
-function rejectTask(recordId){
-
-  if(!isOwner()) return;
-
-  const record=
-    taskRecords.find(r=>r.id===recordId);
-
-  if(!record) return;
-
-  const reason=prompt(
-    "Optional rejection reason:"
-  );
-
-  record.status="rejected";
-
-  record.rejectionReason=
-    reason?.trim() || "Not verified.";
-
-  saveTasks();
-
-  renderVerification();
-  renderTasks();
-
-}
-
-
-/* =========================
-   SQUAD
-========================= */
-
-function addMember(){
-
-  if(!currentUser){
-
-    openAuth();
-
-    return;
-
-  }
-
-  if(!isOwner()){
-
-    alert(
-      "Only the squad owner can add players in this prototype."
-    );
-
-    return;
-
-  }
-
-  const input=
-    document.getElementById("memberName");
-
-  const name=input.value.trim();
-
-  if(!name){
-
-    alert("Enter a player name.");
-
-    return;
-
-  }
-
-  const exists=
-    members.some(
-      m=>m.username?.toLowerCase()===
-         name.toLowerCase()
-    );
-
-  if(exists){
-
-    alert("That player is already in the squad.");
-
-    return;
-
-  }
-
-  members.push({
-
-    id:Date.now(),
-
-    username:name,
-
-    name:name,
-
-    xp:0,
-
-    games:0,
-
-    wins:0,
-
-    losses:0,
-
-    favoriteGame:"Not selected"
-
-  });
-
-  saveMembers();
-
-  input.value="";
-
-  renderMembers();
-  updateStats();
-  renderLeaderboard();
-
-}
-
-
-function deleteMember(id){
-
-  if(!isOwner()){
-
-    alert(
-      "Only the squad owner can remove players."
-    );
-
-    return;
-
-  }
-
-  const member=
-    members.find(m=>m.id===id);
-
-  if(!member) return;
-
-  if(!confirm(
-    "Remove "+member.name+" from the squad?"
-  )) return;
-
-  members=
-    members.filter(m=>m.id!==id);
-
-  saveMembers();
-
-  renderMembers();
-  renderLeaderboard();
-  updateStats();
-
-}
-
-
-function renderMembers(){
-
-  const container=
-    document.getElementById("membersContainer");
-
-  const notice=
-    document.getElementById("ownerNotice");
-
-  if(!container) return;
-
-  if(!currentUser){
-
-    notice.classList.remove("hidden");
-
-    container.innerHTML=
-      `<div class="empty">
-        🔐 Login to view the squad.
-      </div>`;
-
-    return;
-
-  }
-
-  if(isOwner()){
-
-    notice.classList.add("hidden");
-
-  }else{
-
-    notice.classList.remove("hidden");
-
-  }
-
-  const search=
-    (
-      document.getElementById("memberSearch")
-        ?.value || ""
-    )
-    .toLowerCase()
-    .trim();
-
-  const filtered=
-    members.filter(member=>
-      member.name.toLowerCase().includes(search)
-    );
-
-  if(filtered.length===0){
-
-    container.innerHTML=
-      `<div class="empty">
-        👥 No squad members found.
-      </div>`;
-
-    return;
-
-  }
-
-  container.innerHTML=
-    `<div class="members-grid">
-
-      ${filtered.map(member=>`
-
-        <div class="member">
-
-          <div class="avatar">
-            ${getInitial(member.name)}
-          </div>
-
-          <div class="member-info">
-
-            <h3>
-              ${escapeHTML(member.name)}
-            </h3>
-
-            <p>
-              Level
-              ${Math.max(
-                1,
-                Math.floor(member.xp/100)+1
-              )}
-              •
-              <span class="xp">
-                ${member.xp.toLocaleString()} XP
-              </span>
-            </p>
-
-          </div>
-
-          <div class="member-actions">
-
-            <button
-              class="small-btn"
-              onclick="openMemberProfile(${member.id})"
-            >
-              Profile
-            </button>
-
-            ${
-              isOwner()
-              ? `
-                <button
-                  class="small-btn"
-                  onclick="deleteMember(${member.id})"
-                >
-                  ✕
-                </button>
-              `
-              : ""
-            }
-
-          </div>
-
-        </div>
-
-      `).join("")}
-
-    </div>`;
-
-}
-
-
-function openMemberProfile(id){
-
-  const member=
-    members.find(m=>m.id===id);
-
-  if(!member) return;
-
-  renderProfile(member);
-
-  showSectionById("profile");
-
-}
-
-
-/* =========================
-   LEADERBOARD
-========================= */
-
-function renderLeaderboard(){
-
-  const container=
-    document.getElementById("leaderboardContainer");
-
-  if(!container) return;
-
-  if(members.length===0){
-
-    container.innerHTML=
-      `<div class="empty">
-        🏆 No players yet.
-      </div>`;
-
-    return;
-
-  }
-
-  const sorted=
-    [...members].sort(
-      (a,b)=>b.xp-a.xp
-    );
-
-  const medals=[
-    "🥇",
-    "🥈",
-    "🥉"
-  ];
-
-  container.innerHTML=
-    `<div class="leaderboard">
-
-      ${sorted.map((member,index)=>`
-
-        <div class="rank">
-
-          <div class="rank-number">
-            ${medals[index] || "#"+(index+1)}
-          </div>
-
-          <div>
-
-            <div class="rank-name">
-              ${escapeHTML(member.name)}
-            </div>
-
-            <div style="
-              color:#7f8ca5;
-              font-size:12px;
-              margin-top:4px;
-            ">
-              Level
-              ${Math.max(
-                1,
-                Math.floor(member.xp/100)+1
-              )}
-            </div>
-
-          </div>
-
-          <div>
-
-            <div class="rank-xp">
-              ${member.xp.toLocaleString()} XP
-            </div>
-
-            <button
-              class="small-btn"
-              style="margin-top:5px"
-              onclick="openMemberProfile(${member.id})"
-            >
-              Profile
-            </button>
-
-          </div>
-
-        </div>
-
-      `).join("")}
-
-    </div>`;
-
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-function renderCurrentProfile(){
-
-  const container=
-    document.getElementById("profileContainer");
-
-  if(!container) return;
-
-  if(!currentUser){
-
-    container.innerHTML=
-      `<div class="form-card">
-
-        <div class="form-title">
-          <h2>👤 Your Profile</h2>
-          <p>Login to view your profile.</p>
-        </div>
-
-        <button
-          class="primary-btn"
-          style="width:100%"
-          onclick="openAuth()"
-        >
-          🔐 Login
-        </button>
-
-      </div>`;
-
-    return;
-
-  }
-
-  const member=getCurrentMember();
-
-  if(member){
-
-    renderProfile(member);
-
-  }
-
-}
-
-
-function renderProfile(member){
-
-  const container=
-    document.getElementById("profileContainer");
-
-  if(!container) return;
-
-  const level=
-    Math.max(
-      1,
-      Math.floor(member.xp/100)+1
-    );
-
-  const currentXP=
-    member.xp%100;
-
-  const rank=
-    [...members]
-      .sort((a,b)=>b.xp-a.xp)
-      .findIndex(
-        m=>m.id===member.id
-      )+1;
-
-  const gamesPlayed=
-    member.games || 0;
-
-  const wins=
-    member.wins || 0;
-
-  const losses=
-    member.losses || 0;
-
-  const winRate=
-    gamesPlayed>0
-      ? Math.round((wins/gamesPlayed)*100)
-      : 0;
-
-  const approvedTasks=
-    taskRecords.filter(
-      r=>
-        r.username===member.username &&
-        r.status==="approved"
-    ).length;
-
-  container.innerHTML=`
-
-    <div class="profile-card">
-
-      <div class="profile-top">
-
-        <div class="profile-avatar">
-          ${getInitial(member.name)}
-        </div>
-
-        <div class="profile-name">
-          ${escapeHTML(member.name)}
-        </div>
-
-        <div class="profile-level">
-          LEVEL ${level}
-        </div>
-
-      </div>
-
-      <div class="progress-box">
-
-        <div class="progress-info">
-
-          <span>
-            Level ${level}
-          </span>
-
-          <span>
-            ${currentXP}/100 XP
-          </span>
-
-        </div>
-
-        <div class="progress">
-
-          <div
-            class="progress-bar"
-            style="width:${currentXP}%"
-          ></div>
-
-        </div>
-
-      </div>
-
-      <div class="profile-stats">
-
-        <div class="profile-stat">
-          <strong>${gamesPlayed}</strong>
-          <span>Games</span>
-        </div>
-
-        <div class="profile-stat">
-          <strong>${wins}</strong>
-          <span>Wins</span>
-        </div>
-
-        <div class="profile-stat">
-          <strong>${winRate}%</strong>
-          <span>Win Rate</span>
-        </div>
-
-      </div>
-
-      <div class="profile-details">
-
-        <div class="detail">
-          <span>⭐ Total XP</span>
-          <strong>
-            ${member.xp.toLocaleString()}
-          </strong>
-        </div>
-
-        <div class="detail">
-          <span>🏆 Squad Rank</span>
-          <strong>#${rank || "-"}</strong>
-        </div>
-
-        <div class="detail">
-          <span>🎯 Verified Tasks</span>
-          <strong>${approvedTasks}</strong>
-        </div>
-
-        <div class="detail">
-          <span>🎮 Favorite Game</span>
-          <strong>
-            ${escapeHTML(member.favoriteGame)}
-          </strong>
-        </div>
-
-        <div class="detail">
-          <span>❌ Losses</span>
-          <strong>${losses}</strong>
-        </div>
-
-        <div style="margin-top:20px;">
-
-          ${
-            currentUser &&
-            currentUser.username===member.username
-            ?
-            `
-            <button
-              class="primary-btn"
-              style="width:100%"
-              onclick="editOwnStats()"
-            >
-              ✏️ Update My Stats
-            </button>
-            `
-            :
-            ""
-          }
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-function editOwnStats(){
-
-  if(!currentUser) return;
-
-  const member=getCurrentMember();
-
-  if(!member) return;
-
-  const favorite=
-    prompt(
-      "Favorite game:",
-      member.favoriteGame
-    );
-
-  if(favorite===null) return;
-
-  member.favoriteGame=
-    favorite.trim() || "Not selected";
-
-  const user=
-    users.find(
-      u=>u.username===currentUser.username
-    );
-
-  if(user){
-
-    user.favoriteGame=
-      member.favoriteGame;
-
-    saveUsers();
-
-  }
-
-  saveMembers();
-
-  renderProfile(member);
-
-}
-
-
-/* =========================
-   STATS
-========================= */
-
-function updateStats(){
-
-  const total=
-    members.reduce(
-      (sum,member)=>
-        sum+(Number(member.xp)||0),
-      0
-    );
-
-  const memberCount=
-    document.getElementById("memberCount");
-
-  const totalXP=
-    document.getElementById("totalXP");
-
-  if(memberCount)
-    memberCount.textContent=
-      members.length;
-
-  if(totalXP)
-    totalXP.textContent=
-      total.toLocaleString()+" XP";
-
-}
-
-
-/* =========================
-   OWNER ACCESS
-========================= */
-
-function addOwnerNavigation(){
-
-  const nav=
-    document.getElementById("mainNav");
-
-  if(!nav) return;
-
-  if(
-    currentUser &&
-    isOwner()
-  ){
-
-    if(
-      !document.getElementById(
-        "verificationNavButton"
-      )
-    ){
-
-      const button=
-        document.createElement("button");
-
-      button.id=
-        "verificationNavButton";
-
-      button.textContent=
-        "👑 Verify";
-
-      button.onclick=
-        function(){
-
-          openVerification();
-
-        };
-
-      nav.appendChild(button);
-
-    }
-
-  }else{
-
-    const button=
-      document.getElementById(
-        "verificationNavButton"
-      );
-
-    if(button)
-      button.remove();
-
-  }
-
-}
-
-
-/* =========================
-   CLEAN OLD TASKS
-========================= */
-
-function cleanupOldTasks(){
-
-  const today=todayKey();
-
-  taskRecords=
-    taskRecords.filter(
-      record=>record.date===today
-    );
-
-  saveTasks();
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-cleanupOldTasks();
-
-addOwnerNavigation();
+localStorage.removeItem(STORAGE_CURRENT);
 
 updateUI();
 
+showSectionById("home");
+
+}
+
+function ensureMember(user){
+
+let member=members.find(
+m=>m.username===user.username
+);
+
+if(!member){
+
+members.push({
+
+id:Date.now(),
+
+username:user.username,
+
+name:user.username,
+
+xp:user.xp||0,
+
+games:user.games||0,
+
+wins:user.wins||0,
+
+losses:user.losses||0,
+
+favoriteGame:user.favoriteGame||
+"Not selected"
+
+});
+
+}
+
+}
+
+
+
+/* =====================================================
+   OWNER
+===================================================== */
+
+function isOwner(){
+
+if(!currentUser)return false;
+
+return users.length>0 &&
+users[0].username===
+currentUser.username;
+
+}
+
+
+
+/* =====================================================
+   MAIN UI
+===================================================== */
+
+function updateUI(){
+
+const headerUser=
+document.getElementById("headerUser");
+
+const authButton=
+document.getElementById("headerAuthButton");
+
+if(currentUser){
+
+headerUser.textContent=
+"👤 "+currentUser.username;
+
+authButton.textContent="Logout";
+
+authButton.onclick=logout;
+
+}else{
+
+headerUser.textContent="";
+
+authButton.textContent="Login";
+
+authButton.onclick=openAuth;
+
+}
+
+renderHomeGames();
+renderGames();
+renderTasks();
+renderRewards();
+renderMembers();
+renderLeaderboard();
+renderCurrentProfile();
+
 addOwnerNavigation();
+updateStats();
+
+}
+
+
+
+/* =====================================================
+   GAMES
+===================================================== */
+
+function gameCard(game){
+
+return`
+
+<div class="game-card">
+
+<div class="game-icon">
+${game.icon}
+</div>
+
+<h3>
+${escapeHTML(game.name)}
+</h3>
+
+<p>
+${escapeHTML(game.description)}
+</p>
+
+<span class="game-tag">
+${escapeHTML(game.type)}
+</span>
+
+<div class="card-actions">
+
+<button
+class="primary-btn"
+onclick="openGame('${game.id}')">
+▶ Play
+</button>
+
+<button
+class="secondary-btn"
+onclick="viewGameDetails('${game.id}')">
+Details
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function renderHomeGames(){
+
+const container=
+document.getElementById("homeGames");
+
+if(container)
+container.innerHTML=
+games.map(gameCard).join("");
+
+}
+
+function renderGames(){
+
+const container=
+document.getElementById("gamesContainer");
+
+if(!container)return;
+
+const search=
+(document.getElementById("gameSearch")?.value||"")
+.toLowerCase()
+.trim();
+
+const filtered=
+games.filter(
+g=>g.name.toLowerCase().includes(search)
+);
+
+container.innerHTML=
+filtered.length
+?filtered.map(gameCard).join("")
+:`<div class="empty">
+🎮 No games found.
+</div>`;
+
+}
+
+function openGame(id){
+
+const game=getGame(id);
+
+if(game){
+
+window.open(
+game.url,
+"_blank",
+"noopener,noreferrer"
+);
+
+}
+
+}
+
+function viewGameDetails(id){
+
+const game=getGame(id);
+
+if(!game)return;
+
+alert(
+game.name+
+"\n\n"+
+game.description+
+"\n\nUse Play to open the game destination."
+);
+
+}
+
+
+
+/* =====================================================
+   TASK RECORD
+===================================================== */
+
+function getTaskRecord(username,taskId){
+
+return taskRecords.find(
+r=>
+r.username===username&&
+r.taskId===taskId&&
+r.date===todayKey()
+);
+
+}
+
+
+
+/* =====================================================
+   TASK RENDER
+===================================================== */
+
+function renderTasks(){
+
+const container=
+document.getElementById("taskContainer");
+
+const notice=
+document.getElementById("loginTaskNotice");
+
+if(!container)return;
+
+if(!currentUser){
+
+notice.classList.remove("hidden");
+
+container.innerHTML=
+`<div class="empty">
+🔐 Login to receive tasks.
+</div>`;
+
+document.getElementById("taskXP").textContent="0 XP";
+document.getElementById("taskProgress").textContent="0 / 0";
+
+return;
+
+}
+
+notice.classList.add("hidden");
+
+const member=getCurrentMember();
+
+if(!member)return;
+
+let approved=0;
+
+container.innerHTML=
+dailyTasks.map(task=>{
+
+const record=
+getTaskRecord(
+currentUser.username,
+task.id
+);
+
+let status="Available";
+let statusClass="";
+let actions="";
+
+if(record){
+
+if(record.status==="pending"){
+
+status="🤖 AI Verification Pending";
+statusClass="status-pending";
+
+actions=`
+<button
+class="secondary-btn"
+disabled>
+⏳ Under Review
+</button>
+`;
+
+}
+
+else if(record.status==="approved"){
+
+approved++;
+
+status=
+"✓ AI Verified • +"+
+task.xp+
+" XP";
+
+statusClass="status-approved";
+
+actions=`
+<button
+class="secondary-btn"
+disabled>
+✓ Completed
+</button>
+`;
+
+}
+
+else if(record.status==="rejected"){
+
+status="✕ Verification Failed";
+statusClass="status-rejected";
+
+actions=`
+<button
+class="primary-btn"
+onclick="submitTask('${task.id}')">
+Submit Again
+</button>
+`;
+
+}
+
+}else{
+
+actions=`
+
+<button
+class="secondary-btn"
+onclick="openTaskGame('${task.id}')">
+▶ Play
+</button>
+
+<button
+class="primary-btn"
+onclick="submitTask('${task.id}')">
+📸 Submit Proof
+</button>
+
+`;
+
+}
+
+const game=getGame(task.game);
+
+return`
+
+<div class="task-card">
+
+<div class="task-top">
+
+<div class="task-icon">
+${task.icon}
+</div>
+
+<div class="xp-badge">
++${task.xp} XP
+</div>
+
+</div>
+
+<h3>
+${escapeHTML(task.title)}
+</h3>
+
+<p>
+${escapeHTML(task.description)}
+</p>
+
+<span class="game-tag">
+${escapeHTML(task.difficulty)}
+</span>
+
+<br>
+
+<span class="task-status ${statusClass}">
+${status}
+</span>
+
+<div class="task-actions">
+${actions}
+</div>
+
+<p style="margin-top:10px;font-size:11px;">
+🎮 ${escapeHTML(game?.name||"Game")}
+</p>
+
+${
+record&&record.aiScore!==undefined
+?
+`
+<div class="ai-box">
+
+<div class="ai-title">
+
+<strong>
+🤖 AI Verification
+</strong>
+
+<span class="ai-score">
+${record.aiScore}%
+</span>
+
+</div>
+
+<div class="muted">
+${escapeHTML(
+record.aiMessage||
+"Verification result recorded."
+)}
+</div>
+
+</div>
+`
+:""
+}
+
+</div>
+
+`;
+
+}).join("");
+
+document.getElementById("taskXP").textContent=
+Number(member.xp||0).toLocaleString()+" XP";
+
+document.getElementById("taskProgress").textContent=
+approved+" / "+dailyTasks.length;
+
+}
+
+
+
+/* =====================================================
+   TASK GAME
+===================================================== */
+
+function openTaskGame(taskId){
+
+const task=
+dailyTasks.find(t=>t.id===taskId);
+
+if(!task)return;
+
+const game=getGame(task.game);
+
+if(game){
+
+window.open(
+game.url,
+"_blank",
+"noopener,noreferrer"
+);
+
+}
+
+}
+
+
+
+/* =====================================================
+   PROOF SUBMISSION
+===================================================== */
+
+function submitTask(taskId){
+
+if(!currentUser){
+
+openAuth();
+return;
+
+}
+
+const task=
+dailyTasks.find(t=>t.id===taskId);
+
+if(!task)return;
+
+const existing=
+getTaskRecord(
+currentUser.username,
+taskId
+);
+
+if(existing&&existing.status==="approved"){
+
+alert("This task is already completed today.");
+
+return;
+
+}
+
+if(existing&&existing.status==="pending"){
+
+alert("This task is already being verified.");
+
+return;
+
+}
+
+
+/*
+  Proof is represented as metadata in localStorage.
+
+  For a real application, upload the actual file
+  to a secure backend/storage service.
+*/
+
+const proofType=prompt(
+"Proof type:\n\n"+
+"1 = Screenshot\n"+
+"2 = Video\n"+
+"3 = Description\n\n"+
+"Enter 1, 2 or 3:"
+);
+
+if(proofType===null)return;
+
+let type=
+proofType==="1"
+?"Screenshot":
+proofType==="2"
+?"Video":
+"Description";
+
+const proofText=prompt(
+"Describe your proof briefly.\n\n"+
+"Example: I completed the required objective in the game."
+);
+
+if(proofText===null)return;
+
+if(proofText.trim().length<10){
+
+alert("Please provide more proof information.");
+
+return;
+
+}
+
+
+/* Prototype AI verification */
+
+const aiResult=
+simulateAIVerification(
+task,
+type,
+proofText.trim()
+);
+
+
+taskRecords.push({
+
+id:Date.now(),
+
+username:currentUser.username,
+
+taskId,
+
+date:todayKey(),
+
+status:aiResult.approved
+?"approved"
+:"rejected",
+
+proofType:type,
+
+proof:proofText.trim(),
+
+aiScore:aiResult.score,
+
+aiMessage:aiResult.message,
+
+submittedAt:new Date().toISOString(),
+
+verifiedAt:new Date().toISOString()
+
+});
+
+
+if(aiResult.approved){
+
+const user=
+users.find(
+u=>u.username===currentUser.username
+);
+
+const member=getCurrentMember();
+
+if(user){
+
+user.xp=
+Number(user.xp||0)+task.xp;
+
+}
+
+if(member){
+
+member.xp=
+Number(member.xp||0)+task.xp;
+
+}
+
+saveAll();
+
+alert(
+"🤖 AI Verification Passed!\n\n"+
+"+"+task.xp+" XP awarded."
+);
+
+}else{
+
+saveAll();
+
+alert(
+"🤖 AI Verification Failed.\n\n"+
+"Score: "+aiResult.score+"%\n\n"+
+aiResult.message
+);
+
+}
+
+updateUI();
+
+}
+
+
+
+/* =====================================================
+   SIMULATED AI
+===================================================== */
+
+function simulateAIVerification(
+task,
+proofType,
+proof
+){
+
+/*
+  This is intentionally a prototype.
+
+  It does NOT actually inspect game footage
+  or authenticate game results.
+
+  Production version should send uploaded proof
+  to a secure server and AI verification service.
+*/
+
+let score=55;
+
+if(proof.length>=30)
+score+=10;
+
+if(proof.length>=70)
+score+=10;
+
+if(proofType==="Screenshot")
+score+=5;
+
+if(proofType==="Video")
+score+=10;
+
+const keywords=[
+"match",
+"win",
+"victory",
+"top",
+"build",
+"survival",
+"driving",
+"challenge",
+"completed",
+"complete"
+];
+
+keywords.forEach(word=>{
+
+if(proof.toLowerCase().includes(word)){
+score+=3;
+}
+
+});
+
+score=Math.min(98,score);
+
+const approved=score>=70;
+
+return{
+
+approved,
+
+score,
+
+message:
+approved
+?
+"Prototype AI confidence is sufficient. Task marked verified."
+:
+"Prototype AI confidence is too low. More convincing proof is required."
+
+};
+
+}
+
+
+
+/* =====================================================
+   REWARDS
+===================================================== */
+
+const rewards=[
+
+{
+id:"google100",
+icon:"🎁",
+name:"₹100 Digital Reward",
+description:
+"Reward request equivalent to 1,000 XP.",
+cost:1000,
+value:100
+},
+
+{
+id:"google200",
+icon:"💎",
+name:"₹200 Digital Reward",
+description:
+"Reward request equivalent to 2,000 XP.",
+cost:2000,
+value:200
+},
+
+{
+id:"google500",
+icon:"🏆",
+name:"₹500 Digital Reward",
+description:
+"Reward request equivalent to 5,000 XP.",
+cost:5000,
+value:500
+}
+
+];
+
+
+
+function renderRewards(){
+
+const grid=
+document.getElementById("rewardGrid");
+
+const notice=
+document.getElementById("rewardNotice");
+
+const history=
+document.getElementById("myRedemptions");
+
+if(!grid)return;
+
+if(!currentUser){
+
+notice.innerHTML=
+`<div class="notice warning">
+🔐 Login to request rewards.
+</div>`;
+
+grid.innerHTML=
+`<div class="empty">
+Login to view available rewards.
+</div>`;
+
+history.innerHTML="";
+
+return;
+
+}
+
+const member=getCurrentMember();
+
+const xp=Number(member?.xp||0);
+
+notice.innerHTML=
+`<div class="notice success">
+⭐ You currently have <strong>${xp.toLocaleString()} XP</strong>.
+</div>`;
+
+grid.innerHTML=
+rewards.map(reward=>{
+
+const enough=xp>=reward.cost;
+
+return`
+
+<div class="reward-card">
+
+<div class="reward-icon">
+${reward.icon}
+</div>
+
+<h3>
+${escapeHTML(reward.name)}
+</h3>
+
+<p>
+${escapeHTML(reward.description)}
+</p>
+
+<div class="reward-cost">
+${reward.cost.toLocaleString()} XP
+</div>
+
+<button
+class="${enough?"primary-btn":"secondary-btn"}"
+${enough?"":"disabled"}
+onclick="requestReward('${reward.id}')">
+
+${
+enough
+?"🎁 Request Reward"
+:"🔒 Not Enough XP"
+}
+
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+renderMyRedemptions();
+
+}
+
+
+
+function requestReward(rewardId){
+
+if(!currentUser){
+
+openAuth();
+return;
+
+}
+
+const reward=
+rewards.find(r=>r.id===rewardId);
+
+if(!reward)return;
+
+const member=getCurrentMember();
+
+if(!member)return;
+
+if(member.xp<reward.cost){
+
+alert("You do not have enough verified XP.");
+
+return;
+
+}
+
+const alreadyPending=
+redemptions.some(
+r=>
+r.username===currentUser.username&&
+r.rewardId===rewardId&&
+r.status==="pending"
+);
+
+if(alreadyPending){
+
+alert(
+"You already have a pending request for this reward."
+);
+
+return;
+
+}
+
+if(!confirm(
+"Request "+reward.name+
+" for "+reward.cost+" XP?"
+))return;
+
+
+/*
+  XP is reserved immediately.
+
+  If the owner rejects the request,
+  the XP is returned.
+*/
+
+member.xp-=reward.cost;
+
+const redemption={
+
+id:Date.now(),
+
+username:currentUser.username,
+
+rewardId,
+
+rewardName:reward.name,
+
+cost:reward.cost,
+
+value:reward.value,
+
+status:"pending",
+
+createdAt:new Date().toISOString(),
+
+approvedAt:null,
+
+rejectedAt:null,
+
+adminNote:""
+
+};
+
+redemptions.push(redemption);
+
+saveAll();
+
+alert(
+"🎁 Redemption request submitted.\n\n"+
+"Status: Pending Admin Approval."
+);
+
+renderRewards();
+updateStats();
+renderLeaderboard();
+
+}
+
+
+
+/* =====================================================
+   MY REDEMPTIONS
+===================================================== */
+
+function renderMyRedemptions(){
+
+const container=
+document.getElementById("myRedemptions");
+
+if(!currentUser){
+
+container.innerHTML="";
+return;
+
+}
+
+const list=
+redemptions
+.filter(
+r=>r.username===currentUser.username
+)
+.sort(
+(a,b)=>b.id-a.id
+);
+
+if(list.length===0){
+
+container.innerHTML=
+`<div class="empty">
+📜 No redemption requests yet.
+</div>`;
+
+return;
+
+}
+
+container.innerHTML=
+list.map(r=>{
+
+let cls="";
+
+if(r.status==="pending")
+cls="reward-pending";
+
+if(r.status==="approved")
+cls="reward-approved";
+
+if(r.status==="rejected")
+cls="reward-rejected";
+
+return`
+
+<div class="redemption-card">
+
+<div class="redemption-head">
+
+<strong>
+🎁 ${escapeHTML(r.rewardName)}
+</strong>
+
+<span class="reward-status ${cls}">
+${r.status.toUpperCase()}
+</span>
+
+</div>
+
+<div class="redemption-meta">
+
+💰 Cost:
+${r.cost.toLocaleString()} XP
+
+<br>
+
+💵 Reward Value:
+₹${r.value}
+
+<br>
+
+📅 Requested:
+${new Date(r.createdAt).toLocaleString()}
+
+${
+r.adminNote
+?
+`
+<br>
+📝 Admin:
+${escapeHTML(r.adminNote)}
+`
+:""
+}
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+
+/* =====================================================
+   ADMIN REDEMPTIONS
+===================================================== */
+
+function renderAdminRewards(){
+
+const notice=
+document.getElementById("adminRewardNotice");
+
+const container=
+document.getElementById("adminRewardContainer");
+
+if(!notice||!container)return;
+
+if(!currentUser){
+
+notice.innerHTML=
+`<div class="notice warning">
+🔐 Login first.
+</div>`;
+
+container.innerHTML="";
+
+return;
+
+}
+
+if(!isOwner()){
+
+notice.innerHTML=
+`<div class="notice warning">
+👑 Only the Squad Owner can approve rewards.
+</div>`;
+
+container.innerHTML="";
+
+return;
+
+}
+
+notice.innerHTML=
+`<div class="notice success">
+👑 Owner approval enabled.
+<br><br>
+📧 In production, connect this system to a secure
+email service/backend for notifications.
+</div>`;
+
+const pending=
+redemptions.filter(
+r=>r.status==="pending"
+);
+
+if(pending.length===0){
+
+container.innerHTML=
+`<div class="empty">
+✅ No pending redemption requests.
+</div>`;
+
+return;
+
+}
+
+container.innerHTML=
+pending.map(r=>{
+
+const user=
+users.find(
+u=>u.username===r.username
+);
+
+return`
+
+<div class="redemption-card">
+
+<div class="redemption-head">
+
+<strong>
+🎁 ${escapeHTML(r.rewardName)}
+</strong>
+
+<span class="reward-status reward-pending">
+PENDING
+</span>
+
+</div>
+
+<div class="redemption-meta">
+
+👤 Player:
+<strong>
+${escapeHTML(r.username)}
+</strong>
+
+<br>
+
+📧 Email:
+${escapeHTML(user?.email||"Not available")}
+
+<br>
+
+💰 XP Reserved:
+${r.cost.toLocaleString()} XP
+
+<br>
+
+💵 Reward:
+₹${r.value}
+
+<br>
+
+📅 Requested:
+${new Date(r.createdAt).toLocaleString()}
+
+</div>
+
+<div class="redemption-actions">
+
+<button
+class="primary-btn"
+onclick="approveRedemption(${r.id})">
+
+✓ Approve Reward
+
+</button>
+
+<button
+class="danger-btn"
+onclick="rejectRedemption(${r.id})">
+
+✕ Reject + Return XP
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+
+/* =====================================================
+   APPROVE REWARD
+===================================================== */
+
+function approveRedemption(id){
+
+if(!isOwner()){
+
+alert("Only the Squad Owner can approve rewards.");
+
+return;
+
+}
+
+const redemption=
+redemptions.find(
+r=>r.id===id
+);
+
+if(!redemption||
+redemption.status!=="pending")
+return;
+
+const note=prompt(
+"Optional admin note:",
+"Approved by Squad Owner."
+);
+
+if(note===null)return;
+
+redemption.status="approved";
+
+redemption.approvedAt=
+new Date().toISOString();
+
+redemption.adminNote=
+note.trim()||
+"Approved by Squad Owner.";
+
+
+/*
+  IMPORTANT:
+
+  This prototype does NOT contain an actual
+  Google Play redeem code.
+
+  In a real system, the owner/admin would fulfill
+  the approved reward through a secure backend.
+*/
+
+saveAll();
+
+alert(
+"✓ Redemption approved.\n\n"+
+"Player: "+redemption.username+
+"\nReward: ₹"+redemption.value+
+"\n\nFulfillment must be handled securely."
+);
+
+renderAdminRewards();
+renderRewards();
+
+}
+
+
+
+/* =====================================================
+   REJECT REWARD
+===================================================== */
+
+function rejectRedemption(id){
+
+if(!isOwner()){
+
+alert("Only the Squad Owner can reject rewards.");
+
+return;
+
+}
+
+const redemption=
+redemptions.find(
+r=>r.id===id
+);
+
+if(!redemption||
+redemption.status!=="pending")
+return;
+
+const reason=prompt(
+"Reason for rejection:",
+"Request could not be verified."
+);
+
+if(reason===null)return;
+
+const member=
+members.find(
+m=>m.username===redemption.username
+);
+
+if(member){
+
+member.xp=
+Number(member.xp||0)+
+Number(redemption.cost||0);
+
+}
+
+redemption.status="rejected";
+
+redemption.rejectedAt=
+new Date().toISOString();
+
+redemption.adminNote=
+reason.trim()||
+"Rejected by Squad Owner.";
+
+saveAll();
+
+alert(
+"Redemption rejected.\n\n"+
+redemption.cost+
+" XP returned to the player."
+);
+
+renderAdminRewards();
+renderRewards();
+updateStats();
+renderLeaderboard();
+
+}
+
+
+
+/* =====================================================
+   SQUAD
+===================================================== */
+
+function addMember(){
+
+if(!currentUser){
+
+openAuth();
+return;
+
+}
+
+if(!isOwner()){
+
+alert(
+"Only the Squad Owner can add players."
+);
+
+return;
+
+}
+
+const input=
+document.getElementById("memberName");
+
+const name=input.value.trim();
+
+if(!name){
+
+alert("Enter a player name.");
+
+return;
+
+}
+
+if(
+members.some(
+m=>m.name.toLowerCase()===
+name.toLowerCase()
+)
+){
+
+alert("That player already exists.");
+
+return;
+
+}
+
+members.push({
+
+id:Date.now(),
+
+username:name,
+
+name:name,
+
+xp:0,
+
+games:0,
+
+wins:0,
+
+losses:0,
+
+favoriteGame:"Not selected"
+
+});
+
+input.value="";
+
+saveAll();
+
+renderMembers();
+renderLeaderboard();
+updateStats();
+
+}
+
+function deleteMember(id){
+
+if(!isOwner())return;
+
+const member=
+members.find(m=>m.id===id);
+
+if(!member)return;
+
+if(!confirm(
+"Remove "+member.name+"?"
+))return;
+
+members=
+members.filter(
+m=>m.id!==id
+);
+
+saveAll();
+
+renderMembers();
+renderLeaderboard();
+updateStats();
+
+}
+
+function renderMembers(){
+
+const container=
+document.getElementById("membersContainer");
+
+const notice=
+document.getElementById("ownerNotice");
+
+if(!container)return;
+
+if(!currentUser){
+
+notice.classList.remove("hidden");
+
+container.innerHTML=
+`<div class="empty">
+🔐 Login to view squad.
+</div>`;
+
+return;
+
+}
+
+if(isOwner())
+notice.classList.add("hidden");
+else
+notice.classList.remove("hidden");
+
+const search=
+(
+document.getElementById("memberSearch")
+?.value||""
+)
+.toLowerCase()
+.trim();
+
+const filtered=
+members.filter(
+m=>m.name.toLowerCase().includes(search)
+);
+
+if(!filtered.length){
+
+container.innerHTML=
+`<div class="empty">
+👥 No squad members found.
+</div>`;
+
+return;
+
+}
+
+container.innerHTML=
+`<div class="members-grid">
+
+${filtered.map(member=>`
+
+<div class="member">
+
+<div class="avatar">
+${getInitial(member.name)}
+</div>
+
+<div class="member-info">
+
+<h3>
+${escapeHTML(member.name)}
+</h3>
+
+<p>
+Level
+${Math.max(
+1,
+Math.floor(member.xp/100)+1
+)}
+•
+<span class="xp">
+${Number(member.xp||0).toLocaleString()} XP
+</span>
+</p>
+
+</div>
+
+<div class="member-actions">
+
+<button
+class="small-btn"
+onclick="openMemberProfile(${member.id})">
+Profile
+</button>
+
+${
+isOwner()
+?
+`
+<button
+class="small-btn"
+onclick="deleteMember(${member.id})">
+✕
+</button>
+`
+:""
+}
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>`;
+
+}
+
+function openMemberProfile(id){
+
+const member=
+members.find(
+m=>m.id===id
+);
+
+if(!member)return;
+
+renderProfile(member);
+
+showSectionById("profile");
+
+}
+
+
+
+/* =====================================================
+   LEADERBOARD
+===================================================== */
+
+function renderLeaderboard(){
+
+const container=
+document.getElementById("leaderboardContainer");
+
+if(!container)return;
+
+if(!members.length){
+
+container.innerHTML=
+`<div class="empty">
+🏆 No players yet.
+</div>`;
+
+return;
+
+}
+
+const sorted=
+[...members].sort(
+(a,b)=>Number(b.xp)-Number(a.xp)
+);
+
+const medals=[
+"🥇",
+"🥈",
+"🥉"
+];
+
+container.innerHTML=
+`<div class="leaderboard">
+
+${sorted.map((member,index)=>`
+
+<div class="rank">
+
+<div class="rank-number">
+${medals[index]||"#"+(index+1)}
+</div>
+
+<div>
+
+<div class="rank-name">
+${escapeHTML(member.name)}
+</div>
+
+<div
+style="color:#7f8ca5;font-size:12px;margin-top:4px;">
+
+Level
+${Math.max(
+1,
+Math.floor(member.xp/100)+1
+)}
+
+</div>
+
+</div>
+
+<div>
+
+<div class="rank-xp">
+${Number(member.xp||0).toLocaleString()} XP
+</div>
+
+<button
+class="small-btn"
+style="margin-top:5px"
+onclick="openMemberProfile(${member.id})">
+Profile
+</button>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>`;
+
+}
+
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function renderCurrentProfile(){
+
+const container=
+document.getElementById("profileContainer");
+
+if(!container)return;
+
+if(!currentUser){
+
+container.innerHTML=
+`<div class="form-card">
+
+<div class="form-title">
+
+<h2>
+👤 Your Profile
+</h2>
+
+<p>
+Login to view your profile.
+</p>
+
+</div>
+
+<button
+class="primary-btn"
+style="width:100%"
+onclick="openAuth()">
+🔐 Login
+</button>
+
+</div>`;
+
+return;
+
+}
+
+const member=getCurrentMember();
+
+if(member)
+renderProfile(member);
+
+}
+
+function renderProfile(member){
+
+const container=
+document.getElementById("profileContainer");
+
+if(!container)return;
+
+const level=
+Math.max(
+1,
+Math.floor(member.xp/100)+1
+);
+
+const currentXP=
+member.xp%100;
+
+const rank=
+[...members]
+.sort((a,b)=>b.xp-a.xp)
+.findIndex(
+m=>m.id===member.id
+)+1;
+
+const gamesPlayed=
+member.games||0;
+
+const wins=
+member.wins||0;
+
+const winRate=
+gamesPlayed
+?
+Math.round(
+wins/gamesPlayed*100
+)
+:0;
+
+const approvedTasks=
+taskRecords.filter(
+r=>
+r.username===member.username&&
+r.status==="approved"
+).length;
+
+const redeemed=
+redemptions.filter(
+r=>
+r.username===member.username&&
+r.status==="approved"
+).length;
+
+container.innerHTML=`
+
+<div class="profile-card">
+
+<div class="profile-top">
+
+<div class="profile-avatar">
+${getInitial(member.name)}
+</div>
+
+<div class="profile-name">
+${escapeHTML(member.name)}
+</div>
+
+<div class="profile-level">
+LEVEL ${level}
+</div>
+
+</div>
+
+
+<div class="progress-box">
+
+<div class="progress-info">
+
+<span>
+Level ${level}
+</span>
+
+<span>
+${currentXP}/100 XP
+</span>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+style="width:${currentXP}%">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="profile-stats">
+
+<div class="profile-stat">
+
+<strong>
+${gamesPlayed}
+</strong>
+
+<span>
+Games
+</span>
+
+</div>
+
+<div class="profile-stat">
+
+<strong>
+${wins}
+</strong>
+
+<span>
+Wins
+</span>
+
+</div>
+
+<div class="profile-stat">
+
+<strong>
+${winRate}%
+</strong>
+
+<span>
+Win Rate
+</span>
+
+</div>
+
+</div>
+
+
+<div class="profile-details">
+
+<div class="detail">
+
+<span>
+⭐ Total XP
+</span>
+
+<strong>
+${Number(member.xp||0).toLocaleString()}
+</strong>
+
+</div>
+
+
+<div class="detail">
+
+<span>
+🏆 Squad Rank
+</span>
+
+<strong>
+#${rank||"-"}
+</strong>
+
+</div>
+
+
+<div class="detail">
+
+<span>
+🎯 Verified Tasks
+</span>
+
+<strong>
+${approvedTasks}
+</strong>
+
+</div>
+
+
+<div class="detail">
+
+<span>
+🎁 Approved Rewards
+</span>
+
+<strong>
+${redeemed}
+</strong>
+
+</div>
+
+
+<div class="detail">
+
+<span>
+🎮 Favorite Game
+</span>
+
+<strong>
+${escapeHTML(member.favoriteGame)}
+</strong>
+
+</div>
+
+
+${
+currentUser&&
+currentUser.username===member.username
+?
+`
+<div style="margin-top:20px">
+
+<button
+class="primary-btn"
+style="width:100%"
+onclick="editOwnStats()">
+
+✏️ Update My Stats
+
+</button>
+
+</div>
+`
+:""
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function editOwnStats(){
+
+if(!currentUser)return;
+
+const member=getCurrentMember();
+
+if(!member)return;
+
+const favorite=
+prompt(
+"Favorite game:",
+member.favoriteGame
+);
+
+if(favorite===null)return;
+
+member.favoriteGame=
+favorite.trim()||
+"Not selected";
+
+const user=
+users.find(
+u=>u.username===currentUser.username
+);
+
+if(user){
+
+user.favoriteGame=
+member.favoriteGame;
+
+}
+
+saveAll();
+
+renderProfile(member);
+
+}
+
+
+
+/* =====================================================
+   AI ADMIN VERIFICATION
+===================================================== */
+
+function renderVerification(){
+
+const notice=
+document.getElementById("verificationNotice");
+
+const container=
+document.getElementById("verificationContainer");
+
+if(!notice||!container)return;
+
+if(!currentUser){
+
+notice.innerHTML=
+`<div class="notice warning">
+🔐 Login first.
+</div>`;
+
+container.innerHTML="";
+
+return;
+
+}
+
+if(!isOwner()){
+
+notice.innerHTML=
+`<div class="notice warning">
+👑 Only the Squad Owner can inspect AI verification records.
+</div>`;
+
+container.innerHTML="";
+
+return;
+
+}
+
+notice.innerHTML=
+`<div class="notice success">
+🤖 AI verification is automatic in this prototype.
+</div>`;
+
+const records=
+taskRecords
+.filter(
+r=>r.date===todayKey()
+)
+.sort(
+(a,b)=>b.id-a.id
+);
+
+if(!records.length){
+
+container.innerHTML=
+`<div class="empty">
+📋 No task verification records today.
+</div>`;
+
+return;
+
+}
+
+container.innerHTML=
+records.map(record=>{
+
+const task=
+dailyTasks.find(
+t=>t.id===record.taskId
+);
+
+return`
+
+<div class="redemption-card">
+
+<div class="redemption-head">
+
+<strong>
+${task?.icon||"🎯"}
+${escapeHTML(task?.title||"Task")}
+</strong>
+
+<span class="reward-status
+${record.status==="approved"
+?"reward-approved"
+:record.status==="rejected"
+?"reward-rejected"
+:"reward-pending"}">
+
+${record.status.toUpperCase()}
+
+</span>
+
+</div>
+
+<div class="redemption-meta">
+
+👤 Player:
+${escapeHTML(record.username)}
+
+<br>
+
+📸 Proof Type:
+${escapeHTML(record.proofType||"Description")}
+
+<br>
+
+🤖 AI Score:
+<strong>
+${record.aiScore||0}%
+</strong>
+
+<br>
+
+📝 Proof:
+${escapeHTML(record.proof)}
+
+<br>
+
+💬 AI:
+${escapeHTML(record.aiMessage||"No message")}
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+
+/* =====================================================
+   OWNER NAVIGATION
+===================================================== */
+
+function addOwnerNavigation(){
+
+const nav=
+document.getElementById("mainNav");
+
+if(!nav)return;
+
+const oldVerify=
+document.getElementById("verificationNav");
+
+const oldRewards=
+document.getElementById("adminRewardsNav");
+
+if(currentUser&&isOwner()){
+
+if(!oldVerify){
+
+const btn=document.createElement("button");
+
+btn.id="verificationNav";
+
+btn.textContent="🤖 AI Verify";
+
+btn.onclick=()=>{
+showSectionById("verification");
+renderVerification();
+};
+
+nav.appendChild(btn);
+
+}
+
+if(!oldRewards){
+
+const btn=document.createElement("button");
+
+btn.id="adminRewardsNav";
+
+btn.textContent="👑 Rewards";
+
+btn.onclick=()=>{
+showSectionById("adminRewards");
+renderAdminRewards();
+};
+
+nav.appendChild(btn);
+
+}
+
+}else{
+
+if(oldVerify)oldVerify.remove();
+
+if(oldRewards)oldRewards.remove();
+
+}
+
+}
+
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+const total=
+members.reduce(
+(sum,m)=>sum+
+Number(m.xp||0),
+0
+);
+
+const count=
+document.getElementById("memberCount");
+
+const xp=
+document.getElementById("totalXP");
+
+if(count)
+count.textContent=members.length;
+
+if(xp)
+xp.textContent=
+total.toLocaleString()+" XP";
+
+}
+
+
+
+/* =====================================================
+   CLEAN OLD DAILY TASKS
+===================================================== */
+
+function cleanupOldTasks(){
+
+const today=todayKey();
+
+taskRecords=
+taskRecords.filter(
+r=>r.date===today
+);
+
+saveAll();
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+cleanupOldTasks();
+
+updateAuthUI();
+
+updateUI();
 
 </script>
 
 </body>
-</html>
+  </html>
