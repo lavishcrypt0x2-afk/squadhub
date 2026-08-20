@@ -27,7 +27,6 @@
   --green:#3ee98b;
   --red:#ff5c70;
   --yellow:#ffd45c;
-  --orange:#ff9f43;
 }
 
 body{
@@ -45,11 +44,6 @@ button,input,select{
 
 button{
   cursor:pointer;
-}
-
-button:disabled{
-  cursor:not-allowed;
-  opacity:.55;
 }
 
 header{
@@ -147,50 +141,7 @@ main{
   }
 }
 
-.hero{
-  text-align:center;
-  padding:48px 15px;
-}
-
-.hero-badge{
-  display:inline-block;
-  padding:7px 12px;
-  border:1px solid #28527e;
-  background:#10223a;
-  color:var(--cyan);
-  border-radius:999px;
-  font-size:12px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-size:clamp(38px,8vw,72px);
-  line-height:1;
-  margin-bottom:16px;
-}
-
-.hero h1 span{
-  background:linear-gradient(90deg,#4d8dff,#20d9ff,#a86cff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  color:var(--muted);
-  font-size:17px;
-  max-width:650px;
-  margin:auto;
-  line-height:1.6;
-}
-
-.hero-actions{
-  margin-top:25px;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
+/* BUTTONS */
 
 .primary-btn,
 .secondary-btn,
@@ -230,6 +181,60 @@ main{
   font-weight:700;
 }
 
+/* HERO */
+
+.hero{
+  text-align:center;
+  padding:48px 15px;
+}
+
+.hero-badge{
+  display:inline-block;
+  padding:7px 12px;
+  border:1px solid #28527e;
+  background:#10223a;
+  color:var(--cyan);
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(38px,8vw,72px);
+  line-height:1;
+  margin-bottom:16px;
+}
+
+.hero h1 span{
+  background:linear-gradient(
+    90deg,
+    #4d8dff,
+    #20d9ff,
+    #a86cff
+  );
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:17px;
+  max-width:650px;
+  margin:auto;
+  line-height:1.6;
+}
+
+.hero-actions{
+  margin-top:25px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* STATS */
+
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -238,7 +243,11 @@ main{
 }
 
 .stat{
-  background:linear-gradient(145deg,var(--card),#0c1422);
+  background:linear-gradient(
+    145deg,
+    var(--card),
+    #0c1422
+  );
   border:1px solid var(--border);
   padding:20px;
   border-radius:17px;
@@ -256,93 +265,7 @@ main{
   font-size:13px;
 }
 
-.announcement{
-  background:
-    linear-gradient(145deg,#132951,#171535);
-  border:1px solid #36558c;
-  border-radius:22px;
-  padding:25px;
-  margin:20px 0 35px;
-  position:relative;
-  overflow:hidden;
-}
-
-.announcement:before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background:#20d9ff12;
-  right:-60px;
-  top:-70px;
-}
-
-.announcement-badge{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#20d9ff16;
-  border:1px solid #20d9ff35;
-  color:var(--cyan);
-  font-size:11px;
-  font-weight:900;
-  margin-bottom:12px;
-}
-
-.announcement h2{
-  font-size:28px;
-  margin-bottom:9px;
-}
-
-.announcement p{
-  color:#b9c6dd;
-  line-height:1.6;
-  font-size:14px;
-}
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:20px;
-}
-
-.feature{
-  background:#09132299;
-  border:1px solid #ffffff10;
-  border-radius:12px;
-  padding:13px;
-}
-
-.feature strong{
-  display:block;
-  margin-bottom:4px;
-}
-
-.feature span{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.45;
-}
-
-.current-version{
-  margin-top:20px;
-  background:linear-gradient(145deg,#111d30,#0b1321);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-}
-
-.current-version h3{
-  margin-bottom:8px;
-}
-
-.current-version p{
-  color:var(--muted);
-  line-height:1.6;
-  font-size:13px;
-}
+/* TITLES */
 
 .section-title{
   display:flex;
@@ -362,17 +285,32 @@ main{
   margin-top:4px;
 }
 
-.game-grid{
+/* CARDS */
+
+.game-grid,
+.task-grid,
+.members-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
 
-.game-card{
-  background:linear-gradient(145deg,var(--card2),#0c1422);
+.game-card,
+.task-card,
+.member,
+.mini-card,
+.panel{
+  background:linear-gradient(
+    145deg,
+    var(--card2),
+    #0c1422
+  );
   border:1px solid var(--border);
-  padding:20px;
   border-radius:18px;
+  padding:18px;
+}
+
+.game-card{
   transition:.2s;
 }
 
@@ -390,7 +328,8 @@ main{
   margin-bottom:7px;
 }
 
-.game-card p{
+.game-card p,
+.task-card p{
   color:var(--muted);
   line-height:1.5;
   font-size:14px;
@@ -407,12 +346,15 @@ main{
   font-weight:800;
 }
 
-.card-actions{
+.card-actions,
+.task-actions{
   margin-top:16px;
   display:flex;
   gap:8px;
   flex-wrap:wrap;
 }
+
+/* FORMS */
 
 .search-box,
 input,
@@ -437,17 +379,13 @@ textarea:focus{
   margin-bottom:17px;
 }
 
-.form-card,
-.panel{
+.form-card{
+  max-width:500px;
+  margin:35px auto;
   background:var(--card);
   border:1px solid var(--border);
   border-radius:18px;
   padding:20px;
-}
-
-.form-card{
-  max-width:500px;
-  margin:35px auto;
 }
 
 .form-title{
@@ -495,21 +433,12 @@ textarea:focus{
   font-weight:800;
 }
 
+/* DASHBOARD */
+
 .dashboard{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
-}
-
-.mini-card{
-  background:linear-gradient(145deg,var(--card),#0c1422);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:20px;
-}
-
-.mini-card h3{
-  margin-bottom:7px;
 }
 
 .big-xp{
@@ -520,20 +449,10 @@ textarea:focus{
 
 .muted{
   color:var(--muted);
+  font-size:13px;
 }
 
-.task-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-.task-card{
-  background:linear-gradient(145deg,var(--card2),#0c1422);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:18px;
-}
+/* TASKS */
 
 .task-card.pending{
   border-color:#806b2e;
@@ -568,12 +487,6 @@ textarea:focus{
   margin:13px 0 7px;
 }
 
-.task-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-}
-
 .task-status{
   display:inline-block;
   margin:13px 0;
@@ -600,26 +513,12 @@ textarea:focus{
   background:#ff5c7012;
 }
 
-.task-actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-}
-
-.members-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:13px;
-}
+/* MEMBERS */
 
 .member{
   display:flex;
   align-items:center;
   gap:13px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:14px;
 }
 
 .avatar{
@@ -628,7 +527,11 @@ textarea:focus{
   border-radius:50%;
   display:grid;
   place-items:center;
-  background:linear-gradient(135deg,#3478ff,#8d5cff);
+  background:linear-gradient(
+    135deg,
+    #3478ff,
+    #8d5cff
+  );
   font-weight:900;
   flex-shrink:0;
 }
@@ -658,6 +561,8 @@ textarea:focus{
   gap:5px;
 }
 
+/* LEADERBOARD */
+
 .leaderboard{
   display:flex;
   flex-direction:column;
@@ -666,17 +571,13 @@ textarea:focus{
 
 .rank{
   display:grid;
-  grid-template-columns:50px 1fr auto;
+  grid-template-columns:60px 1fr auto;
   align-items:center;
   gap:10px;
   background:var(--card);
   border:1px solid var(--border);
   padding:14px;
   border-radius:14px;
-}
-
-.rank:hover{
-  border-color:#3e70a9;
 }
 
 .rank-number{
@@ -688,54 +589,29 @@ textarea:focus{
   font-weight:800;
 }
 
+.rank-title{
+  color:var(--yellow);
+  font-size:11px;
+  font-weight:900;
+  margin-top:4px;
+}
+
 .rank-xp{
   color:var(--cyan);
   font-weight:900;
+  text-align:right;
 }
 
-.rank-badge{
-  display:inline-block;
-  margin-top:5px;
-  padding:4px 7px;
-  border-radius:7px;
-  font-size:10px;
-  font-weight:900;
-}
-
-.rank-rookie{
-  color:#72d7a2;
-  background:#3ee98b12;
-}
-
-.rank-challenger{
-  color:#6fa5ff;
-  background:#4d8dff12;
-}
-
-.rank-elite{
-  color:#b892ff;
-  background:#8d5cff15;
-}
-
-.rank-master{
-  color:#ffb45c;
-  background:#ff9f4315;
-}
-
-.rank-grandmaster{
-  color:#ff6e7f;
-  background:#ff5c7015;
-}
-
-.rank-legend{
-  color:#ffd45c;
-  background:#ffd45c15;
-}
+/* PROFILE */
 
 .profile-card{
   max-width:700px;
   margin:auto;
-  background:linear-gradient(145deg,#111d31,#0c1422);
+  background:linear-gradient(
+    145deg,
+    #111d31,
+    #0c1422
+  );
   border:1px solid var(--border);
   border-radius:22px;
   overflow:hidden;
@@ -744,7 +620,11 @@ textarea:focus{
 .profile-top{
   text-align:center;
   padding:30px 20px;
-  background:linear-gradient(135deg,#142d55,#24154d);
+  background:linear-gradient(
+    135deg,
+    #142d55,
+    #24154d
+  );
 }
 
 .profile-avatar{
@@ -754,7 +634,11 @@ textarea:focus{
   display:grid;
   place-items:center;
   border-radius:50%;
-  background:linear-gradient(135deg,#3478ff,#8d5cff);
+  background:linear-gradient(
+    135deg,
+    #3478ff,
+    #8d5cff
+  );
   font-size:35px;
   font-weight:900;
   border:4px solid #ffffff22;
@@ -765,16 +649,10 @@ textarea:focus{
   margin-top:12px;
 }
 
-.profile-id{
-  color:#b9c7df;
-  font-size:12px;
-  margin-top:6px;
-}
-
 .profile-level{
   color:var(--cyan);
   font-weight:800;
-  margin-top:7px;
+  margin-top:5px;
 }
 
 .progress-box{
@@ -798,7 +676,11 @@ textarea:focus{
 
 .progress-bar{
   height:100%;
-  background:linear-gradient(90deg,#3478ff,#20d9ff);
+  background:linear-gradient(
+    90deg,
+    #3478ff,
+    #20d9ff
+  );
   border-radius:20px;
 }
 
@@ -844,62 +726,84 @@ textarea:focus{
   color:var(--muted);
 }
 
-.privacy-box{
-  margin-top:18px;
-  padding:15px;
-  background:#0c1422;
+/* 2.0 */
+
+.coming-card{
+  background:
+    linear-gradient(
+      145deg,
+      #17152d,
+      #0c1422
+    );
+  border:1px solid #5948a0;
+  border-radius:22px;
+  padding:25px;
+  margin-bottom:20px;
+}
+
+.coming-badge{
+  display:inline-block;
+  padding:7px 12px;
+  background:#8d5cff18;
+  border:1px solid #8d5cff55;
+  color:#c9b9ff;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.coming-card h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.coming-card>p{
+  color:var(--muted);
+  line-height:1.6;
+  max-width:750px;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.feature{
+  background:#0d1626;
   border:1px solid var(--border);
-  border-radius:13px;
+  border-radius:15px;
+  padding:17px;
 }
 
-.privacy-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
+.feature-icon{
+  font-size:25px;
+  margin-bottom:8px;
 }
 
-.switch{
-  position:relative;
-  width:48px;
-  height:26px;
-  flex-shrink:0;
+.feature h3{
+  margin-bottom:7px;
 }
 
-.switch input{
-  opacity:0;
-  width:0;
-  height:0;
+.feature p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
 }
 
-.slider{
-  position:absolute;
-  inset:0;
-  background:#27364d;
-  border-radius:30px;
-  transition:.2s;
-  cursor:pointer;
+.future-note{
+  margin-top:18px;
+  padding:13px;
+  border-radius:12px;
+  background:#20d9ff0d;
+  border:1px solid #20d9ff25;
+  color:#b8eefa;
+  font-size:13px;
+  line-height:1.5;
 }
 
-.slider:before{
-  content:"";
-  position:absolute;
-  width:20px;
-  height:20px;
-  left:3px;
-  top:3px;
-  background:white;
-  border-radius:50%;
-  transition:.2s;
-}
-
-.switch input:checked + .slider{
-  background:#3478ff;
-}
-
-.switch input:checked + .slider:before{
-  transform:translateX(22px);
-}
+/* NOTICES */
 
 .notice{
   padding:12px;
@@ -934,8 +838,8 @@ textarea:focus{
   grid-column:1/-1;
 }
 
-.back-btn{
-  margin-bottom:15px;
+.hidden{
+  display:none !important;
 }
 
 footer{
@@ -946,9 +850,7 @@ footer{
   font-size:13px;
 }
 
-.hidden{
-  display:none !important;
-}
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -980,10 +882,7 @@ footer{
   .game-grid,
   .members-grid,
   .task-grid,
-  .dashboard{
-    grid-template-columns:1fr;
-  }
-
+  .dashboard,
   .feature-grid{
     grid-template-columns:1fr;
   }
@@ -1001,7 +900,12 @@ footer{
   }
 
   .rank{
-    grid-template-columns:40px 1fr auto;
+    grid-template-columns:45px 1fr;
+  }
+
+  .rank-xp{
+    grid-column:2;
+    text-align:left;
   }
 
   .member-actions{
@@ -1017,14 +921,6 @@ footer{
 
   .profile-stats{
     grid-template-columns:repeat(3,1fr);
-  }
-
-  .rank{
-    grid-template-columns:35px 1fr;
-  }
-
-  .rank > div:last-child{
-    grid-column:2;
   }
 }
 </style>
@@ -1042,7 +938,8 @@ footer{
 
     <div class="account-area">
 
-      <span id="headerUser" class="user-chip"></span>
+      <span id="headerUser"
+            class="user-chip"></span>
 
       <button
         id="headerAuthButton"
@@ -1055,7 +952,7 @@ footer{
 
   </div>
 
-  <div class="header-inner" style="padding-top:0;">
+  <div class="header-inner" style="padding-top:0">
 
     <nav id="mainNav">
 
@@ -1065,24 +962,34 @@ footer{
         🏠 Home
       </button>
 
-      <button onclick="showSection('tasks',this)">
+      <button
+        onclick="showSection('tasks',this)">
         🎯 Tasks
       </button>
 
-      <button onclick="showSection('games',this)">
+      <button
+        onclick="showSection('games',this)">
         🎮 Games
       </button>
 
-      <button onclick="showSection('squad',this)">
+      <button
+        onclick="showSection('squad',this)">
         👥 Squad
       </button>
 
-      <button onclick="showSection('leaderboard',this)">
+      <button
+        onclick="showSection('leaderboard',this)">
         🏆 Leaderboard
       </button>
 
-      <button onclick="showSection('profile',this)">
+      <button
+        onclick="showSection('profile',this)">
         👤 Profile
+      </button>
+
+      <button
+        onclick="showSection('squad2',this)">
+        🚀 SquadHub 2.0
       </button>
 
     </nav>
@@ -1091,13 +998,9 @@ footer{
 
 </header>
 
-
 <main>
 
-
-<!-- =========================
-     HOME
-========================= -->
+<!-- ================= HOME ================= -->
 
 <section id="home" class="section active">
 
@@ -1108,12 +1011,13 @@ footer{
     </div>
 
     <h1>
-      Your Squad. Your <span>Challenges.</span>
+      Your Squad.
+      Your <span>Challenges.</span>
     </h1>
 
     <p>
-      Complete SquadHub tasks, earn XP, build your profile,
-      improve your rank and climb the squad leaderboard.
+      Complete SquadHub tasks, earn XP, improve your rank,
+      build your player identity and compete with your squad.
     </p>
 
     <div class="hero-actions">
@@ -1126,87 +1030,50 @@ footer{
 
       <button
         class="secondary-btn"
-        onclick="showSectionById('games')">
-        🎮 Explore Games
-      </button>
-
-      <button
-        class="secondary-btn"
-        onclick="showSectionById('upcoming')">
-        🚀 SquadHub 2.0
+        onclick="showSectionById('squad2')">
+        🚀 Explore SquadHub 2.0
       </button>
 
     </div>
 
   </div>
-
 
   <div class="stats">
 
     <div class="stat">
-
       <div
-        id="gameCount"
-        class="stat-number">
+        class="stat-number"
+        id="gameCount">
         4
       </div>
-
       <div class="stat-label">
         Games
       </div>
-
     </div>
 
-
     <div class="stat">
-
       <div
-        id="memberCount"
-        class="stat-number">
+        class="stat-number"
+        id="memberCount">
         0
       </div>
-
       <div class="stat-label">
-        Players
+        Squad Players
       </div>
-
     </div>
-
 
     <div class="stat">
-
       <div
-        id="totalXP"
-        class="stat-number">
+        class="stat-number"
+        id="totalXP">
         0 XP
       </div>
-
       <div class="stat-label">
-        Total XP
+        Squad XP
       </div>
-
     </div>
 
   </div>
-
-
-  <!-- CURRENT VERSION -->
-
-  <div class="current-version">
-
-    <h3>
-      ⚡ SquadHub 1.0 — Current Version
-    </h3>
-
-    <p>
-      SquadHub 1.0 introduces unique Player IDs,
-      a redesigned all-player leaderboard and a new
-      XP-based ranking system. Players can also control
-      whether their identity is publicly displayed.
-    </p>
-
-  </div>
-
 
   <div class="section-title">
 
@@ -1229,131 +1096,55 @@ footer{
     class="game-grid">
   </div>
 
-</section>
+  <div class="section-title">
 
+    <div>
 
-<!-- =========================
-     SQUADHUB 2.0
-========================= -->
+      <h2>
+        🚀 SquadHub 2.0
+      </h2>
 
-<section id="upcoming" class="section">
+      <p>
+        The next generation of SquadHub is coming.
+      </p>
 
-  <button
-    class="secondary-btn back-btn"
-    onclick="showSectionById('home')">
-    ← Back
-  </button>
+    </div>
 
-  <div class="announcement">
+  </div>
 
-    <div class="announcement-badge">
-      🚀 UPCOMING VERSION
+  <div class="coming-card">
+
+    <div class="coming-badge">
+      COMING SOON
     </div>
 
     <h2>
-      SquadHub 2.0 — Coming Soon
+      SquadHub 2.0
     </h2>
 
     <p>
-      The next generation of SquadHub is coming with
-      smarter tools, stronger squad features, improved
-      social features and better game integration.
+      SquadHub 2.0 will introduce a more connected,
+      intelligent and competitive experience with
+      advanced AI tools, new games, custom squads,
+      communication features and a new verification system.
     </p>
 
+    <div class="card-actions">
 
-    <div class="feature-grid">
-
-      <div class="feature">
-        <strong>🤖 Advanced AI Tools</strong>
-        <span>
-          Smarter assistance and improved task verification.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>🎮 More Games</strong>
-        <span>
-          More supported games and gaming challenges.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>👥 Custom Squads</strong>
-        <span>
-          Create and manage your own squads.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>👑 Team Leader Election</strong>
-        <span>
-          Squad members will be able to choose their leader.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>🎯 Team Tasks</strong>
-        <span>
-          Complete challenges together as a team.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>💬 Conversations & Group Chats</strong>
-        <span>
-          Connect with players through conversations
-          and group chats.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>🎁 Google Play Rewards & Promo Codes</strong>
-        <span>
-          Planned for SquadHub 2.0. Not available in 1.0.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>🎮 Improved Game Integration</strong>
-        <span>
-          Better game-related controls and integrations.
-        </span>
-      </div>
-
-      <div class="feature">
-        <strong>🔐 New Verification System</strong>
-        <span>
-          A more advanced and reliable verification system.
-        </span>
-      </div>
+      <button
+        class="primary-btn"
+        onclick="showSectionById('squad2')">
+        🚀 View Full 2.0 Information
+      </button>
 
     </div>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h3>
-      📢 Development Status
-    </h3>
-
-    <p
-      class="muted"
-      style="margin-top:8px;line-height:1.6;font-size:13px;">
-      SquadHub 2.0 is an upcoming version.
-      Features shown here are planned features and
-      may change during development.
-    </p>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     AUTH
-========================= -->
+<!-- ================= AUTH ================= -->
 
 <section id="auth" class="section">
 
@@ -1373,7 +1164,6 @@ footer{
 
     <div id="authMessage"></div>
 
-
     <div class="field">
 
       <label>
@@ -1387,7 +1177,6 @@ footer{
         placeholder="Enter username">
 
     </div>
-
 
     <div
       id="authEmailField"
@@ -1405,7 +1194,6 @@ footer{
 
     </div>
 
-
     <div class="field">
 
       <label>
@@ -1420,14 +1208,12 @@ footer{
 
     </div>
 
-
     <button
       class="primary-btn"
       id="authSubmit"
       onclick="submitAuth()">
       Login
     </button>
-
 
     <div class="form-switch">
 
@@ -1448,9 +1234,7 @@ footer{
 </section>
 
 
-<!-- =========================
-     TASKS
-========================= -->
+<!-- ================= TASKS ================= -->
 
 <section id="tasks" class="section">
 
@@ -1463,13 +1247,12 @@ footer{
       </h2>
 
       <p>
-        Complete tasks and earn verified XP.
+        Complete tasks to earn XP and improve your rank.
       </p>
 
     </div>
 
   </div>
-
 
   <div
     id="loginTaskNotice"
@@ -1479,10 +1262,9 @@ footer{
 
   </div>
 
-
   <div
     class="dashboard"
-    style="margin-bottom:18px;">
+    style="margin-bottom:18px">
 
     <div class="mini-card">
 
@@ -1502,11 +1284,10 @@ footer{
 
     </div>
 
-
     <div class="mini-card">
 
       <h3>
-        📋 Your Progress
+        📋 Today's Progress
       </h3>
 
       <div
@@ -1523,7 +1304,6 @@ footer{
 
   </div>
 
-
   <div
     id="taskContainer"
     class="task-grid">
@@ -1532,9 +1312,7 @@ footer{
 </section>
 
 
-<!-- =========================
-     GAMES
-========================= -->
+<!-- ================= GAMES ================= -->
 
 <section id="games" class="section">
 
@@ -1547,20 +1325,18 @@ footer{
       </h2>
 
       <p>
-        Official game destinations.
+        Games currently supported by SquadHub 1.0.
       </p>
 
     </div>
 
   </div>
 
-
   <input
     class="search-box"
     id="gameSearch"
     placeholder="🔎 Search games..."
     oninput="renderGames()">
-
 
   <div
     id="gamesContainer"
@@ -1570,9 +1346,7 @@ footer{
 </section>
 
 
-<!-- =========================
-     SQUAD
-========================= -->
+<!-- ================= SQUAD ================= -->
 
 <section id="squad" class="section">
 
@@ -1592,19 +1366,17 @@ footer{
 
   </div>
 
-
   <div
     id="ownerNotice"
     class="notice warning hidden">
 
-    Login as the squad owner to manage squad members.
+    Login as the squad owner to manage players.
 
   </div>
 
-
   <div
     class="panel"
-    style="margin-bottom:18px;">
+    style="margin-bottom:18px">
 
     <div class="field">
 
@@ -1619,7 +1391,6 @@ footer{
 
     </div>
 
-
     <button
       class="primary-btn"
       onclick="addMember()">
@@ -1628,24 +1399,18 @@ footer{
 
   </div>
 
-
   <input
     class="search-box"
     id="memberSearch"
-    placeholder="🔎 Search squad member..."
-    oninput="renderMembers">
+    placeholder="🔎 Search squad player..."
+    oninput="renderMembers()">
 
-
-  <div
-    id="membersContainer">
-  </div>
+  <div id="membersContainer"></div>
 
 </section>
 
 
-<!-- =========================
-     LEADERBOARD
-========================= -->
+<!-- ================= LEADERBOARD ================= -->
 
 <section id="leaderboard" class="section">
 
@@ -1654,36 +1419,31 @@ footer{
     <div>
 
       <h2>
-        🏆 SquadHub Leaderboard
+        🏆 Squad Leaderboard
       </h2>
 
       <p>
-        All registered players ranked by XP.
+        Every player is ranked according to verified XP.
       </p>
 
     </div>
 
   </div>
 
+  <div class="notice">
 
-  <div
-    class="notice">
-    📊 Rankings are determined by total XP.
-    Players with private identity show only their
-    unique Player ID.
+    📊 <strong>Ranking system:</strong>
+    higher verified XP gives a higher rank.
+    All visible players are listed, not only the top players.
+
   </div>
 
-
-  <div
-    id="leaderboardContainer">
-  </div>
+  <div id="leaderboardContainer"></div>
 
 </section>
 
 
-<!-- =========================
-     PROFILE
-========================= -->
+<!-- ================= PROFILE ================= -->
 
 <section id="profile" class="section">
 
@@ -1692,33 +1452,222 @@ footer{
 </section>
 
 
-<!-- =========================
-     VERIFICATION
-========================= -->
+<!-- ================= SQUADHUB 2.0 ================= -->
 
-<section id="verification" class="section">
+<section id="squad2" class="section">
 
   <div class="section-title">
 
     <div>
 
       <h2>
-        👑 Task Verification
+        🚀 SquadHub 2.0
       </h2>
 
       <p>
-        Approve or reject submitted task completions.
+        The next major SquadHub upgrade.
       </p>
 
     </div>
 
   </div>
 
+  <div class="coming-card">
 
-  <div id="verificationNotice"></div>
+    <div class="coming-badge">
+      🚀 COMING SOON
+    </div>
 
-  <div
-    id="verificationContainer">
+    <h2>
+      SquadHub 2.0
+    </h2>
+
+    <p>
+      SquadHub 2.0 is planned as a major upgrade to the
+      current SquadHub experience. The focus is on smarter
+      verification, better squad management, communication,
+      more games and deeper player interaction.
+    </p>
+
+  </div>
+
+
+  <div class="feature-grid">
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🤖
+      </div>
+
+      <h3>
+        Advanced AI Tools
+      </h3>
+
+      <p>
+        Improved AI-powered tools designed to help analyze
+        task submissions, assist players and provide smarter
+        SquadHub features.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎮
+      </div>
+
+      <h3>
+        More Games
+      </h3>
+
+      <p>
+        SquadHub 2.0 is planned to support additional games
+        and more game-specific challenges.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        👥
+      </div>
+
+      <h3>
+        Custom Squads
+      </h3>
+
+      <p>
+        Create and organize custom squads with your own
+        players, squad identity and team structure.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        👑
+      </div>
+
+      <h3>
+        Team Leader Election
+      </h3>
+
+      <p>
+        Squad members will be able to participate in a
+        planned team-leader election system.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎯
+      </div>
+
+      <h3>
+        Team Tasks
+      </h3>
+
+      <p>
+        Future team-based challenges will allow multiple
+        players to work together toward shared objectives.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        💬
+      </div>
+
+      <h3>
+        Conversations & Group Chats
+      </h3>
+
+      <p>
+        Planned messaging features will allow players to
+        communicate through conversations and group chats.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎁
+      </div>
+
+      <h3>
+        Google Play Redeem Codes & Promocodes
+      </h3>
+
+      <p>
+        Google Play redeem codes and SquadHub promocodes are
+        planned for SquadHub 2.0. They are intentionally
+        <strong>not available in SquadHub 1.0.</strong>
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎮
+      </div>
+
+      <h3>
+        Improved Game Controls & Integration
+      </h3>
+
+      <p>
+        Future versions may provide improved game-related
+        controls and deeper integrations where technically
+        and officially supported.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🔐
+      </div>
+
+      <h3>
+        New Verification System
+      </h3>
+
+      <p>
+        A more advanced verification architecture is planned
+        to make task verification more reliable and easier
+        to manage.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="future-note">
+
+    🚧 <strong>Development notice:</strong>
+    These are planned SquadHub 2.0 features. They are
+    announcements only in SquadHub 1.0 and are not active
+    through this prototype.
+
   </div>
 
 </section>
@@ -1750,22 +1699,35 @@ footer{
 
 <script>
 
-/* =========================================================
-   SQUADHUB 1.0
-   Current Version Update
+/*
+========================================================
+SQUADHUB 1.0
+========================================================
 
-   Added:
-   - Unique Player IDs
-   - Identity Privacy
-   - New XP Ranking System
-   - All-player leaderboard
-   - SquadHub 2.0 announcement
-   - Rewards removed from current version
+Single-file client-side prototype.
 
-   IMPORTANT:
-   This is still a client-side prototype.
-   localStorage is NOT secure production storage.
-========================================================= */
+CURRENT 1.0 FEATURES:
+• Accounts
+• Unique Player ID
+• XP
+• Tasks
+• Four games
+• Squad
+• XP ranking
+• Full leaderboard
+• Public/private player identity
+• Profiles
+
+SQUADHUB 2.0:
+Only announcement information is shown.
+Future features are NOT active in this 1.0 prototype.
+
+IMPORTANT:
+This prototype stores data in localStorage.
+It is NOT suitable for real public authentication,
+secure XP verification, payments, or real rewards.
+========================================================
+*/
 
 
 /* =========================
@@ -1773,16 +1735,16 @@ footer{
 ========================= */
 
 const STORAGE_USERS =
-  "squadhub_v10_users";
+  "squadhub_v20_users";
 
 const STORAGE_CURRENT =
-  "squadhub_v10_current";
+  "squadhub_v20_current";
 
 const STORAGE_MEMBERS =
-  "squadhub_v10_members";
+  "squadhub_v20_members";
 
 const STORAGE_TASKS =
-  "squadhub_v10_task_records";
+  "squadhub_v20_task_records";
 
 
 let users =
@@ -1842,7 +1804,8 @@ const games = [
     type:"BATTLE ROYALE",
     description:
       "Official BGMI destination.",
-    url:"https://www.battlegroundsmobileindia.com/"
+    url:
+      "https://www.battlegroundsmobileindia.com/"
   },
 
   {
@@ -1851,8 +1814,9 @@ const games = [
     icon:"🏍️",
     type:"DRIVING",
     description:
-      "Game information and destination.",
-    url:"https://www.gamemonetize.com/"
+      "Game information destination.",
+    url:
+      "https://www.gamemonetize.com/"
   }
 
 ];
@@ -1928,7 +1892,101 @@ const dailyTasks = [
 
 
 /* =========================
-   STORAGE HELPERS
+   RANK SYSTEM
+========================= */
+
+/*
+  Rank depends on total verified XP.
+
+  XP thresholds:
+  Bronze:    0+
+  Silver:    500+
+  Gold:      1,500+
+  Platinum:  3,000+
+  Diamond:   5,000+
+  Master:    10,000+
+  Grandmaster: 20,000+
+*/
+
+function getRank(xp){
+
+  xp=Number(xp)||0;
+
+  if(xp>=20000)
+    return {
+      name:"Grandmaster",
+      icon:"👑"
+    };
+
+  if(xp>=10000)
+    return {
+      name:"Master",
+      icon:"💎"
+    };
+
+  if(xp>=5000)
+    return {
+      name:"Diamond",
+      icon:"🔷"
+    };
+
+  if(xp>=3000)
+    return {
+      name:"Platinum",
+      icon:"💠"
+    };
+
+  if(xp>=1500)
+    return {
+      name:"Gold",
+      icon:"🥇"
+    };
+
+  if(xp>=500)
+    return {
+      name:"Silver",
+      icon:"🥈"
+    };
+
+  return {
+    name:"Bronze",
+    icon:"🥉"
+  };
+
+}
+
+
+/* =========================
+   UNIQUE PLAYER ID
+========================= */
+
+function generatePlayerId(){
+
+  let id;
+
+  do{
+
+    const random=
+      Math.floor(
+        100000 +
+        Math.random()*900000
+      );
+
+    id="SH-"+random;
+
+  }while(
+    users.some(
+      u=>u.playerId===id
+    )
+  );
+
+  return id;
+
+}
+
+
+/* =========================
+   HELPERS
 ========================= */
 
 function saveUsers(){
@@ -1970,10 +2028,6 @@ function saveTasks(){
 
 }
 
-
-/* =========================
-   GENERAL HELPERS
-========================= */
 
 function escapeHTML(text){
 
@@ -2023,154 +2077,25 @@ function getCurrentMember(){
     return null;
 
   return members.find(
-    m=>m.username===currentUser.username
+    m=>
+      m.username===
+      currentUser.username
   ) || null;
 
 }
 
 
-/* =========================
-   UNIQUE PLAYER ID
-========================= */
+function getTaskRecord(
+  username,
+  taskId
+){
 
-function generatePlayerID(){
-
-  let id="";
-
-  const chars=
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-  do{
-
-    let random="";
-
-    for(let i=0;i<8;i++){
-
-      random+=
-        chars.charAt(
-          Math.floor(
-            Math.random()*chars.length
-          )
-        );
-
-    }
-
-    id="SH-"+random;
-
-  }while(
-    users.some(
-      u=>u.playerId===id
-    )
+  return taskRecords.find(
+    r=>
+      r.username===username &&
+      r.taskId===taskId &&
+      r.date===todayKey()
   );
-
-  return id;
-
-}
-
-
-/* =========================
-   RANK SYSTEM
-========================= */
-
-function getRank(xp){
-
-  xp=Number(xp)||0;
-
-  if(xp>=10000){
-
-    return {
-      name:"Legend",
-      icon:"👑",
-      className:"rank-legend"
-    };
-
-  }
-
-  if(xp>=6000){
-
-    return {
-      name:"Grandmaster",
-      icon:"🔴",
-      className:"rank-grandmaster"
-    };
-
-  }
-
-  if(xp>=3000){
-
-    return {
-      name:"Master",
-      icon:"🟠",
-      className:"rank-master"
-    };
-
-  }
-
-  if(xp>=1500){
-
-    return {
-      name:"Elite",
-      icon:"🟣",
-      className:"rank-elite"
-    };
-
-  }
-
-  if(xp>=500){
-
-    return {
-      name:"Challenger",
-      icon:"🔵",
-      className:"rank-challenger"
-    };
-
-  }
-
-  return {
-    name:"Rookie",
-    icon:"🟢",
-    className:"rank-rookie"
-  };
-
-}
-
-
-function getNextRank(xp){
-
-  xp=Number(xp)||0;
-
-  const levels=[
-
-    {
-      xp:500,
-      name:"Challenger"
-    },
-
-    {
-      xp:1500,
-      name:"Elite"
-    },
-
-    {
-      xp:3000,
-      name:"Master"
-    },
-
-    {
-      xp:6000,
-      name:"Grandmaster"
-    },
-
-    {
-      xp:10000,
-      name:"Legend"
-    }
-
-  ];
-
-  return levels.find(
-    level=>xp<level.xp
-  ) || null;
 
 }
 
@@ -2179,13 +2104,18 @@ function getNextRank(xp){
    NAVIGATION
 ========================= */
 
-function showSection(id,button){
+function showSection(
+  id,
+  button
+){
 
-  document.querySelectorAll(".section")
+  document
+    .querySelectorAll(".section")
     .forEach(section=>{
-      section.classList.remove("active");
+      section.classList.remove(
+        "active"
+      );
     });
-
 
   const section=
     document.getElementById(id);
@@ -2193,51 +2123,38 @@ function showSection(id,button){
   if(!section)
     return;
 
-
   section.classList.add("active");
 
-
-  document.querySelectorAll("nav button")
+  document
+    .querySelectorAll("nav button")
     .forEach(btn=>{
-      btn.classList.remove("active");
+      btn.classList.remove(
+        "active"
+      );
     });
 
-
-  if(button){
-
+  if(button)
     button.classList.add("active");
-
-  }
-
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 
-
   if(id==="tasks")
     renderTasks();
-
 
   if(id==="games")
     renderGames();
 
-
   if(id==="squad")
     renderMembers();
-
 
   if(id==="leaderboard")
     renderLeaderboard();
 
-
   if(id==="profile")
     renderCurrentProfile();
-
-
-  if(id==="verification")
-    renderVerification();
 
 }
 
@@ -2297,23 +2214,34 @@ function toggleAuthMode(){
 function updateAuthUI(){
 
   const title=
-    document.getElementById("authTitle");
+    document.getElementById(
+      "authTitle"
+    );
 
   const subtitle=
-    document.getElementById("authSubtitle");
+    document.getElementById(
+      "authSubtitle"
+    );
 
   const emailField=
-    document.getElementById("authEmailField");
+    document.getElementById(
+      "authEmailField"
+    );
 
   const submit=
-    document.getElementById("authSubmit");
+    document.getElementById(
+      "authSubmit"
+    );
 
   const switchText=
-    document.getElementById("authSwitchText");
+    document.getElementById(
+      "authSwitchText"
+    );
 
   const switchButton=
-    document.getElementById("authSwitchButton");
-
+    document.getElementById(
+      "authSwitchButton"
+    );
 
   document.getElementById(
     "authMessage"
@@ -2322,14 +2250,18 @@ function updateAuthUI(){
 
   if(authMode==="login"){
 
-    title.textContent="🔐 Login";
+    title.textContent=
+      "🔐 Login";
 
     subtitle.textContent=
       "Login to access your SquadHub profile.";
 
-    emailField.classList.add("hidden");
+    emailField.classList.add(
+      "hidden"
+    );
 
-    submit.textContent="Login";
+    submit.textContent=
+      "Login";
 
     switchText.textContent=
       "Don't have an account?";
@@ -2345,7 +2277,9 @@ function updateAuthUI(){
     subtitle.textContent=
       "Create your SquadHub player account.";
 
-    emailField.classList.remove("hidden");
+    emailField.classList.remove(
+      "hidden"
+    );
 
     submit.textContent=
       "Create Account";
@@ -2368,18 +2302,15 @@ function submitAuth(){
       "authUsername"
     ).value.trim();
 
-
   const password=
     document.getElementById(
       "authPassword"
     ).value;
 
-
   const email=
     document.getElementById(
       "authEmail"
     ).value.trim();
-
 
   const message=
     document.getElementById(
@@ -2461,14 +2392,14 @@ function submitAuth(){
 
       id:Date.now(),
 
-      playerId:
-        generatePlayerID(),
-
       username:username,
 
       email:email,
 
       password:password,
+
+      playerId:
+        generatePlayerId(),
 
       xp:0,
 
@@ -2478,7 +2409,8 @@ function submitAuth(){
 
       losses:0,
 
-      favoriteGame:"Not selected",
+      favoriteGame:
+        "Not selected",
 
       identityPrivate:false,
 
@@ -2506,10 +2438,12 @@ function submitAuth(){
 
     updateUI();
 
-    showSectionById("profile");
+    showSectionById(
+      "profile"
+    );
 
     alert(
-      "Account created successfully!\n\n"+
+      "Account created!\n\n"+
       "Your unique Player ID is:\n"+
       user.playerId
     );
@@ -2541,19 +2475,22 @@ function submitAuth(){
 
 
   /*
-    Compatibility:
-    If an older account does not have a Player ID,
-    generate one now.
+    Migration support:
+    old accounts automatically receive
+    a unique Player ID and privacy setting.
   */
 
-  if(!user.playerId){
-
+  if(!user.playerId)
     user.playerId=
-      generatePlayerID();
+      generatePlayerId();
 
-    saveUsers();
+  if(
+    typeof user.identityPrivate!=="boolean"
+  )
+    user.identityPrivate=false;
 
-  }
+
+  saveUsers();
 
 
   currentUser={
@@ -2561,7 +2498,6 @@ function submitAuth(){
   };
 
   saveCurrent();
-
 
   ensureMember(user);
 
@@ -2580,11 +2516,9 @@ function clearAuthFields(){
     "authUsername"
   ).value="";
 
-
   document.getElementById(
     "authPassword"
   ).value="";
-
 
   document.getElementById(
     "authEmail"
@@ -2616,7 +2550,9 @@ function ensureMember(user){
 
   let member=
     members.find(
-      m=>m.username===user.username
+      m=>
+        m.username===
+        user.username
     );
 
 
@@ -2645,48 +2581,52 @@ function ensureMember(user){
         "Not selected",
 
       identityPrivate:
-        Boolean(user.identityPrivate)
+        user.identityPrivate ||
+        false
 
     });
 
     saveMembers();
 
-    return;
+  }else{
 
-  }
-
-
-  let changed=false;
-
-
-  if(!member.playerId){
+    /*
+      Keep player identity and privacy
+      synchronized with the account.
+    */
 
     member.playerId=
       user.playerId;
 
-    changed=true;
-
-  }
-
-
-  if(member.identityPrivate===undefined){
-
     member.identityPrivate=
-      Boolean(user.identityPrivate);
+      user.identityPrivate || false;
 
-    changed=true;
+    member.xp=
+      Number(user.xp)||0;
+
+    member.games=
+      Number(user.games)||0;
+
+    member.wins=
+      Number(user.wins)||0;
+
+    member.losses=
+      Number(user.losses)||0;
+
+    member.favoriteGame=
+      user.favoriteGame ||
+      member.favoriteGame ||
+      "Not selected";
+
+    saveMembers();
 
   }
-
-
-  if(changed)
-    saveMembers();
 
 }
 
 
 /* =========================
-   UI
+   UI UPDATE
 ========================= */
 
 function updateUI(){
@@ -2695,7 +2635,6 @@ function updateUI(){
     document.getElementById(
       "headerUser"
     );
-
 
   const authButton=
     document.getElementById(
@@ -2741,8 +2680,6 @@ function updateUI(){
 
   renderCurrentProfile();
 
-  addOwnerNavigation();
-
 }
 
 
@@ -2757,15 +2694,13 @@ function renderHomeGames(){
       "homeGames"
     );
 
-
   if(!container)
     return;
 
-
   container.innerHTML=
-    games.map(
-      game=>gameCard(game)
-    ).join("");
+    games
+      .map(game=>gameCard(game))
+      .join("");
 
 }
 
@@ -2776,7 +2711,6 @@ function renderGames(){
     document.getElementById(
       "gamesContainer"
     );
-
 
   if(!container)
     return;
@@ -2814,9 +2748,9 @@ function renderGames(){
 
 
   container.innerHTML=
-    filtered.map(
-      game=>gameCard(game)
-    ).join("");
+    filtered
+      .map(game=>gameCard(game))
+      .join("");
 
 }
 
@@ -2874,7 +2808,6 @@ function openGame(id){
   if(!game)
     return;
 
-
   window.open(
     game.url,
     "_blank",
@@ -2892,13 +2825,12 @@ function viewGameDetails(id){
   if(!game)
     return;
 
-
   alert(
     game.name+
     "\n\n"+
     game.description+
     "\n\n"+
-    "Use Play Now to open the official destination."
+    "Use Play Now to open the game destination."
   );
 
 }
@@ -2908,21 +2840,6 @@ function viewGameDetails(id){
    TASKS
 ========================= */
 
-function getTaskRecord(
-  username,
-  taskId
-){
-
-  return taskRecords.find(
-    r=>
-      r.username===username &&
-      r.taskId===taskId &&
-      r.date===todayKey()
-  );
-
-}
-
-
 function renderTasks(){
 
   const container=
@@ -2930,12 +2847,10 @@ function renderTasks(){
       "taskContainer"
     );
 
-
   const notice=
     document.getElementById(
       "loginTaskNotice"
     );
-
 
   if(!container)
     return;
@@ -2947,23 +2862,20 @@ function renderTasks(){
       "hidden"
     );
 
-
     container.innerHTML=
       `<div class="empty">
         🔐 Login to receive today's tasks.
       </div>`;
 
-
     document.getElementById(
       "taskXP"
-    ).textContent="0 XP";
-
+    ).textContent=
+      "0 XP";
 
     document.getElementById(
       "taskProgress"
     ).textContent=
       "0 / 0";
-
 
     return;
 
@@ -3004,7 +2916,8 @@ function renderTasks(){
         );
 
 
-      let status="Available";
+      let status=
+        "Available";
 
       let statusClass="";
 
@@ -3014,7 +2927,8 @@ function renderTasks(){
       if(record){
 
         if(
-          record.status==="pending"
+          record.status===
+          "pending"
         ){
 
           status=
@@ -3022,7 +2936,6 @@ function renderTasks(){
 
           statusClass=
             "status-pending";
-
 
           button=`
             <button
@@ -3034,9 +2947,9 @@ function renderTasks(){
 
         }
 
-
         else if(
-          record.status==="approved"
+          record.status===
+          "approved"
         ){
 
           status=
@@ -3047,9 +2960,7 @@ function renderTasks(){
           statusClass=
             "status-approved";
 
-
           approved++;
-
 
           button=`
             <button
@@ -3061,9 +2972,9 @@ function renderTasks(){
 
         }
 
-
         else if(
-          record.status==="rejected"
+          record.status===
+          "rejected"
         ){
 
           status=
@@ -3071,7 +2982,6 @@ function renderTasks(){
 
           statusClass=
             "status-rejected";
-
 
           button=`
             <button
@@ -3083,10 +2993,7 @@ function renderTasks(){
 
         }
 
-      }
-
-
-      else{
+      }else{
 
         button=`
 
@@ -3138,8 +3045,7 @@ function renderTasks(){
           </p>
 
           <span
-            class="task-status
-            ${statusClass}">
+            class="task-status ${statusClass}">
             ${status}
           </span>
 
@@ -3148,10 +3054,7 @@ function renderTasks(){
           </div>
 
           <p
-            style="
-              margin-top:10px;
-              font-size:11px;
-            ">
+            style="margin-top:10px;font-size:11px">
             🎮
             ${escapeHTML(
               game?.name ||
@@ -3194,14 +3097,11 @@ function openTaskGame(taskId){
       t=>t.id===taskId
     );
 
-
   if(!task)
     return;
 
-
   const game=
     getGame(task.game);
-
 
   if(game){
 
@@ -3231,7 +3131,6 @@ function submitTask(taskId){
     dailyTasks.find(
       t=>t.id===taskId
     );
-
 
   if(!task)
     return;
@@ -3274,8 +3173,7 @@ function submitTask(taskId){
 
   const proof=
     prompt(
-      "Briefly describe how you completed this task.\n\n"+
-      "The squad owner will verify your submission."
+      "Briefly describe how you completed this task."
     );
 
 
@@ -3305,10 +3203,7 @@ function submitTask(taskId){
     existing.submittedAt=
       new Date().toISOString();
 
-  }
-
-
-  else{
+  }else{
 
     taskRecords.push({
 
@@ -3323,8 +3218,7 @@ function submitTask(taskId){
 
       status:"pending",
 
-      proof:
-        proof.trim(),
+      proof:proof.trim(),
 
       submittedAt:
         new Date().toISOString()
@@ -3336,304 +3230,10 @@ function submitTask(taskId){
 
   saveTasks();
 
-
   alert(
     "Task submitted!\n\n"+
     "Your completion is waiting for verification."
   );
-
-
-  renderTasks();
-
-}
-
-
-/* =========================
-   VERIFICATION
-========================= */
-
-function isOwner(){
-
-  if(!currentUser)
-    return false;
-
-
-  return users.length>0 &&
-    users[0].username===
-    currentUser.username;
-
-}
-
-
-function openVerification(){
-
-  if(!isOwner()){
-
-    alert(
-      "Only the squad owner can verify submissions."
-    );
-
-    return;
-
-  }
-
-
-  renderVerification();
-
-  showSectionById(
-    "verification"
-  );
-
-}
-
-
-function renderVerification(){
-
-  const container=
-    document.getElementById(
-      "verificationContainer"
-    );
-
-
-  const notice=
-    document.getElementById(
-      "verificationNotice"
-    );
-
-
-  if(!currentUser){
-
-    notice.innerHTML=
-      `<div class="notice warning">
-        🔐 Login first.
-      </div>`;
-
-    container.innerHTML="";
-
-    return;
-
-  }
-
-
-  if(!isOwner()){
-
-    notice.innerHTML=
-      `<div class="notice warning">
-        👑 Verification is available to the squad owner.
-      </div>`;
-
-    container.innerHTML="";
-
-    return;
-
-  }
-
-
-  notice.innerHTML=
-    `<div class="notice success">
-      👑 You are the local SquadHub squad owner.
-    </div>`;
-
-
-  const pending=
-    taskRecords.filter(
-      r=>r.status==="pending"
-    );
-
-
-  if(pending.length===0){
-
-    container.innerHTML=
-      `<div class="empty">
-        📋 No pending task submissions.
-      </div>`;
-
-    return;
-
-  }
-
-
-  container.innerHTML=
-    pending.map(record=>{
-
-      const user=
-        users.find(
-          u=>u.username===
-             record.username
-        );
-
-
-      const task=
-        dailyTasks.find(
-          t=>t.id===
-             record.taskId
-        );
-
-
-      if(!user || !task)
-        return "";
-
-
-      return `
-
-        <div
-          class="panel"
-          style="margin-bottom:12px;">
-
-          <h3>
-            ${task.icon}
-            ${escapeHTML(
-              user.username
-            )}
-          </h3>
-
-          <p
-            style="margin-top:8px;">
-            <strong>
-              ${escapeHTML(task.title)}
-            </strong>
-          </p>
-
-          <p
-            class="muted"
-            style="margin-top:8px;">
-            Proof:
-            ${escapeHTML(
-              record.proof
-            )}
-          </p>
-
-          <div
-            class="card-actions">
-
-            <button
-              class="primary-btn"
-              onclick="approveTask(${record.id})">
-              ✓ Approve +${task.xp} XP
-            </button>
-
-            <button
-              class="danger-btn"
-              onclick="rejectTask(${record.id})">
-              ✕ Reject
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-function approveTask(recordId){
-
-  if(!isOwner())
-    return;
-
-
-  const record=
-    taskRecords.find(
-      r=>r.id===recordId
-    );
-
-
-  if(!record)
-    return;
-
-
-  const task=
-    dailyTasks.find(
-      t=>t.id===record.taskId
-    );
-
-
-  const user=
-    users.find(
-      u=>u.username===
-         record.username
-    );
-
-
-  const member=
-    members.find(
-      m=>m.username===
-         record.username
-    );
-
-
-  if(!task || !user || !member)
-    return;
-
-
-  if(record.status!=="pending")
-    return;
-
-
-  record.status=
-    "approved";
-
-
-  user.xp=
-    (user.xp || 0)+task.xp;
-
-
-  member.xp=
-    (member.xp || 0)+task.xp;
-
-
-  saveUsers();
-
-  saveMembers();
-
-  saveTasks();
-
-
-  renderVerification();
-
-  updateUI();
-
-}
-
-
-function rejectTask(recordId){
-
-  if(!isOwner())
-    return;
-
-
-  const record=
-    taskRecords.find(
-      r=>r.id===recordId
-    );
-
-
-  if(!record)
-    return;
-
-
-  const reason=
-    prompt(
-      "Optional rejection reason:"
-    );
-
-
-  record.status=
-    "rejected";
-
-
-  record.rejectionReason=
-    reason?.trim() ||
-    "Not verified.";
-
-
-  saveTasks();
-
-
-  renderVerification();
 
   renderTasks();
 
@@ -3643,6 +3243,18 @@ function rejectTask(recordId){
 /* =========================
    SQUAD
 ========================= */
+
+function isOwner(){
+
+  if(!currentUser)
+    return false;
+
+  return users.length>0 &&
+    users[0].username===
+    currentUser.username;
+
+}
+
 
 function addMember(){
 
@@ -3671,7 +3283,6 @@ function addMember(){
       "memberName"
     );
 
-
   const name=
     input.value.trim();
 
@@ -3690,7 +3301,7 @@ function addMember(){
   const exists=
     members.some(
       m=>
-        m.username?.toLowerCase()===
+        m.name.toLowerCase()===
         name.toLowerCase()
     );
 
@@ -3706,15 +3317,6 @@ function addMember(){
   }
 
 
-  /*
-    Manual prototype members receive
-    their own unique Player ID too.
-  */
-
-  const newId=
-    generatePlayerID();
-
-
   members.push({
 
     id:Date.now(),
@@ -3723,7 +3325,8 @@ function addMember(){
 
     name:name,
 
-    playerId:newId,
+    playerId:
+      generatePlayerId(),
 
     xp:0,
 
@@ -3743,15 +3346,13 @@ function addMember(){
 
   saveMembers();
 
-
   input.value="";
-
 
   renderMembers();
 
-  updateStats();
-
   renderLeaderboard();
+
+  updateStats();
 
 }
 
@@ -3792,9 +3393,7 @@ function deleteMember(id){
       m=>m.id!==id
     );
 
-
   saveMembers();
-
 
   renderMembers();
 
@@ -3812,7 +3411,6 @@ function renderMembers(){
       "membersContainer"
     );
 
-
   const notice=
     document.getElementById(
       "ownerNotice"
@@ -3829,7 +3427,6 @@ function renderMembers(){
       "hidden"
     );
 
-
     container.innerHTML=
       `<div class="empty">
         🔐 Login to view the squad.
@@ -3840,19 +3437,14 @@ function renderMembers(){
   }
 
 
-  if(isOwner()){
-
+  if(isOwner())
     notice.classList.add(
       "hidden"
     );
-
-  }else{
-
+  else
     notice.classList.remove(
       "hidden"
     );
-
-  }
 
 
   const search=
@@ -3878,7 +3470,7 @@ function renderMembers(){
 
     container.innerHTML=
       `<div class="empty">
-        👥 No squad members found.
+        👥 No squad players found.
       </div>`;
 
     return;
@@ -3889,75 +3481,74 @@ function renderMembers(){
   container.innerHTML=
     `<div class="members-grid">
 
-      ${filtered.map(member=>{
+      ${filtered.map(
+        member=>{
 
-        const rank=
-          getRank(member.xp);
+          const rank=
+            getRank(member.xp);
 
+          return `
 
-        return `
+            <div class="member">
 
-          <div class="member">
-
-            <div class="avatar">
-              ${getInitial(
-                member.name
-              )}
-            </div>
-
-            <div class="member-info">
-
-              <h3>
-                ${escapeHTML(
+              <div class="avatar">
+                ${getInitial(
                   member.name
                 )}
-              </h3>
+              </div>
 
-              <p>
+              <div class="member-info">
 
-                ${rank.icon}
-                ${rank.name}
+                <h3>
+                  ${escapeHTML(
+                    member.name
+                  )}
+                </h3>
 
-                •
+                <p>
+                  ${rank.icon}
+                  ${rank.name}
+                  •
+                  <span class="xp">
+                    ${Number(
+                      member.xp||0
+                    ).toLocaleString()}
+                    XP
+                  </span>
+                </p>
 
-                <span class="xp">
-                  ${member.xp.toLocaleString()}
-                  XP
-                </span>
+              </div>
 
-              </p>
+              <div class="member-actions">
 
-            </div>
-
-            <div class="member-actions">
-
-              <button
-                class="small-btn"
-                onclick="openMemberProfile(${member.id})">
-                Profile
-              </button>
-
-              ${
-                isOwner()
-                ?
-                `
                 <button
                   class="small-btn"
-                  onclick="deleteMember(${member.id})">
-                  ✕
+                  onclick="openMemberProfile(${member.id})">
+                  Profile
                 </button>
-                `
-                :
-                ""
-              }
+
+                ${
+                  isOwner()
+                  ?
+                  `
+                  <button
+                    class="small-btn"
+                    onclick="deleteMember(${member.id})">
+                    ✕
+                  </button>
+                  `
+                  :
+                  ""
+                }
+
+              </div>
 
             </div>
 
-          </div>
+          `;
 
-        `;
-
-      }).join("")}
+        }
+      ).join("")}
 
     </div>`;
 
@@ -3971,12 +3562,13 @@ function openMemberProfile(id){
       m=>m.id===id
     );
 
-
   if(!member)
     return;
 
-
-  renderProfile(member);
+  renderProfile(
+    member,
+    false
+  );
 
   showSectionById(
     "profile"
@@ -3989,100 +3581,6 @@ function openMemberProfile(id){
    LEADERBOARD
 ========================= */
 
-function getLeaderboardPlayers(){
-
-  /*
-    Registered users are the primary source.
-    Members are synchronized with registered users.
-  */
-
-  const result=[];
-
-
-  users.forEach(user=>{
-
-    let member=
-      members.find(
-        m=>m.username===
-           user.username
-      );
-
-
-    if(!member){
-
-      member={
-
-        id:Date.now()+
-          Math.floor(
-            Math.random()*10000
-          ),
-
-        username:user.username,
-
-        name:user.username,
-
-        playerId:user.playerId,
-
-        xp:user.xp || 0,
-
-        games:user.games || 0,
-
-        wins:user.wins || 0,
-
-        losses:user.losses || 0,
-
-        favoriteGame:
-          user.favoriteGame ||
-          "Not selected",
-
-        identityPrivate:
-          Boolean(
-            user.identityPrivate
-          )
-
-      };
-
-
-      members.push(member);
-
-      saveMembers();
-
-    }
-
-
-    /*
-      Keep XP synchronized.
-    */
-
-    member.xp=
-      Number(user.xp)||0;
-
-
-    if(!member.playerId){
-
-      member.playerId=
-        user.playerId ||
-        generatePlayerID();
-
-    }
-
-
-    member.identityPrivate=
-      Boolean(
-        user.identityPrivate
-      );
-
-
-    result.push(member);
-
-  });
-
-
-  return result;
-
-}
-
-
 function renderLeaderboard(){
 
   const container=
@@ -4090,20 +3588,15 @@ function renderLeaderboard(){
       "leaderboardContainer"
     );
 
-
   if(!container)
     return;
 
 
-  const players=
-    getLeaderboardPlayers();
-
-
-  if(players.length===0){
+  if(members.length===0){
 
     container.innerHTML=
       `<div class="empty">
-        🏆 No registered players yet.
+        🏆 No players yet.
       </div>`;
 
     return;
@@ -4111,19 +3604,17 @@ function renderLeaderboard(){
   }
 
 
+  /*
+    Highest XP = highest leaderboard position.
+    Every player is included.
+  */
+
   const sorted=
-    [...players].sort(
+    [...members].sort(
       (a,b)=>
         (Number(b.xp)||0)-
         (Number(a.xp)||0)
     );
-
-
-  const medals=[
-    "🥇",
-    "🥈",
-    "🥉"
-  ];
 
 
   container.innerHTML=
@@ -4135,12 +3626,15 @@ function renderLeaderboard(){
           const rank=
             getRank(member.xp);
 
-
           const privateIdentity=
-            Boolean(
-              member.identityPrivate
-            );
+            member.identityPrivate===true;
 
+
+          /*
+            Privacy rule:
+            private players show only their
+            Player ID on the public leaderboard.
+          */
 
           const displayName=
             privateIdentity
@@ -4150,61 +3644,46 @@ function renderLeaderboard(){
             member.name;
 
 
-          const status=
-            privateIdentity
-            ?
-            "🔒 Private Identity"
-            :
-            "🌐 Public Identity";
-
-
           return `
 
             <div class="rank">
 
               <div class="rank-number">
-                ${
-                  medals[index] ||
-                  "#"+(index+1)
-                }
-              </div>
 
+                ${
+                  index===0
+                  ? "🥇"
+                  : index===1
+                  ? "🥈"
+                  : index===2
+                  ? "🥉"
+                  : "#"+(index+1)
+                }
+
+              </div>
 
               <div>
 
                 <div class="rank-name">
+
                   ${escapeHTML(
                     displayName
                   )}
-                </div>
-
-
-                <div
-                  style="
-                    color:#7f8ca5;
-                    font-size:12px;
-                    margin-top:4px;
-                  ">
-
-                  Player ID:
-                  ${escapeHTML(
-                    member.playerId
-                  )}
 
                 </div>
 
-
-                <span
-                  class="
-                    rank-badge
-                    ${rank.className}
-                  ">
+                <div class="rank-title">
 
                   ${rank.icon}
                   ${rank.name}
 
-                </span>
+                  ${
+                    privateIdentity
+                    ? " • 🔒 Private"
+                    : ""
+                  }
 
+                </div>
 
                 <div
                   style="
@@ -4213,32 +3692,30 @@ function renderLeaderboard(){
                     margin-top:5px;
                   ">
 
-                  ${status}
+                  Player ID:
+                  ${escapeHTML(
+                    member.playerId ||
+                    "Not assigned"
+                  )}
 
                 </div>
 
               </div>
 
-
               <div>
 
                 <div class="rank-xp">
-
-                  ${(
-                    Number(member.xp)||0
+                  ${Number(
+                    member.xp||0
                   ).toLocaleString()}
                   XP
-
                 </div>
-
 
                 <button
                   class="small-btn"
-                  style="margin-top:5px"
+                  style="margin-top:6px"
                   onclick="openMemberProfile(${member.id})">
-
                   Profile
-
                 </button>
 
               </div>
@@ -4266,7 +3743,6 @@ function renderCurrentProfile(){
       "profileContainer"
     );
 
-
   if(!container)
     return;
 
@@ -4292,9 +3768,7 @@ function renderCurrentProfile(){
           class="primary-btn"
           style="width:100%"
           onclick="openAuth()">
-
           🔐 Login
-
         </button>
 
       </div>`;
@@ -4308,51 +3782,47 @@ function renderCurrentProfile(){
     getCurrentMember();
 
 
-  if(member){
-
-    renderProfile(member);
-
-  }
+  if(member)
+    renderProfile(
+      member,
+      true
+    );
 
 }
 
 
-function renderProfile(member){
+function renderProfile(
+  member,
+  isOwnProfile
+){
 
   const container=
     document.getElementById(
       "profileContainer"
     );
 
-
   if(!container)
     return;
-
-
-  const rank=
-    getRank(member.xp);
 
 
   const level=
     Math.max(
       1,
       Math.floor(
-        member.xp/100
+        (Number(member.xp)||0)/100
       )+1
     );
 
 
   const currentXP=
-    member.xp%100;
+    (Number(member.xp)||0)%100;
 
 
-  const nextRank=
-    getNextRank(
-      member.xp
-    );
+  const rank=
+    getRank(member.xp);
 
 
-  const rankPosition=
+  const position=
     [...members]
       .sort(
         (a,b)=>
@@ -4367,10 +3837,8 @@ function renderProfile(member){
   const gamesPlayed=
     member.games || 0;
 
-
   const wins=
     member.wins || 0;
-
 
   const losses=
     member.losses || 0;
@@ -4378,12 +3846,10 @@ function renderProfile(member){
 
   const winRate=
     gamesPlayed>0
-    ?
-    Math.round(
-      (wins/gamesPlayed)*100
-    )
-    :
-    0;
+    ? Math.round(
+        (wins/gamesPlayed)*100
+      )
+    : 0;
 
 
   const approvedTasks=
@@ -4395,348 +3861,254 @@ function renderProfile(member){
     ).length;
 
 
-  const user=
-    users.find(
-      u=>
-        u.username===
-        member.username
-    );
+  const isPrivate=
+    member.identityPrivate===true;
 
 
-  const privateIdentity=
-    Boolean(
-      user?.identityPrivate ||
-      member.identityPrivate
-    );
+  container.innerHTML=
 
+  `
 
-  const isOwnProfile=
-    currentUser &&
-    currentUser.username===
-    member.username;
+  <div class="profile-card">
 
+    <div class="profile-top">
 
-  container.innerHTML=`
+      <div class="profile-avatar">
+        ${getInitial(
+          member.name
+        )}
+      </div>
 
-    <div class="profile-card">
+      <div class="profile-name">
 
-      <div class="profile-top">
-
-        <div class="profile-avatar">
-
-          ${getInitial(
-            member.name
-          )}
-
-        </div>
-
-
-        <div class="profile-name">
-
-          ${
-            privateIdentity &&
-            !isOwnProfile
-            ?
-            escapeHTML(
-              member.playerId
-            )
-            :
-            escapeHTML(
-              member.name
-            )
-          }
-
-        </div>
-
-
-        <div class="profile-id">
-
-          🆔
-          ${escapeHTML(
-            member.playerId
-          )}
-
-        </div>
-
-
-        <div class="profile-level">
-
-          ${rank.icon}
-          ${rank.name}
-          • LEVEL ${level}
-
-        </div>
+        ${escapeHTML(
+          member.name
+        )}
 
       </div>
 
-
-      <div class="progress-box">
-
-        <div class="progress-info">
-
-          <span>
-            Level ${level}
-          </span>
-
-          <span>
-            ${currentXP}/100 XP
-          </span>
-
-        </div>
-
-
-        <div class="progress">
-
-          <div
-            class="progress-bar"
-            style="width:${currentXP}%">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="profile-stats">
-
-        <div class="profile-stat">
-
-          <strong>
-            ${gamesPlayed}
-          </strong>
-
-          <span>
-            Games
-          </span>
-
-        </div>
-
-
-        <div class="profile-stat">
-
-          <strong>
-            ${wins}
-          </strong>
-
-          <span>
-            Wins
-          </span>
-
-        </div>
-
-
-        <div class="profile-stat">
-
-          <strong>
-            ${winRate}%
-          </strong>
-
-          <span>
-            Win Rate
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="profile-details">
-
-        <div class="detail">
-
-          <span>
-            ⭐ Total XP
-          </span>
-
-          <strong>
-            ${(
-              Number(member.xp)||0
-            ).toLocaleString()}
-          </strong>
-
-        </div>
-
-
-        <div class="detail">
-
-          <span>
-            🏆 Leaderboard Position
-          </span>
-
-          <strong>
-            #${rankPosition || "-"}
-          </strong>
-
-        </div>
-
-
-        <div class="detail">
-
-          <span>
-            📊 Current Rank
-          </span>
-
-          <strong>
-            ${rank.icon}
-            ${rank.name}
-          </strong>
-
-        </div>
-
-
-        <div class="detail">
-
-          <span>
-            🎯 Verified Tasks
-          </span>
-
-          <strong>
-            ${approvedTasks}
-          </strong>
-
-        </div>
-
-
-        <div class="detail">
-
-          <span>
-            🎮 Favorite Game
-          </span>
-
-          <strong>
-            ${escapeHTML(
-              member.favoriteGame
-            )}
-          </strong>
-
-        </div>
-
-
-        <div class="detail">
-
-          <span>
-            🆔 Player ID
-          </span>
-
-          <strong>
-            ${escapeHTML(
-              member.playerId
-            )}
-          </strong>
-
-        </div>
-
-
-        ${
-          nextRank
-          ?
-          `
-          <div
-            class="notice"
-            style="margin-top:15px;margin-bottom:0;">
-
-            🚀
-            <strong>
-              ${nextRank.xp-
-                (Number(member.xp)||0)}
-              XP
-            </strong>
-            needed for
-            <strong>
-              ${nextRank.name}
-            </strong>.
-
-          </div>
-          `
-          :
-          `
-          <div
-            class="notice success"
-            style="margin-top:15px;margin-bottom:0;">
-
-            👑
-            You have reached the highest
-            current rank: <strong>Legend</strong>.
-
-          </div>
-          `
-        }
-
-
-        ${
-          isOwnProfile
-          ?
-          `
-          <div class="privacy-box">
-
-            <div class="privacy-row">
-
-              <div>
-
-                <strong>
-                  🔒 Private Identity
-                </strong>
-
-                <p
-                  class="muted"
-                  style="
-                    margin-top:5px;
-                    font-size:11px;
-                    line-height:1.5;
-                  ">
-
-                  When enabled, your username
-                  is hidden from the leaderboard.
-                  Your unique Player ID remains visible.
-
-                </p>
-
-              </div>
-
-
-              <label class="switch">
-
-                <input
-                  type="checkbox"
-                  ${
-                    privateIdentity
-                    ? "checked"
-                    : ""
-                  }
-                  onchange="
-                    togglePrivacy(this.checked)
-                  ">
-
-                <span class="slider"></span>
-
-              </label>
-
-            </div>
-
-          </div>
-
-
-          <div
-            style="margin-top:15px;">
-
-            <button
-              class="primary-btn"
-              style="width:100%"
-              onclick="editOwnStats()">
-
-              ✏️ Update My Stats
-
-            </button>
-
-          </div>
-          `
-          :
-          ""
-        }
+      <div class="profile-level">
+
+        ${rank.icon}
+        ${rank.name}
+        • LEVEL ${level}
 
       </div>
 
     </div>
+
+
+    <div class="progress-box">
+
+      <div class="progress-info">
+
+        <span>
+          Level ${level}
+        </span>
+
+        <span>
+          ${currentXP}/100 XP
+        </span>
+
+      </div>
+
+      <div class="progress">
+
+        <div
+          class="progress-bar"
+          style="width:${currentXP}%">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="profile-stats">
+
+      <div class="profile-stat">
+
+        <strong>
+          ${gamesPlayed}
+        </strong>
+
+        <span>
+          Games
+        </span>
+
+      </div>
+
+
+      <div class="profile-stat">
+
+        <strong>
+          ${wins}
+        </strong>
+
+        <span>
+          Wins
+        </span>
+
+      </div>
+
+
+      <div class="profile-stat">
+
+        <strong>
+          ${winRate}%
+        </strong>
+
+        <span>
+          Win Rate
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="profile-details">
+
+      <div class="detail">
+
+        <span>
+          🆔 Player ID
+        </span>
+
+        <strong>
+          ${escapeHTML(
+            member.playerId ||
+            "Not assigned"
+          )}
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          🏆 Squad Rank
+        </span>
+
+        <strong>
+          #${position || "-"}
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          ⭐ Total XP
+        </span>
+
+        <strong>
+          ${Number(
+            member.xp||0
+          ).toLocaleString()}
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          🎖️ Rank
+        </span>
+
+        <strong>
+          ${rank.icon}
+          ${rank.name}
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          🎯 Verified Tasks
+        </span>
+
+        <strong>
+          ${approvedTasks}
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          🎮 Favorite Game
+        </span>
+
+        <strong>
+          ${escapeHTML(
+            member.favoriteGame ||
+            "Not selected"
+          )}
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          🔒 Leaderboard Identity
+        </span>
+
+        <strong>
+          ${
+            isPrivate
+            ? "Private"
+            : "Public"
+          }
+        </strong>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span>
+          ❌ Losses
+        </span>
+
+        <strong>
+          ${losses}
+        </strong>
+
+      </div>
+
+
+      ${
+        isOwnProfile
+        ?
+        `
+        <div
+          style="margin-top:20px">
+
+          <button
+            class="primary-btn"
+            style="width:100%"
+            onclick="editOwnProfile()">
+            ⚙️ Profile & Privacy Settings
+          </button>
+
+        </div>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  </div>
 
   `;
 
@@ -4744,69 +4116,10 @@ function renderProfile(member){
 
 
 /* =========================
-   PRIVACY
+   PROFILE SETTINGS
 ========================= */
 
-function togglePrivacy(enabled){
-
-  if(!currentUser)
-    return;
-
-
-  const user=
-    users.find(
-      u=>
-        u.username===
-        currentUser.username
-    );
-
-
-  const member=
-    members.find(
-      m=>
-        m.username===
-        currentUser.username
-    );
-
-
-  if(!user || !member)
-    return;
-
-
-  user.identityPrivate=
-    Boolean(enabled);
-
-
-  member.identityPrivate=
-    Boolean(enabled);
-
-
-  saveUsers();
-
-  saveMembers();
-
-
-  renderProfile(member);
-
-  renderLeaderboard();
-
-
-  alert(
-    enabled
-    ?
-    "Private Identity enabled.\n\nYour username will be hidden from the leaderboard."
-    :
-    "Private Identity disabled.\n\nYour username can now appear on the leaderboard."
-  );
-
-}
-
-
-/* =========================
-   EDIT PROFILE
-========================= */
-
-function editOwnStats(){
+function editOwnProfile(){
 
   if(!currentUser)
     return;
@@ -4815,27 +4128,6 @@ function editOwnStats(){
   const member=
     getCurrentMember();
 
-
-  if(!member)
-    return;
-
-
-  const favorite=
-    prompt(
-      "Favorite game:",
-      member.favoriteGame
-    );
-
-
-  if(favorite===null)
-    return;
-
-
-  member.favoriteGame=
-    favorite.trim() ||
-    "Not selected";
-
-
   const user=
     users.find(
       u=>
@@ -4844,20 +4136,86 @@ function editOwnStats(){
     );
 
 
-  if(user){
+  if(!member || !user)
+    return;
 
-    user.favoriteGame=
-      member.favoriteGame;
 
-    saveUsers();
+  const newName=
+    prompt(
+      "Player display name:",
+      member.name
+    );
+
+
+  if(newName===null)
+    return;
+
+
+  const trimmedName=
+    newName.trim();
+
+
+  if(trimmedName){
+
+    member.name=
+      trimmedName;
 
   }
 
 
+  const favorite=
+    prompt(
+      "Favorite game:",
+      member.favoriteGame ||
+      "Not selected"
+    );
+
+
+  if(
+    favorite!==null &&
+    favorite.trim()
+  ){
+
+    member.favoriteGame=
+      favorite.trim();
+
+  }
+
+
+  const privacy=
+    confirm(
+      "Privacy setting:\n\n"+
+      "OK = Make identity PRIVATE\n"+
+      "Cancel = Keep identity PUBLIC"
+    );
+
+
+  member.identityPrivate=
+    privacy;
+
+  user.identityPrivate=
+    privacy;
+
+  user.favoriteGame=
+    member.favoriteGame;
+
+  saveUsers();
+
   saveMembers();
 
+  renderProfile(
+    member,
+    true
+  );
 
-  renderProfile(member);
+  renderMembers();
+
+  renderLeaderboard();
+
+
+  alert(
+    "Profile updated successfully."
+  );
 
 }
 
@@ -4869,10 +4227,10 @@ function editOwnStats(){
 function updateStats(){
 
   const total=
-    users.reduce(
-      (sum,user)=>
+    members.reduce(
+      (sum,member)=>
         sum+
-        (Number(user.xp)||0),
+        (Number(member.xp)||0),
       0
     );
 
@@ -4882,12 +4240,10 @@ function updateStats(){
       "memberCount"
     );
 
-
   const totalXP=
     document.getElementById(
       "totalXP"
     );
-
 
   const gameCount=
     document.getElementById(
@@ -4897,7 +4253,7 @@ function updateStats(){
 
   if(memberCount)
     memberCount.textContent=
-      users.length;
+      members.length;
 
 
   if(totalXP)
@@ -4914,79 +4270,52 @@ function updateStats(){
 
 
 /* =========================
-   OWNER NAVIGATION
+   OLD DATA MIGRATION
 ========================= */
 
-function addOwnerNavigation(){
+function migrateExistingData(){
 
-  const nav=
-    document.getElementById(
-      "mainNav"
-    );
+  let changedUsers=false;
 
+  users.forEach(user=>{
 
-  if(!nav)
-    return;
+    if(!user.playerId){
 
+      user.playerId=
+        generatePlayerId();
 
-  if(
-    currentUser &&
-    isOwner()
-  ){
-
-    if(
-      !document.getElementById(
-        "verificationNavButton"
-      )
-    ){
-
-      const button=
-        document.createElement(
-          "button"
-        );
-
-
-      button.id=
-        "verificationNavButton";
-
-
-      button.textContent=
-        "👑 Verify";
-
-
-      button.onclick=
-        function(){
-
-          openVerification();
-
-        };
-
-
-      nav.appendChild(button);
+      changedUsers=true;
 
     }
 
-  }
+
+    if(
+      typeof user.identityPrivate!=="boolean"
+    ){
+
+      user.identityPrivate=
+        false;
+
+      changedUsers=true;
+
+    }
+
+  });
 
 
-  else{
-
-    const button=
-      document.getElementById(
-        "verificationNavButton"
-      );
+  if(changedUsers)
+    saveUsers();
 
 
-    if(button)
-      button.remove();
-
-  }
+  users.forEach(
+    ensureMember
+  );
 
 }
 
 
 /* =========================
-   OLD TASK CLEANUP
+   CLEAN OLD TASKS
 ========================= */
 
 function cleanupOldTasks(){
@@ -4998,7 +4327,8 @@ function cleanupOldTasks(){
   taskRecords=
     taskRecords.filter(
       record=>
-        record.date===today
+        record.date===
+        today
     );
 
 
@@ -5008,99 +4338,14 @@ function cleanupOldTasks(){
 
 
 /* =========================
-   MIGRATION
-========================= */
-
-function migrateOldUsers(){
-
-  let changed=false;
-
-
-  users.forEach(user=>{
-
-    if(!user.playerId){
-
-      user.playerId=
-        generatePlayerID();
-
-      changed=true;
-
-    }
-
-
-    if(
-      user.identityPrivate===
-      undefined
-    ){
-
-      user.identityPrivate=
-        false;
-
-      changed=true;
-
-    }
-
-  });
-
-
-  if(changed)
-    saveUsers();
-
-
-  /*
-    Make sure members contain
-    all registered players.
-  */
-
-  users.forEach(
-    user=>ensureMember(user)
-  );
-
-
-  members.forEach(member=>{
-
-    const user=
-      users.find(
-        u=>
-          u.username===
-          member.username
-      );
-
-
-    if(user){
-
-      member.playerId=
-        user.playerId;
-
-      member.xp=
-        user.xp || 0;
-
-      member.identityPrivate=
-        Boolean(
-          user.identityPrivate
-        );
-
-    }
-
-  });
-
-
-  saveMembers();
-
-}
-
-
-/* =========================
    START
 ========================= */
 
+migrateExistingData();
+
 cleanupOldTasks();
 
-migrateOldUsers();
-
 updateUI();
-
-addOwnerNavigation();
 
 </script>
 
